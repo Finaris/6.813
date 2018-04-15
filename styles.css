@@ -1,0 +1,32 @@
+/* Global variables */
+:root {
+
+}
+
+/* Styles for overall page */
+
+html {
+
+}
+
+body {
+
+}
+
+header {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(5,1fr);
+  grid-column-gap: 50px;
+  grid-template-rows: repeat(1,10vh);
+}
+
+#profPic {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+main {
+
+}
