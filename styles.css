@@ -17,9 +17,32 @@ header {
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-template-columns: repeat(5,1fr);
-  grid-column-gap: 50px;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(7,1fr);
+  /*grid-template-columns: 20% 20% 20% 20% 20%;*/
+  grid-column-gap: 25px;
   grid-template-rows: repeat(1,10vh);
+}
+
+#logo {
+  display: grid;
+  align-self: end;
+  align-items: end;
+  font-family: 'Oswald', sans-serif;
+  font-size: 32pt;
+  line-height: 100%;
+
+}
+
+.heading {
+  display: grid;
+  align-self: end;
+  align-items: end;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20pt;
+  font-weight: lighter;
+  line-height: 100%;
 }
 
 #profPic {
