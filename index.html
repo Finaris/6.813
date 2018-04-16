@@ -11,6 +11,8 @@
   <!-- Load style sheets -->
   <link rel="stylesheet" href="./css/airing.css">
 
+  <link href="https://fonts.googleapis.com/css?family=Lora|Oswald|Oswald:light" rel="stylesheet">
+
   <!-- Load any supplemental Javascript libraries here -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
 
@@ -22,14 +24,15 @@
 
 <body>
 
-  <header>
-    <div>KTracker</div>
-    <div>My Lists</div>
-    <div>Airing</div>
-    <div>Search</div>
-    <div>Stats</div>
-    <div><input type="text" placeholder="Search.."></div>
-    <div><img src="./img/avatar.png" id="profPic"></div>
+  <header id="navbar">
+    <!-- Made these divs for now; feel free to change to buttons if we need clickable stuff -->
+    <div id="logo">KTracker</div>
+    <a class="navlink" href="#">Airing</a>
+    <a class="navlink" href="#">All Shows</a>
+    <a class="navlink" href="#">My Lists</a>
+    <a class="navlink" href="#">Stats</a>
+    <div class="navsearch"><input type="text" placeholder="Search KDrama"></div>
+    <img src="./graphics/avatar.png" id="profPic">
   </header>
 
   <main>
