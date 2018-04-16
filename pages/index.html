@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>KTracker</title>
+
+  <!-- Use mobile-aware viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Load style sheets/fonts -->
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Load any supplemental Javascript libraries here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
+
+  <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
+  <script src="https://unpkg.com/event-target@latest/min.js"></script>
+    
+  <!-- Load custom scripts -->
+  <script src="../scripts/util.js"></script>
+  <script src="../scripts/filter.js"></script>
+
+</head>
+
+<body>
+
+  <header>
+    <!-- Made these divs for now; feel free to change to buttons if we need clickable stuff -->
+    <div>KTracker</div>
+    <div>Airing</div>
+    <div>My Lists</div>
+    <div>Stats</div>
+    <div><input type="text" placeholder="Search..."></div>
+    <div><img src="../graphics/avatar.png" id="profPic"></div>
+  </header>
+    
+  <div class="sidenav">
+    <!-- Name at top of div --> 
+    <h1 style="text-decoration: underline; cursor: auto">Filter</h1>
+      
+    <!-- Status Dropdown --> 
+    <button class="dropdown-btn">Status 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <input type="checkbox" name="status-airing" value="airing">Airing<br>
+      <input type="checkbox" name="status-completed" value="completed">Completed<br>
+      <input type="checkbox" name="status-upcoming" value="upcoming">Upcoming
+    </div>
+      
+    <!-- Genre Dropdown -->
+    <button class="dropdown-btn">Genre 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">TODO</a>
+    </div>
+      
+    <!-- Rating Dropdown -->
+    <button class="dropdown-btn">Rating 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <input type="text" placeholder="1">
+      <input type="text" placeholder="10">
+    </div>
+      
+    <!-- # Episodes Dropdown -->
+    <button class="dropdown-btn"># Episodes 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">TODO</a>
+    </div>
+      
+    <!-- Release Year Dropdown -->
+    <button class="dropdown-btn">Release Year 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">TODO</a>
+    </div>
+      
+    <!-- Actors Dropdown -->
+    <button class="dropdown-btn">Actors 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">TODO</a>
+    </div>
+      
+    <!-- Streaming Service Dropdown -->
+    <button class="dropdown-btn">Service 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+      <a href="#">TODO</a>
+    </div>
+  </div>
+    
+  <main>
+    
+  </main>
+
+</body>
+
+
+</html>
