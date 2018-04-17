@@ -1,0 +1,29 @@
+/* Global variables */
+:root {
+  /* Blues */
+  --color-navy-blue: #052048;
+  --color-dark-midnight-blue: #06171F;
+  --color-light-midnight-blue: #1C5C80;
+  --color-sky-blue: #82C6DD;
+  --color-steel-blue: #4497CD;
+
+  /* Grays */
+  --color-dark-gray: #ACACAC;
+  --color-gainsboro: #E3E3E3;
+  --color-black: #272727;
+  --color-gray: #8B8B8B;
+  --color-silver: #BCBCBC;
+  --color-white: #FFFFFF;
+  
+  /* Heights and Widths */
+  --nav-bar-height: 10vh;
+  --filter-bar-width: 200px;
+  
+  /* Font sizes */
+  --logo-font-size: 32px;
+  --header-font-size: 20px;
+  --plain-text-font-size: 12px;
+  
+  /* Curved edges */
+  --corner-radius: 8px;
+}
