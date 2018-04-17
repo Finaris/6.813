@@ -1,0 +1,65 @@
+header {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: var(--filter-bar-width) repeat(6,1fr);
+  grid-template-rows: var(--nav-bar-height);
+  background-color: var(--color-dark-gray);
+  font-family: 'Oswald', sans-serif;
+}
+
+header #logo {
+  align-self: end;
+  font-size: 32pt;
+  cursor: default;
+}
+
+header .navlink {
+  display: grid;
+  align-self: end;
+  align-items: end;
+  justify-items: center;
+  font-size: 20pt;
+  font-weight: lighter;
+  height: 100%;
+  width: 100%;
+  color: var(--color-black);
+  padding-bottom: 8px;
+  text-decoration: none;
+}
+
+header .navlink:hover {
+  cursor: pointer;
+  background-color: var(--color-silver);
+
+}
+
+
+header #profPic {
+  max-height: calc(var(--nav-bar-height) * 2 / 3);
+  text-align: center;
+}
+
+header .navsearch {
+  display: grid;
+  align-self: end;
+  align-items: end;
+  font-size: 20pt;
+  font-weight: lighter;
+  height: 100%;
+}
+
+header .navsearch input {
+  margin-bottom: 8px;
+  color: var(--color-black);
+  text-decoration: none;
+  border-radius: 8px;
+  border-style: solid;
+  border: none;
+  padding-left: 5px;
+
+}
+
+header .navsearch input:focus {
+  outline: none;
+}
