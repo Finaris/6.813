@@ -8,12 +8,15 @@
   --color-steel-blue: #4497CD;
 
   /* Grays */
-  --color-dark-gray: #ACACAC;
+  --color-gray: #ACACAC;
   --color-gainsboro: #E3E3E3;
   --color-black: #272727;
-  --color-gray: #8B8B8B;
+  --color-dark-gray: #8B8B8B;
   --color-silver: #BCBCBC;
   --color-white: #FFFFFF;
+  
+  /* Widths of bars */
+  --filter-width: 200px;
 }
 
 /* Styles for overall page */
@@ -23,7 +26,7 @@ html {
 }
 
 body {
-  background-color: var(--color-gainsboro);
+  background-color: #FFFFFF;
   margin: 0;
 }
 
@@ -33,13 +36,10 @@ header {
   align-items: center;
   justify-content: center;
   align-content: center;
-  grid-template-columns: repeat(7,1fr);
+  grid-template-columns: var(--filter-width) repeat(6,1fr);
   grid-column-gap: 0px;
   grid-template-rows: repeat(1,10vh);
-  background-color: var(--color-dark-gray);
-  padding-left: 8px;
-  padding-right: 8px;
-
+  background-color: var(--color-navy-blue);
 }
 
 #logo {
@@ -50,7 +50,8 @@ header {
   font-size: 32pt;
   line-height: 100%;
   cursor: default;
-  margin-bottom: 4px;
+  margin-bottom: 4px;    
+  color: var(--color-white);
 }
 
 .navlink {
@@ -64,16 +65,16 @@ header {
   line-height: 100%;
   height: 100%;
   width: 100%;
-  color: var(--color-black);
+  
+  color: var(--color-white);
 
   padding-bottom: 8px;
-  color: var(--color-black);
   text-decoration: none;
 }
 
 .navlink:hover {
   cursor: pointer;
-  background-color: var(--color-silver);
+  background-color: var(--color-light-midnight-blue);
 
 }
 
@@ -116,19 +117,14 @@ main {
 
 /* --- SIDEBAR --- */
 
-/* Define styling for sidebar. First place fonts. */ 
-body {
-    font-family: "Lato", sans-serif;
-}
-
 /* Fixed sidenav, full height */
 .sidenav {
-    color: #818181;
+    color: var(--color-black);
     height: 100%;
-    width: 200px;
+    width: var(--filter-width);
     position: fixed;
     z-index: 1;
-    background-color: #111;
+    background-color: var(--color-black);
     overflow-x: hidden;
     padding-top: 20px;
 }
@@ -138,7 +134,7 @@ body {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
-    color: #818181;
+    color: var(--color-white);
     display: block;
     border: none;
     background: none;
@@ -148,21 +144,20 @@ body {
     outline: none;
 }
 
-/* Mouse-over */
-.sidenav a:hover, .dropdown-btn:hover {
-    color: #f1f1f1;
+.sidenav button.dropdown-btn:hover {
+  background-color: var(--color-dark-gray);
 }
 
 /* Active class to help indicate open dropdowns */
 .active {
-    background-color: green;
-    color: white;
+  color: var(--color-white);
+  background-color: var(--color-light-midnight-blue);
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
     display: none;
-    background-color: #262626;
+    background-color: var(--color-gainsboro);
     padding-left: 8px;
 }
 
