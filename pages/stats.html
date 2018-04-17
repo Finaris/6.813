@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>KTracker</title>
+
+  <!-- Use mobile-aware viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Load style sheets/fonts -->
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/stats.css">
+  <link rel="stylesheet" href="../styles/filter.css">
+  <link rel="stylesheet" href="../styles/nav-bar.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Load any supplemental Javascript libraries here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
+
+  <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
+  <script src="https://unpkg.com/event-target@latest/min.js"></script>
+    
+  <!-- Load custom scripts -->
+  <script src="../scripts/data.js"></script>
+  <script src="../scripts/util.js"></script>
+  <script src="../scripts/filter.js"></script>
+<!--  <script src="../scripts/stats.js"></script>-->
+</head>
+
+<body>
+
+  <header id="navbar">
+    <div id="logo">KTracker</div>
+    <a class="navlink" href="../index.html">Airing</a>
+    <a class="navlink" href="#">All Shows</a>
+    <a class="navlink" href="#">My Lists</a>
+    <a class="navlink" href="../pages/stats.html">Stats</a>
+    <input id="navsearch" type="text" placeholder="Search KDrama">
+    <div><img src="../graphics/avatar.png" id="profPic"><i class="fa fa-caret-down"></i></div>
+  </header>
+    
+  <div id="sidenav">
+    <!-- Name at top of div --> 
+    <h1>Filter</h1>
+    
+    <!-- List Dropdown --> 
+    <button class="dropdown-btn"> List <i class="fa fa-caret-down"></i></button>
+    <div id='list-container' class="dropdown-container"></div>
+      
+    <!-- Status Dropdown --> 
+    <button class="dropdown-btn"> Status <i class="fa fa-caret-down"></i></button>
+    <div id='status-container' class="dropdown-container"></div>
+    
+    <!-- Rating Dropdown -->
+    <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
+    <div id='rating-container' class="dropdown-container">
+      <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
+      <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
+    </div>
+      
+    <!-- Genre Dropdown -->
+    <button class="dropdown-btn"> Genre <i class="fa fa-caret-down"></i></button>
+    <div id='genre-container' class="dropdown-container"></div>
+      
+    <!-- Unimplemented Filters -->
+    <button class="dropdown-btn"> # Episodes <i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-container"></div>
+    <button class="dropdown-btn"> Release Year <i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-container"></div>
+    <button class="dropdown-btn"> Actors <i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-container"></div>
+    <button class="dropdown-btn"> Service <i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-container"></div>
+  </div>
+    
+  <main>
+    <h1>Stats</h1>
+    <div>Displaying statistics for <span>ALL</span> shows</div>
+    <div id='stats-section'>
+      <div>Total Shows: <span id='total-shows' class='stat'></span></div>
+      <div>Completed Shows: <span id='completed-shows' class='stat'></span></div>
+      <div>Total Episodes: <span id='total-episodes' class='stat'></span></div>
+      <div>Completed Episodes: <span id='completed-episodes' class='stat'></span></div>
+      <div>Total Hours: <span id='total-hours' class='stat'></span></div>
+      <div>Completed Hours: <span id='completed-hours' class='stat'></span></div>
+      <div>Avg. Episodes / Week: <span id='avg-episodes-per-week' class='stat'></span></div>
+      <div>Avg. Hours / Week: <span id='avg-hours-per-week' class='stat'></span></div>
+      <div>Favorite Genre: <span id='favorite-genre' class='stat'></span></div>
+      <div>Favorite Actor: <span id='favorite-actor' class='stat'></span></div>
+      <div>Avg. Rating: <span id='avg-rating' class='stat'></span></div>
+    </div>
+    <div id='hist-section'>
+      <button class="hist-btn"> Genre <i class="fa fa-caret-down"></i></button>
+<!--      <img id="hist-img" src="./graphics/hist.png">-->
+    </div>
+    <div id='included-shows-section'>
+      <div>Included Shows</div>
+      <div id='included-shows-display'>
+        <i class='fa fa-caret-left'></i>
+        <div class='included-show-container'></div>
+        <div class='included-show-container'></div>
+        <div class='included-show-container'></div>
+        <i class='fa fa-caret-right'></i>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>

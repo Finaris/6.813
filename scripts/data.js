@@ -1,5 +1,5 @@
 
-var staticShows = [
+var cannedShows = [
   {
     img: './img/shows/somethingInTheRain.png',
     title: 'Something in the Rain',
