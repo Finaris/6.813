@@ -15,6 +15,13 @@ Util.events(document, {
             }
           });
         }
-        
     },
 });
+
+function initFilterDOM() {
+  return 0;
+}
+
+function initFilterListeners() {
+  return 0;
+}
