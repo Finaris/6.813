@@ -33,8 +33,6 @@ var cannedShows = [
 ];
 
 var showNumber = 0;
-const numAiringShowsGenerate = 25;
-const numSearchShowsGenerate = 50;
 const stockShowImg = './img/shows/stockShowImg.jpg'
 var statuses = ['Completed', 'Airing', 'Upcoming'];
 var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday', 'Sunday'];
@@ -66,7 +64,7 @@ function generateRandomAiringShow() {
   return {
     img: stockShowImg,
     title: 'Title '  + showNumber,
-    description: 'Description ' + showNumber,
+    description: 'DESCRIPTION',
     rating: getRandomNumber(1, 10),
     release: getRandomDiscreteNumber(2017, 2018),
     episodes: getRandomDiscreteNumber(10, 80),
