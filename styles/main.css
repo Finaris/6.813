@@ -16,7 +16,7 @@
   --color-white: #FFFFFF;
   
   /* Heights and Widths */
-  --nav-bar-height: 10vh;
+  --nav-bar-height: 8vh;
   --filter-bar-width: 200px;
   
   /* Font sizes */
@@ -26,4 +26,13 @@
   
   /* Curved edges */
   --corner-radius: 8px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
 }

@@ -5,16 +5,19 @@ Util.events(document, {
         //Creates event listeners for all dropdowns.
         var dropdown = document.getElementsByClassName("dropdown-btn");
         for (let i = 0; i < dropdown.length; i++) {
+          dropdown[i].nextElementSibling.classList.toggle("gone");
           dropdown[i].addEventListener("click", function() {
             this.classList.toggle("active");
-            var dropdownContent = this.nextElementSibling;
-            if (dropdownContent.style.display === "block") {
-              dropdownContent.style.display = "none";
-            } else {
-              dropdownContent.style.display = "block";
-            }
+            this.nextElementSibling.classList.toggle("gone");
           });
         }
-        
     },
 });
+
+function initFilterDOM() {
+  return 0;
+}
+
+function initFilterListeners() {
+  return 0;
+}

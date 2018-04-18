@@ -1,5 +1,4 @@
 body {  
-  height: 100vh;
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
   grid-template-columns: var(--filter-bar-width) 1fr;
@@ -18,11 +17,18 @@ body #filter {
 body main {
   grid-row: 2/3;
   grid-column: 2/3;
-}
-
-.airing-show-display {
+  
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: repeat(7, 1fr);
+  
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
 }
+
+#stats-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+

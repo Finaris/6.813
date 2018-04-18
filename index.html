@@ -23,74 +23,53 @@
   <script src="https://unpkg.com/event-target@latest/min.js"></script>
     
   <!-- Load custom scripts -->
+  <script src="./scripts/data.js"></script>
   <script src="./scripts/util.js"></script>
   <script src="./scripts/filter.js"></script>
+  <script src="./scripts/airing.js"></script>
 </head>
 
 <body>
 
   <header id="navbar">
     <div id="logo">KTracker</div>
-    <a class="navlink" href="#">Airing</a>
+    <a class="navlink" href="./index.html">Airing</a>
     <a class="navlink" href="#">All Shows</a>
     <a class="navlink" href="#">My Lists</a>
-    <a class="navlink" href="#">Stats</a>
-    <div class="navsearch"><input type="text" placeholder="Search KDrama"></div>
-    <img src="./graphics/avatar.png" id="profPic">
+    <a class="navlink" href="./pages/stats.html">Stats</a>
+    <input id="navsearch" type="text" placeholder="Search KDrama">
+    <div><img src="./graphics/avatar.png" id="profPic"><i class="fa fa-caret-down"></i></div>
   </header>
     
-  <div class="sidenav">
+  <div id="filter">
     <!-- Name at top of div --> 
     <h1>Filter</h1>
-      
-    <!-- Status Dropdown --> 
-    <button class="dropdown-btn"> Status <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container">
-      <input type="checkbox" name="status-airing" value="airing">Airing<br>
-      <input type="checkbox" name="status-completed" value="completed">Completed<br>
-      <input type="checkbox" name="status-upcoming" value="upcoming">Upcoming
+    
+    <!-- Rating Dropdown -->
+    <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
+    <div id='rating-container' class="dropdown-container">
+      <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
+      <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
     </div>
       
     <!-- Genre Dropdown -->
     <button class="dropdown-btn"> Genre <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container">
-      <a href="#">TODO</a>
-    </div>
+    <div id='genre-container' class="dropdown-container"></div>
       
-    <!-- Rating Dropdown -->
-    <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container">
-      <input type="text" placeholder="1">
-      <input type="text" placeholder="10">
-    </div>
-      
-    <!-- # Episodes Dropdown -->
+    <!-- Unimplemented Filters -->
     <button class="dropdown-btn"> # Episodes <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container">
-      <a href="#">TODO</a>
-    </div>
-      
-    <!-- Release Year Dropdown -->
+    <div class="dropdown-container"></div>
     <button class="dropdown-btn"> Release Year <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container">
-      <a href="#">TODO</a>
-    </div>
-      
-    <!-- Actors Dropdown -->
+    <div class="dropdown-container"></div>
     <button class="dropdown-btn"> Actors <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container">
-      <a href="#">TODO</a>
-    </div>
-      
-    <!-- Streaming Service Dropdown -->
+    <div class="dropdown-container"></div>
     <button class="dropdown-btn"> Service <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container">
-      <a href="#">TODO</a>
-    </div>
+    <div class="dropdown-container"></div>
   </div>
     
-  <main>
-    
+  <main>    
+    <h1>Airing</h1>
+    <div id='show-section'></div>
   </main>
 
 </body>
