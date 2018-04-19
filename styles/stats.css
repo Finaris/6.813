@@ -22,13 +22,21 @@ body main {
   align-items: center;
   justify-items: center;
   
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 4fr 1fr 2fr;
   grid-template-columns: 1fr;
+  font-family: 'Oswald', sans-serif;
 }
 
 #stats-section {
+  border: 1px var(--color-purple) dashed;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-column-gap: 100px;
+  grid-row-gap: 20px;
+}
+
+#stats-title {
+
 }
 
 
