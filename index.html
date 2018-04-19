@@ -21,7 +21,7 @@
 
   <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
   <script src="https://unpkg.com/event-target@latest/min.js"></script>
-    
+
   <!-- Load custom scripts -->
   <script src="./scripts/data.js"></script>
   <script src="./scripts/util.js"></script>
@@ -42,22 +42,23 @@
     <input id="navsearch" type="text" placeholder="Search KDrama">
     <button id="profile-button"><img src="./graphics/avatar.png" id="profPic"><i id="profile-caret" class="fa fa-caret-down"></i></button>
   </header>
-    
+
   <div id="filter">
-    <!-- Name at top of div --> 
+    <!-- Name at top of div -->
+    <div id="filter-title">
     <h1>Filter</h1>
-    
+    </div>
     <!-- Rating Dropdown -->
     <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
-    <div id='rating-container' class="dropdown-container">
+    <div id='rating-container' class="dropdown-container gone">
       <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
       <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
     </div>
-      
+
     <!-- Genre Dropdown -->
     <button class="dropdown-btn"> Genre <i class="fa fa-caret-down"></i></button>
-    <div id='genre-container' class="dropdown-container"></div>
-      
+    <div id='genre-container' class="dropdown-container gone"></div>
+
     <!-- Unimplemented Filters -->
     <button class="dropdown-btn"> # Episodes <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-container"></div>
@@ -68,8 +69,8 @@
     <button class="dropdown-btn"> Service <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-container"></div>
   </div>
-    
-  <main>    
+
+  <main>
     <h1>Airing</h1>
     <div id='show-section'></div>
   </main>
