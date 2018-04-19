@@ -28,13 +28,11 @@ function initAiringPageDOM() {
     let rightButton = Util.create('button', {class: 'right-button'});
     rightButton.appendChild(Util.create('i', {class: 'fa fa-angle-right'}));
     let showSliderOuter = Util.create('div', {class: 'show-slider-outer'});
-    let showSlider = Util.create('ul', {id: day.toLowerCase() + '-show-slider',class: 'show-slider'});
+    let showSlider = Util.create('div', {id: day.toLowerCase() + '-show-slider',class: 'show-slider'});
     
-//    let childNodes = showSlider.childNodes;
-//    for(let show of airingShowsByDay[day]) {
-//      childNodes.push(getAiringListElmFromShowData(show));
-//    }
-    
+    for(let show of airingShowsByDay[day]) {
+      showSlider.appendChild(getAiringListElmFromShowData(show));
+    }
     
     showSliderOuter.appendChild(showSlider);
     showDisplayElm.appendChild(leftButton);
@@ -48,6 +46,14 @@ function initAiringPageDOM() {
 }
 
 function getAiringListElmFromShowData(show) {
-  let showElm = Util.create('li', {class: 'airing-show-container'});
+  let showElm = Util.create('div', {class: 'airing-show-container'});
+  let titleElm = Util.create('div', {class: 'show-title'});
+  titleElm.innerHTML = show.title;
+  let imgElm = Util.create('img', {src: show.img, class: 'show-img'});
+  let addButton = Util.create('button', {class: 'add-button'});
+  addButton.innerHTML = 'Add <i class="fa fa-caret-down"></i>';
+  showElm.appendChild(titleElm);
+  showElm.appendChild(imgElm);
+  showElm.appendChild(addButton);
   return showElm;
 }
