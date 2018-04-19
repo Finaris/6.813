@@ -2,6 +2,8 @@ body {
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
   grid-template-columns: var(--filter-bar-width) 1fr;
+  
+  background-color: var(--color-super-light-gray);
 }
 
 body #navbar {
