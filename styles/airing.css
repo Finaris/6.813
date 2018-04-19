@@ -29,6 +29,7 @@ body main {
 
   overflow: auto;
   padding: 50px;
+  padding-top: 0px;
   font-family: 'Oswald light', sans-serif;
 }
 
