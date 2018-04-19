@@ -14,16 +14,17 @@
   --color-gray: #8B8B8B;
   --color-silver: #BCBCBC;
   --color-white: #FFFFFF;
-  
+  --color-super-light-gray: #E9EAED;
+
   /* Heights and Widths */
   --nav-bar-height: 8vh;
   --filter-bar-width: 200px;
-  
+
   /* Font sizes */
   --logo-font-size: 32px;
   --header-font-size: 20px;
   --plain-text-font-size: 12px;
-  
+
   /* Curved edges */
   --corner-radius: 8px;
 }
