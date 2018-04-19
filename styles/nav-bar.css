@@ -2,16 +2,26 @@ header {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: var(--filter-bar-width) repeat(6,1fr);
+  grid-template-columns: var(--filter-bar-width) 4fr 2fr 1fr;
   grid-template-rows: var(--nav-bar-height);
-  background-color: var(--color-dark-gray);
+  background-color: var(--color-navy-blue);
   font-family: 'Oswald', sans-serif;
+}
+
+#nav-links {
+  display: grid;
+  justify-self: left;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  width: 80%;
+  height: 100%;
 }
 
 header #logo {
   align-self: end;
   font-size: 32pt;
   cursor: default;
+  color: var(--color-white);
 }
 
 header .navlink {
@@ -23,14 +33,14 @@ header .navlink {
   font-weight: lighter;
   height: 100%;
   width: 100%;
-  color: var(--color-black);
   padding-bottom: 8px;
   text-decoration: none;
+  color: var(--color-white);
 }
 
 header .navlink:hover {
   cursor: pointer;
-  background-color: var(--color-silver);
+  background-color: var(--color-sky-blue);
 
 }
 
@@ -38,12 +48,13 @@ header .navlink:hover {
 header #profPic {
   max-height: calc(var(--nav-bar-height) * 2 / 3);
   text-align: center;
-  
+  padding: 0px;
   border-radius: var(--corner-radius);
 }
 
 header #navsearch {
-  align-self: end;
+  margin-top: 8px;
+  align-self: center;
   font-size: 12pt;
   width: 90%;
   font-weight: lighter;
@@ -54,4 +65,20 @@ header #navsearch {
   padding-left: 5px;
   border-radius: var(--corner-radius);
   outline: none;
+}
+
+#profile-caret {
+  padding: 0px;
+  margin-left: 5px;
+  color: white;
+}
+
+#profile-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;  
+  border-radius: 5px;
+  background-color: transparent;
+  border: none;
 }
