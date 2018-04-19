@@ -1,9 +1,15 @@
 /* Fixed sidenav, full height */
 #filter {
-    color: #818181;
+    color: var(--color-dark-midnight-blue);
     width: 100%;
-    background-color: var(--color-silver);
     overflow: auto;
+  
+    margin: 10px;
+    background-color: var(--color-white);
+    box-shadow: rgba(0,0,0,0.2) 0px 0px 1px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    align-self: start;
 }
 
 /* Sidenav links and dropdown button */
@@ -11,14 +17,20 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
-    color: #818181;
+    color: var(--color-dark-midnight-blue);
     display: block;
     border: none;
     background: none;
+    border-left: None;
+    border-right: None;
     width: 100%;
     text-align: left;
     cursor: pointer;
     outline: none;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+  
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
 }
 
 #filter-title {
@@ -38,32 +50,36 @@
 #filter-title h1 {
   text-decoration: none;
   font-size: 20px;
-  color: #818181;
+  color: var(--color-dark-midnight-blue);
   display: block;
   border: none;
   background: none;
   text-align: left;
   cursor: pointer;
   outline: none;
-  font-family: 'Oswald light', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
 }
 
-/* Mouse-over */
+/* Mouse-over 
 #filter a:hover, .dropdown-btn:hover {
-    color: #f1f1f1;
-}
+    background-color: var(--color-sky-blue);
+}*/
 
 /* Active class to help indicate open dropdowns */
 .active {
-    background-color: green;
-    color: white;
+    border-bottom: 0px;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
     display: none;
-    background-color: #262626;
+    background-color: var(--color-white);
     padding-left: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 200;
+    padding-bottom: 5px;
 }
 
 /* Push the caret to the right and add padding */
