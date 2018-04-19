@@ -22,13 +22,41 @@ body main {
   align-items: center;
   justify-items: center;
   
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr .5fr 3fr 1fr 2fr;
   grid-template-columns: 1fr;
+  font-family: 'Oswald', sans-serif;
+}
+
+#stats-title {
+  border: 1px red solid;
+  padding: 10px 243px;
+  /*padding: 10px 200px;*/
+  font-weight: bold;
+  font-size: 30px;
 }
 
 #stats-section {
+  border: 1px black solid;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-column-gap: 100px;
+  grid-row-gap: 20px;
+  padding : 10px;
+  padding-right: 110px;
+  justify-self: center;
+  justify-items: start;
 }
 
+div.category {
+  border: 1px red solid;
+}
 
+#hist-section {
+  border: 1px red solid;
+  padding: 10px 243px;
+}
+
+#included-shows-section {
+  border: 1px red solid;
+  padding: 10px 218px;
+}
