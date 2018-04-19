@@ -20,7 +20,7 @@
 
   <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
   <script src="https://unpkg.com/event-target@latest/min.js"></script>
-    
+
   <!-- Load custom scripts -->
   <script src="../scripts/data.js"></script>
   <script src="../scripts/util.js"></script>
@@ -39,30 +39,30 @@
     <input id="navsearch" type="text" placeholder="Search KDrama">
     <div><img src="../graphics/avatar.png" id="profPic"><i class="fa fa-caret-down"></i></div>
   </header>
-    
+
   <div id="filter">
-    <!-- Name at top of div --> 
+    <!-- Name at top of div -->
     <h1>Filter</h1>
-    
-    <!-- List Dropdown --> 
+
+    <!-- List Dropdown -->
     <button class="dropdown-btn"> List <i class="fa fa-caret-down"></i></button>
     <div id='list-container' class="dropdown-container"></div>
-      
-    <!-- Status Dropdown --> 
+
+    <!-- Status Dropdown -->
     <button class="dropdown-btn"> Status <i class="fa fa-caret-down"></i></button>
     <div id='status-container' class="dropdown-container"></div>
-    
+
     <!-- Rating Dropdown -->
     <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
     <div id='rating-container' class="dropdown-container">
       <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
       <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
     </div>
-      
+
     <!-- Genre Dropdown -->
     <button class="dropdown-btn"> Genre <i class="fa fa-caret-down"></i></button>
     <div id='genre-container' class="dropdown-container"></div>
-      
+
     <!-- Unimplemented Filters -->
     <button class="dropdown-btn"> # Episodes <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-container"></div>
@@ -73,7 +73,7 @@
     <button class="dropdown-btn"> Service <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-container"></div>
   </div>
-    
+
   <main>
     <div id='stats-title'>Stats</div>
     <div>Displaying statistics for <span>ALL</span> shows</div>
@@ -88,7 +88,8 @@
       <div>Avg. Hours / Week: <span id='avg-hours-per-week' class='stat'></span></div>
       <div>Favorite Genre: <span id='favorite-genre' class='stat'></span></div>
       <div>Favorite Actor: <span id='favorite-actor' class='stat'></span></div>
-      <div>Avg. Rating: <span id='avg-rating' class='stat'></span></div>
+      <div>Meta Avg. Rating: <span id='meta-avg-rating' class='stat'></span></div>
+      <div>Your Avg. Rating: <span id='your-avg-rating' class='stat'></span></div>
     </div>
     <div id='hist-section'>
       <button class="hist-btn"> Genre <i class="fa fa-caret-down"></i></button>

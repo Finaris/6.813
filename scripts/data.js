@@ -174,8 +174,8 @@ function getStatsData() {
     avgHoursPerWeek: 0,
     favoriteGenre: 0,
     favoriteActor: 0,
-    avgOverallRating: 0,
-    avgUserRating: 0
+    metaAvgOverallRating: 0,
+    yourAvgOverallRating: 0
   }
-  return;
+  return stats;
 }
