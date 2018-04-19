@@ -30,7 +30,8 @@ body main {
   overflow: auto;
   padding: 50px;
   padding-top: 0px;
-  font-family: 'Oswald light', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
 }
 
 .airing-show-display {
