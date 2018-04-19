@@ -28,6 +28,7 @@ var cannedShows = [
 
 var showNumber = 0;
 const stockShowImg = './graphics/shows/stockShowImg.jpg';
+var stockImgs = ['1o3zzc.jpg', 'D2X7Dc.jpg', 'dRPqdc.jpg', 'JkD8Xc.jpg', 'JZjyoc.jpg', 'kvYVOc.jpg', 'mkrg1c.jpg', 'rkKPmc.jpg', 'X8rjwc.jpg', 'yE4jBc.jpg'];
 var statuses = ['Completed', 'Airing', 'Upcoming'];
 var lists = ['Completed', 'Watching', 'To Watch', 'Airing'];
 var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -43,7 +44,7 @@ function generateRandomShowOfType(type) {
   let numEpisodes = getRandomDiscreteNumber(10, 80);
   let show = {
     status: type,
-    img: stockShowImg,
+    img: './graphics/shows/' + generateElementsFromArray(stockImgs, 1, 1)[0],
     description: 'DESCRIPTION',
     title: 'Title '  + showNumber,
     rating: getRandomNumber(1, 10),
