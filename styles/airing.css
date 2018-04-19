@@ -9,6 +9,8 @@ body {
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
   grid-template-columns: var(--filter-bar-width) 1fr;
+
+  background-color: var(--color-super-light-gray);
 }
 
 body #navbar {
@@ -37,9 +39,10 @@ body main {
   align-items: center;
   justify-items: center;
   grid-template-columns: 1fr var(--show-slider-width) 1fr;
-
-  border: 1px solid black;
-  border-radius: 8px;
+  background-color: var(--color-white);
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
 }
 
 .airing-show-container {
