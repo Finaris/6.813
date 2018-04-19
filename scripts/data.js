@@ -27,7 +27,7 @@ var cannedShows = [
 ];
 
 var showNumber = 0;
-const stockShowImg = './graphics/shows/stockShowImg.jpg'
+const stockShowImg = './graphics/shows/stockShowImg.jpg';
 var statuses = ['Completed', 'Airing', 'Upcoming'];
 var lists = ['Completed', 'Watching', 'To Watch', 'Airing'];
 var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
