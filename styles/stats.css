@@ -27,7 +27,8 @@ body main {
 
   grid-template-rows: 1fr .5fr 3fr 1fr 2fr;
   grid-template-columns: 1fr;
-  font-family: 'Oswald light', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
 
   padding: 50px;
 }
@@ -37,25 +38,35 @@ main div {
 }
 
 #stats-title {
-  border: 1px red solid;
-  /*padding: 10px 243px;*/
-  /*padding: 10px 200px;*/
   font-weight: bold;
   font-size: 30px;
   width: 100%;
 }
 
 #stats-section {
-  border: 1px black solid;
   display: grid;
   grid-template-columns: repeat(2,200px 1fr);
   grid-row-gap: 20px;
   padding: 10px;
   width: calc(100% - 20px);
-  /*padding : 10px;
-  padding-right: 110px;*/
   justify-self: center;
   justify-items: start;
+  
+  background-color: var(--color-white);
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+}
+
+.airing-show-display {
+  height: 200px;
+
+  align-items: center;
+  justify-items: center;
+  background-color: var(--color-white);
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
 }
 
 .stat {
@@ -67,8 +78,7 @@ div.category {
 }
 
 #hist-section {
-  border: 1px red solid;
-  /*padding: 10px 243px;*/
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,8 +86,7 @@ div.category {
 
 
 #included-shows-section {
-  border: 1px red solid;
-  /*padding: 10px 218px;*/
+  
 }
 
 .modebar{

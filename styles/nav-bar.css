@@ -41,7 +41,10 @@ header .navlink {
 header .navlink:hover {
   cursor: pointer;
   background-color: var(--color-sky-blue);
+}
 
+.active-page {
+  background-color: var(--color-light-midnight-blue);
 }
 
 header #profPic {
