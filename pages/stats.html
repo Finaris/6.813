@@ -46,26 +46,28 @@
 
   <div id="filter">
     <!-- Name at top of div -->
+    <div id="filter-title">
     <h1>Filter</h1>
+    </div>
 
     <!-- List Dropdown -->
     <button class="dropdown-btn"> List <i class="fa fa-caret-down"></i></button>
-    <div id='list-container' class="dropdown-container"></div>
+    <div id='list-container' class="dropdown-container gone"></div>
 
     <!-- Status Dropdown -->
     <button class="dropdown-btn"> Status <i class="fa fa-caret-down"></i></button>
-    <div id='status-container' class="dropdown-container"></div>
+    <div id='status-container' class="dropdown-container gone"></div>
 
     <!-- Rating Dropdown -->
     <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
-    <div id='rating-container' class="dropdown-container">
+    <div id='rating-container' class="dropdown-container gone">
       <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
       <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
     </div>
 
     <!-- Genre Dropdown -->
     <button class="dropdown-btn"> Genre <i class="fa fa-caret-down"></i></button>
-    <div id='genre-container' class="dropdown-container"></div>
+    <div id='genre-container' class="dropdown-container gone"></div>
 
     <!-- Unimplemented Filters -->
     <button class="dropdown-btn"> # Episodes <i class="fa fa-caret-down"></i></button>
@@ -82,22 +84,22 @@
     <div id='stats-title'>Stats</div>
     <div><i>Displaying statistics for <span>ALL</span> shows</i></div>
     <div id='stats-section'>
-      <div>Total Shows: <span id='total-shows' class='stat'></span></div>
-      <div>Completed Shows: <span id='completed-shows' class='stat'></span></div>
-      <div>Total Episodes: <span id='total-episodes' class='stat'></span></div>
-      <div>Completed Episodes: <span id='completed-episodes' class='stat'></span></div>
-      <div>Total Hours: <span id='total-hours' class='stat'></span></div>
-      <div>Completed Hours: <span id='completed-hours' class='stat'></span></div>
-      <div>Avg. Episodes / Week: <span id='avg-episodes-per-week' class='stat'></span></div>
-      <div>Avg. Hours / Week: <span id='avg-hours-per-week' class='stat'></span></div>
-      <div>Favorite Genre: <span id='favorite-genre' class='stat'></span></div>
-      <div>Favorite Actor: <span id='favorite-actor' class='stat'></span></div>
-      <div>Meta Avg. Rating: <span id='meta-avg-rating' class='stat'></span></div>
-      <div>Your Avg. Rating: <span id='your-avg-rating' class='stat'></span></div>
+      <div>Total Shows: </div><span id='total-shows' class='stat'></span>
+      <div>Completed Shows: </div><span id='completed-shows' class='stat'></span>
+      <div>Total Episodes: </div><span id='total-episodes' class='stat'></span>
+      <div>Completed Episodes: </div><span id='completed-episodes' class='stat'></span>
+      <div>Total Hours: </div><span id='total-hours' class='stat'></span>
+      <div>Completed Hours: </div><span id='completed-hours' class='stat'></span>
+      <div>Avg. Episodes / Week: </div><span id='avg-episodes-per-week' class='stat'></span>
+      <div>Avg. Hours / Week: </div><span id='avg-hours-per-week' class='stat'></span>
+      <div>Favorite Genre: </div><span id='favorite-genre' class='stat'></span>
+      <div>Favorite Actor: </div><span id='favorite-actor' class='stat'></span>
+      <div>Meta Avg. Rating: </div><span id='meta-avg-rating' class='stat'></span>
+      <div>Your Avg. Rating: </div><span id='your-avg-rating' class='stat'></span>
     </div>
     <div id='hist-section'>
       <button class="hist-btn"> Genre <i class="fa fa-caret-down"></i></button>
-      <i class="fas fa-chart-bar"></i>
+      <i id='bar-chart' class="fas fa-chart-bar"></i>
     </div>
     <div id='included-shows-section'>
       <div>Included Shows</div>

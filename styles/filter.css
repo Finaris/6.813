@@ -1,13 +1,13 @@
 /* Fixed sidenav, full height */
 #filter {
     color: #818181;
-    width: 200px;
+    width: 100%;
     background-color: var(--color-silver);
     overflow: auto;
 }
 
 /* Sidenav links and dropdown button */
-#filter a, .dropdown-btn, h1 {
+#filter a, .dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
@@ -19,6 +19,33 @@
     text-align: left;
     cursor: pointer;
     outline: none;
+}
+
+#filter-title {
+  /*padding: 6px 8px 6px 16px;*/
+  margin: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+#filter-title h1 {
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  font-family: 'Oswald light', sans-serif;
 }
 
 /* Mouse-over */

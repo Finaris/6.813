@@ -4,7 +4,7 @@ body {
   --show-container-width: 100px;
   --show-container-padding-right: 10px;
   --show-slider-width: calc(var(--num-shows-in-slider-window) * (var(--show-container-padding-right) + var(--show-container-width)) + var(--show-container-width) / 2 );
-  
+
   height: 100vh;
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
@@ -24,19 +24,20 @@ body #filter {
 body main {
   grid-row: 2/3;
   grid-column: 2/3;
-  
+
   overflow: auto;
   padding: 50px;
+  font-family: 'Oswald light', sans-serif;
 }
 
 .airing-show-display {
   height: 200px;
-  
+
   display: grid;
   align-items: center;
   justify-items: center;
   grid-template-columns: 1fr var(--show-slider-width) 1fr;
-  
+
   border: 1px solid black;
   border-radius: 8px;
 }
@@ -45,10 +46,10 @@ body main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   border: 1px solid black;
   border-radius: 8px;
-  
+
   width: var(--show-container-width);
   margin-right: var(--show-container-padding-right);
 }
