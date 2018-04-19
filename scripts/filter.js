@@ -58,3 +58,18 @@ function setupFilterSection(sectionName, sourceList) {
     container.appendChild(newSectionDiv);
   }
 }
+
+function getFilterDict() {
+  let filter = {
+    genres: [],
+    minRating: 1,
+    maxRating: 10,
+    lists: [],
+    statuses: []
+  };
+  return filter;
+}
+
+function filterShowsGivenFilter(shows, filter) {
+  return;
+}

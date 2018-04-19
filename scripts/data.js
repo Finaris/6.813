@@ -130,6 +130,8 @@ function getMyListsData() {
       'Sunday': []
     }
   };
+  
+  // Add airing shows
   let airingShows = generateNumRandomShowOfType(7, 'Airing');
   userLists['Watching']['Airing Shows'] = airingShows;
   for (let show of airingShows) {
@@ -137,6 +139,12 @@ function getMyListsData() {
       userLists['Airing'][day].push(show);
     }
   }
+  
+  // Make All sections
+  for (let list in userLists) {
+    userLists[list].All = getAllShowsInList(userLists[list]);
+  }
+  userLists['All Dramas'] = getAllShowsInAllLists(userLists);
   return userLists;
 }
 
@@ -163,20 +171,22 @@ function getAllShowsData() {
   return;
 }
 
-function getStatsData() {
-  let stats = {
-    totalShows: 0,
-    completedShows: 0,
-    totalEpisodes: 0,
-    completedEpisodes: 0,
-    totalHours: 0,
-    completedHours: 0,
-    avgEpisodesPerWeek: 0,
-    avgHoursPerWeek: 0,
-    favoriteGenre: 0,
-    favoriteActor: 0,
-    metaAvgOverallRating: 0,
-    yourAvgOverallRating: 0
+function getAllShowsInList(listDict) {
+  let allShowsSet = new Set([]);
+  for (let header in listDict) {
+    for (let show of listDict[header]) {
+      allShowsSet.add(show);
+    }
   }
-  return stats;
+  return Array.from(allShowsSet);
+}
+
+function getAllShowsInAllLists(userLists) {
+  let allShowsSet = new Set([]);
+  for (let list in userLists) {
+    for (let show of userLists[list].All) {
+      allShowsSet.add(show);
+    }
+  }
+  return Array.from(allShowsSet);
 }
