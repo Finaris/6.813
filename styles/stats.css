@@ -1,4 +1,4 @@
-body {  
+body {
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
   grid-template-columns: var(--filter-bar-width) 1fr;
@@ -17,35 +17,47 @@ body #filter {
 body main {
   grid-row: 2/3;
   grid-column: 2/3;
-  
+
   display: grid;
   align-items: center;
   justify-items: center;
   overflow: auto;
-  
+
   grid-template-rows: 1fr .5fr 3fr 1fr 2fr;
   grid-template-columns: 1fr;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald light', sans-serif;
+
+  padding: 50px;
+}
+
+main div {
+  width: 100%;
 }
 
 #stats-title {
   border: 1px red solid;
-  padding: 10px 243px;
+  /*padding: 10px 243px;*/
   /*padding: 10px 200px;*/
   font-weight: bold;
   font-size: 30px;
+  width: 100%;
 }
 
 #stats-section {
   border: 1px black solid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 100px;
+  grid-template-columns: repeat(2,200px 1fr);
   grid-row-gap: 20px;
-  padding : 10px;
-  padding-right: 110px;
+  padding: 10px;
+  width: calc(100% - 20px);
+  /*padding : 10px;
+  padding-right: 110px;*/
   justify-self: center;
   justify-items: start;
+}
+
+.stat {
+
 }
 
 div.category {
@@ -54,13 +66,14 @@ div.category {
 
 #hist-section {
   border: 1px red solid;
-  padding: 10px 243px;
+  /*padding: 10px 243px;*/
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+
 #included-shows-section {
   border: 1px red solid;
-  padding: 10px 218px;
+  /*padding: 10px 218px;*/
 }
