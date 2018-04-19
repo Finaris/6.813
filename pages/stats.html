@@ -19,6 +19,7 @@
   <!-- Load any supplemental Javascript libraries here -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
   <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
   <script src="https://unpkg.com/event-target@latest/min.js"></script>
@@ -99,7 +100,7 @@
     </div>
     <div id='hist-section'>
       <button class="hist-btn"> Genre <i class="fa fa-caret-down"></i></button>
-      <i id='bar-chart' class="fas fa-chart-bar"></i>
+      <div id='bar-chart'></div>
     </div>
     <div id='included-shows-section'>
       <div>Included Shows</div>
