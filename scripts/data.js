@@ -27,8 +27,9 @@ var cannedShows = [
 ];
 
 var showNumber = 0;
-const stockShowImg = './img/shows/stockShowImg.jpg'
+const stockShowImg = './graphics/shows/stockShowImg.jpg'
 var statuses = ['Completed', 'Airing', 'Upcoming'];
+var lists = ['Completed', 'Watching', 'To Watch', 'Airing'];
 var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 var genres = ['Action', 'Horror', 'Adventure', 'Music', 'Comedy', 'Mystery', 'Crime', 'Romance', 'Sci-fi', 'Drama', 'Fantasy', 'War', 'Historical', 'Western', 'Animals', 'Melodrama', 'Detective', 'Food', 'Psychological', 'Supernatural', 'Medical', 'School', 'Thriller'];
 var actors = ['Lee Min Ho', 'Lee Jong Suk', 'Park Shin Hye', 'Ji Change Wook', 'Song Joong Ki']
