@@ -15,9 +15,13 @@ function initAiringPageDOM() {
   let daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   let showSectionElm = Util.one('#show-section');
   for(let day of daysOfWeek) {
-    if (airingShowsByDay[day].length == 0) {
+    let showsOnDay = airingShowsByDay[day];
+    if (showsOnDay.length == 0) {
       continue;
+    } else if (showsOnDay.length > 4) {
+      showsOnDay = showsOnDay.slice(0, 4);
     }
+    
     let daySectionElm = Util.create('div', {id: day.toLowerCase() + '-section', class: 'day-section'});
     let headerElm = Util.create('h2', {});
     headerElm.innerHTML = day;
@@ -29,7 +33,7 @@ function initAiringPageDOM() {
     
     let showNumber = 0;
     let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
-    for(let show of airingShowsByDay[day]) {
+    for(let show of showsOnDay) {
       if (showNumber == 5) {
         showNumber = 0;
         carouselInnerElm.appendChild(carouselItemElm);
