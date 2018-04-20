@@ -56,7 +56,7 @@ header #profPic {
 
 header #navsearch {
   margin-top: 8px;
-  align-self: center;
+  /*align-self: center;*/
   font-size: 12pt;
   width: 90%;
   font-weight: lighter;
@@ -69,6 +69,16 @@ header #navsearch {
   outline: none;
 }
 
+#searchdiv {
+  justify-self: start;
+  width: 100%;
+}
+
+.glass {
+  position: relative;
+  left: -20px;
+}
+
 #profile-caret {
   padding: 0px;
   margin-left: 5px;
@@ -79,7 +89,7 @@ header #navsearch {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;  
+  justify-content: space-around;
   border-radius: 5px;
   background-color: transparent;
   border: none;
