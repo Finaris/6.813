@@ -48,21 +48,11 @@ main div {
   grid-template-columns: repeat(2,200px 1fr);
   grid-row-gap: 20px;
   padding: 10px;
+  margin-top: 5px;
   width: calc(100% - 20px);
   justify-self: center;
   justify-items: start;
   
-  background-color: var(--color-white);
-  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
-  border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 4px;
-}
-
-.airing-show-display {
-  height: 200px;
-
-  align-items: center;
-  justify-items: center;
   background-color: var(--color-white);
   box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
   border: 1px solid rgba(0,0,0,0.15);
@@ -78,12 +68,42 @@ div.category {
 }
 
 #hist-section {
-  margin-top: 10px;
+  margin-top: 75px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+#hist-btn-caret {
+  padding: 0px;
+  margin-left: 5px;
+}
+
+.hist-btn {
+  background-color: var(--color-white);
+  padding: 5px 25px 5px 25px;
+  border-radius: 4px;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  font-size: 15px;
+  font-family: 'Oswald', sans-serif;
+  color: var(--color-black);
+  text-align: center;
+}
+
+#bar-chart {
+  margin-top: 15px;
+  
+  padding-left: 1px;
+  padding-top: 1px;
+  background-color: var(--color-white);
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+}
 
 #included-shows-section {
   
