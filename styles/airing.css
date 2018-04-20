@@ -40,7 +40,7 @@ body main {
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 1fr var(--show-slider-width) 1fr;
+  grid-template-columns: 1fr;
   background-color: var(--color-white);
   box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
   border: 1px solid rgba(0,0,0,0.15);
@@ -57,19 +57,6 @@ body main {
 
   width: var(--show-container-width);
   margin-right: var(--show-container-padding-right);
-}
-
-.show-slider-outer {
-  justify-self: left;
-  overflow: hidden;
-  display: block;
-}
-
-.show-slider {
-  max-width: var(--show-slider-width);
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
 }
 
 .show-img {
