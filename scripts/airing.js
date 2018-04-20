@@ -23,14 +23,14 @@ function initAiringPageDOM() {
     headerElm.innerHTML = day;
     
     let showDisplayID = day.toLowerCase() + '-show-display';
-    let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide w-100', 'data-ride': "carousel"});
+    let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide', interval: false});
     
-    let carouselInnerElm = Util.create('div', {class: 'carousel-inner w-100', role: 'listbox'});
+    let carouselInnerElm = Util.create('div', {class: 'carousel-inner', role: 'listbox'});
     
     let showNumber = 0;
     let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
     for(let show of airingShowsByDay[day]) {
-      if (showNumber == 4) {
+      if (showNumber == 5) {
         showNumber = 0;
         carouselInnerElm.appendChild(carouselItemElm);
         carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters"})
