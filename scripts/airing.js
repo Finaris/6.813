@@ -21,39 +21,44 @@ function initAiringPageDOM() {
     let daySectionElm = Util.create('div', {id: day.toLowerCase() + '-section', class: 'day-section'});
     let headerElm = Util.create('h2', {});
     headerElm.innerHTML = day;
-    let showDisplayElm = Util.create('div', {id: day.toLowerCase() + '-show-display', class: 'airing-show-display'});
-
-    let leftButton = Util.create('button', {class: 'left-button'});
-    leftButton.appendChild(Util.create('i', {class: 'fa fa-angle-left'}));
-    let rightButton = Util.create('button', {class: 'right-button'});
-    rightButton.appendChild(Util.create('i', {class: 'fa fa-angle-right'}));
-    let showSliderOuter = Util.create('div', {class: 'show-slider-outer'});
-    let showSlider = Util.create('div', {id: day.toLowerCase() + '-show-slider',class: 'show-slider'});
     
+    let showDisplayID = day.toLowerCase() + '-show-display';
+    let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide w-100', 'data-ride': "carousel"});
+    
+    let carouselInnerElm = Util.create('div', {class: 'carousel-inner w-100', role: 'listbox'});
+    
+    let showNumber = 0;
+    let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
     for(let show of airingShowsByDay[day]) {
-      showSlider.appendChild(getAiringListElmFromShowData(show));
+      if (showNumber == 4) {
+        showNumber = 0;
+        carouselInnerElm.appendChild(carouselItemElm);
+        carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters"})
+      }
+      carouselItemElm.appendChild(getShowElmFromShowData(show));
+      showNumber++;
     }
+    carouselInnerElm.appendChild(carouselItemElm);
     
-    showSliderOuter.appendChild(showSlider);
-    showDisplayElm.appendChild(leftButton);
-    showDisplayElm.appendChild(showSliderOuter);
-    showDisplayElm.appendChild(rightButton);
     
+    let leftButtonElm = Util.create('a', {class: 'carousel-control-prev', href: '#' + showDisplayID, role: "button", 'data-slide': "prev"});
+    leftButtonElm.appendChild(Util.create('span', {class: 'carousel-control-prev-icon', 'aria-hidden': "true"}));
+    let rightButtonElm = Util.create('a', {class: 'carousel-control-next', href: '#' + showDisplayID, role: "button", 'data-slide': "next"});
+    rightButtonElm.appendChild(Util.create('span', {class: 'carousel-control-next-icon', 'aria-hidden': "true"}));
+    
+    
+    showSectionElm.appendChild(daySectionElm);
     daySectionElm.appendChild(headerElm);
     daySectionElm.appendChild(showDisplayElm);
-    showSectionElm.appendChild(daySectionElm);
+    showDisplayElm.appendChild(carouselInnerElm);
+    showDisplayElm.appendChild(leftButtonElm);
+    showDisplayElm.appendChild(rightButtonElm);
   }
 }
 
-function getAiringListElmFromShowData(show) {
-  let showElm = Util.create('div', {class: 'airing-show-container'});
-  let titleElm = Util.create('div', {class: 'show-title'});
-  titleElm.innerHTML = show.title;
-  let imgElm = Util.create('img', {src: show.img, class: 'show-img'});
-  let addButton = Util.create('button', {class: 'add-button'});
-  addButton.innerHTML = 'Add <i class="fa fa-caret-down"></i>';
-  showElm.appendChild(titleElm);
+function getShowElmFromShowData(show) {
+  let showElm = Util.create('div', {class: 'airing-show-container col-3 float-left'});
+  let imgElm = Util.create('img', {src: show.img, class: 'show-img img-fluid'});
   showElm.appendChild(imgElm);
-  showElm.appendChild(addButton);
   return showElm;
 }
