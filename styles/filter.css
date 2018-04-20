@@ -3,7 +3,7 @@
     color: var(--color-dark-midnight-blue);
     width: 100%;
     overflow: auto;
-  
+
     margin: 10px;
     background-color: var(--color-white);
     box-shadow: rgba(0,0,0,0.2) 0px 0px 1px;
@@ -29,7 +29,7 @@
     cursor: pointer;
     outline: none;
     border-bottom: 1px solid rgba(0,0,0,0.15);
-  
+
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
 }
@@ -62,7 +62,7 @@
   font-weight: 400;
 }
 
-/* Mouse-over 
+/* Mouse-over
 #filter a:hover, .dropdown-btn:hover {
     background-color: var(--color-sky-blue);
 }*/
