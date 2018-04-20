@@ -95,14 +95,14 @@ div.category {
 }
 
 #bar-chart {
-  margin-top: 15px;
+  margin-top: 15px; !important
   
-  padding-left: 1px;
-  padding-top: 1px;
-  background-color: var(--color-white);
-  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
-  border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 4px;
+  padding-left: 1px; !important
+  padding-top: 1px; !important
+  background-color: var(--color-white); !important
+  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px; !important
+  border: 1px solid rgba(0,0,0,0.15); !important
+  border-radius: 4px; !important
 }
 
 #included-shows-section {
