@@ -70,6 +70,20 @@ function getFilterDict() {
   return filter;
 }
 
-function filterShowsGivenFilter(shows, filter) {
-  return;
+function applyAiringFilter() {
+  filterShowsGivenFilterAiring(getAiringShowsData(100),getFilterDict());
+}
+
+function applyListsFilter() {
+  filterShowsGivenFilterLists(getMyListsData(),getFilterDict());
+}
+
+function filterShowsGivenFilterAiring(shows, filter) {
+  data = getAiringShowsData(100);
+  updateAiringPage(data);
+}
+
+function filterShowsGivenFilterLists(data, filter) {
+  data = getMyListsData();
+  updateStatsPage(data);
 }

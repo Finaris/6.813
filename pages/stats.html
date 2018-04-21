@@ -27,8 +27,8 @@
   <!-- Load custom scripts -->
   <script src="../scripts/data.js"></script>
   <script src="../scripts/util.js"></script>
-  <script src="../scripts/filter.js"></script>
   <script src="../scripts/stats.js"></script>
+  <script src="../scripts/filter.js"></script>
 </head>
 
 <body>
@@ -47,8 +47,9 @@
 
   <div id="filter">
     <!-- Name at top of div -->
-    <div id="filter-title">
-    <h1>Filter</h1>
+    <div id="filter-top">
+    <div id="filter-title"><h1>Filter</h1></div>
+    <button id="filter-button" onclick=applyListsFilter()>Apply Filter</button>
     </div>
 
     <!-- List Dropdown -->
