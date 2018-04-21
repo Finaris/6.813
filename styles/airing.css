@@ -75,7 +75,7 @@ body main {
 
   margin-left: var(--show-container-padding-sides);
   margin-right: var(--show-container-padding-sides);
-  width: calc(var(--show-container-width)*.9);
+  width: calc(var(--show-container-width)*.85);
 }
 
 .show-img {
