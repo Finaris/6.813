@@ -32,7 +32,7 @@ function initAiringPageDOM() {
     let showNumber = 0;
     let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
     for(let show of showsOnDay) {
-      if (showNumber == 4) {
+      if (showNumber == 5) {
         showNumber = 0;
         carouselInnerElm.appendChild(carouselItemElm);
         carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters"})
