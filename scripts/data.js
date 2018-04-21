@@ -33,7 +33,7 @@ var statuses = ['Completed', 'Airing', 'Upcoming'];
 var lists = ['Completed', 'Watching', 'To Watch', 'Airing'];
 var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 var genres = ['Action', 'Horror', 'Adventure', 'Music', 'Comedy', 'Mystery', 'Crime', 'Romance', 'Sci-fi', 'Drama', 'Fantasy', 'War', 'Historical', 'Western', 'Animals', 'Melodrama', 'Detective', 'Food', 'Psychological', 'Supernatural', 'Medical', 'School', 'Thriller'];
-var actors = ['Lee Min Ho', 'Lee Jong Suk', 'Park Shin Hye', 'Ji Change Wook', 'Song Joong Ki']
+var actors = ['Lee Min Ho', 'Lee Jong Suk', 'Park Shin Hye', 'Ji Chang Wook', 'Song Joong Ki']
 
 function generateRandomShow() {
   return generateRandomShowOfType(generateElementsFromArray(statuses, 1, 1)[0]);
