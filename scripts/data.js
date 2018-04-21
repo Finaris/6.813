@@ -28,7 +28,7 @@ var cannedShows = [
 
 var showNumber = 0;
 const stockShowImg = './graphics/shows/stockShowImg.jpg';
-var stockImgs = ['1o3zzc.jpg', 'D2X7Dc.jpg', 'dRPqdc.jpg', 'JkD8Xc.jpg', 'JZjyoc.jpg', 'kvYVOc.jpg', 'mkrg1c.jpg', 'rkKPmc.jpg', 'X8rjwc.jpg', 'yE4jBc.jpg'];
+var stockImgs = ['0.jpg', '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '9.jpg', '10.jpg'];
 var statuses = ['Completed', 'Airing', 'Upcoming'];
 var lists = ['Completed', 'Watching', 'To Watch', 'Airing'];
 var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -149,7 +149,7 @@ function getMyListsData() {
   return userLists;
 }
 
-function getAiringShowsData() {
+function getAiringShowsData(numOfShows) {
   let airingShowsByDay = {
     'Monday': [],
     'Tuesday': [],
@@ -159,9 +159,16 @@ function getAiringShowsData() {
     'Saturday': [],
     'Sunday': []
   };
-  let airingShows = generateNumRandomShowOfType(25, 'Airing');
+  let airingShows = generateNumRandomShowOfType(numOfShows, 'Airing');
   for (let show of airingShows) {
+    dayLoop:
     for (let day of show.airDays) {
+      // Temporary fix for making sure that duplicate shows aren't on the same day
+      for (let currentShow of airingShowsByDay[day]) {
+        if (currentShow.img === show.img) {
+          break dayLoop;
+        }
+      }
       airingShowsByDay[day].push(show);
     }
   }

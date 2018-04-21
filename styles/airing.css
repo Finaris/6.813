@@ -53,6 +53,16 @@ body main {
   border-radius: 4px;
 }
 
+.carousel-inner {
+  /*display: grid;
+  justify-content: center;*/
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 8%;
+  background-color: var(--color-navy-blue); !important
+}
+
 
 .airing-show-container {
   display: flex;
