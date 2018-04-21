@@ -1,5 +1,6 @@
 
 let userLists = getMyListsData();
+let dom = {};
 
 Util.events(document, {
 	// This runs when the DOM is ready.
@@ -11,7 +12,6 @@ Util.events(document, {
 });
 
 function initStatsPageDOM() {
-  let dom = {};
   dom.totalShows = Util.one('#total-shows');
   dom.completedShows = Util.one('#completed-shows');
   dom.totalEpisodes = Util.one('#total-episodes');
@@ -26,6 +26,17 @@ function initStatsPageDOM() {
   dom.yourAvgOverallRating = Util.one('#your-avg-rating');
 
   let shows = userLists["All Dramas"];
+  let genreCounts = getGenreCountDict(shows);
+  let stats = getStatsData(shows, genreCounts);
+  initBarChart(genreCounts);
+
+  for (var key in stats) {
+    dom[key].textContent=stats[key];
+  }
+}
+
+function updateStatsPage(data) {
+  let shows = data["All Dramas"];
   let genreCounts = getGenreCountDict(shows);
   let stats = getStatsData(shows, genreCounts);
   initBarChart(genreCounts);
