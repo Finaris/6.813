@@ -25,7 +25,7 @@ function initAiringPageDOM() {
     let showDisplayID = day.toLowerCase() + '-show-display';
     let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide'});
     showDisplayElm.setAttribute("data-interval", "false");
-    showDisplayElm.setAttribute("data-target", "#"+showDisplayID);
+    
     
     let carouselInnerElm = Util.create('div', {class: 'carousel-inner', role: 'listbox'});
     
