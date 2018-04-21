@@ -31,6 +31,7 @@ body main {
   font-weight: 400;
 
   padding: 50px;
+  padding-top: 0px;
 }
 
 main div {
