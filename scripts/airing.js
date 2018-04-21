@@ -26,7 +26,6 @@ function initAiringPageDOM() {
     let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide'});
     showDisplayElm.setAttribute("data-interval", "false");
     
-    
     let carouselInnerElm = Util.create('div', {class: 'carousel-inner', role: 'listbox'});
     
     let showNumber = 0;
@@ -43,11 +42,13 @@ function initAiringPageDOM() {
     carouselInnerElm.appendChild(carouselItemElm);
     
     
-    let leftButtonElm = Util.create('a', {class: 'carousel-control-prev', href: '#' + showDisplayID, role: "button", 'data-slide': "prev"});
+    let leftButtonElm = Util.create('a', {class: 'carousel-control-prev', role: "button", 'data-slide': "prev"});
     leftButtonElm.appendChild(Util.create('span', {class: 'carousel-control-prev-icon', 'aria-hidden': "true"}));
-    let rightButtonElm = Util.create('a', {class: 'carousel-control-next', href: '#' + showDisplayID, role: "button", 'data-slide': "next"});
-    rightButtonElm.appendChild(Util.create('span', {class: 'carousel-control-next-icon', 'aria-hidden': "true"}));
+    leftButtonElm.setAttribute("data-target", "#monday-show-display")
     
+    let rightButtonElm = Util.create('a', {class: 'carousel-control-next', role: "button", 'data-slide': "next"});
+    rightButtonElm.appendChild(Util.create('span', {class: 'carousel-control-next-icon', 'aria-hidden': "true"}));
+    rightButtonElm.setAttribute("data-target", "#monday-show-display");
     
     showSectionElm.appendChild(daySectionElm);
     daySectionElm.appendChild(headerElm);
