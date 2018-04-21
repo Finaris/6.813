@@ -1,5 +1,5 @@
 const maxShowsPerRow = 5;
-const airingShowsByDay = getAiringShowsData();
+const airingShowsByDay = getAiringShowsData(100);
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
@@ -16,25 +16,23 @@ function initAiringPageDOM() {
   let showSectionElm = Util.one('#show-section');
   for(let day of daysOfWeek) {
     let showsOnDay = airingShowsByDay[day];
-    if (showsOnDay.length == 0) {
-      continue;
-    } else if (showsOnDay.length > 4) {
-      showsOnDay = showsOnDay.slice(0, 4);
-    }
+    
     
     let daySectionElm = Util.create('div', {id: day.toLowerCase() + '-section', class: 'day-section'});
     let headerElm = Util.create('h2', {});
     headerElm.innerHTML = day;
     
     let showDisplayID = day.toLowerCase() + '-show-display';
-    let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide', interval: false});
+    let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide'});
+    showDisplayElm.setAttribute("data-interval", "false");
+    showDisplayElm.setAttribute("data-target", "#"+showDisplayID);
     
     let carouselInnerElm = Util.create('div', {class: 'carousel-inner', role: 'listbox'});
     
     let showNumber = 0;
     let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
     for(let show of showsOnDay) {
-      if (showNumber == 5) {
+      if (showNumber == 4) {
         showNumber = 0;
         carouselInnerElm.appendChild(carouselItemElm);
         carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters"})
