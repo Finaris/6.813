@@ -1,6 +1,6 @@
 
 class Util {
-  /**
+    /**
 	 * Set multiple event listeners on an element
 	 */
 	static events(target, events, callback) {
@@ -14,7 +14,7 @@ class Util {
 		}
 	}
   
-  /**
+    /**
 	 * Create an element and set a bunch of attributes on it
 	 * @param tag {String}
 	 * @param attributes {Object}
@@ -30,7 +30,15 @@ class Util {
 		return element;
 	}
   
-  /**
+    /**
+	 * Get a parameter from the URL query string
+	 * @param name {String}
+	 */
+	static getURLParam(name) {
+		return new URL(location).searchParams.get(name);
+	}
+  
+    /**
 	 * Get one element by selector
 	 * @param selector {String}
 	 * @returns {Element}

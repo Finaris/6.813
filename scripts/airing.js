@@ -1,5 +1,11 @@
 const maxShowsPerRow = 5;
-const airingShowsByDay = getAiringShowsData(100);
+
+// Try to fetch the number of shows to generate from the URL.
+var numOfShows = 100;
+try {
+  numOfShows = parseInt(Util.getURLParam("size")) || 100;
+} catch {}
+const airingShowsByDay = getAiringShowsData(numOfShows);
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
@@ -16,7 +22,9 @@ function initAiringPageDOM() {
   let showSectionElm = Util.one('#show-section');
   for(let day of daysOfWeek) {
     let showsOnDay = airingShowsByDay[day];
-    
+    if (showsOnDay.length == 0) {
+      continue;
+    }
     
     let daySectionElm = Util.create('div', {id: day.toLowerCase() + '-section', class: 'day-section'});
     let headerElm = Util.create('h2', {});
@@ -44,11 +52,11 @@ function initAiringPageDOM() {
     
     let leftButtonElm = Util.create('a', {class: 'carousel-control-prev', role: "button", 'data-slide': "prev"});
     leftButtonElm.appendChild(Util.create('span', {class: 'carousel-control-prev-icon', 'aria-hidden': "true"}));
-    leftButtonElm.setAttribute("data-target", "#monday-show-display")
+    leftButtonElm.setAttribute("data-target", "#"+showDisplayElm);
     
     let rightButtonElm = Util.create('a', {class: 'carousel-control-next', role: "button", 'data-slide': "next"});
     rightButtonElm.appendChild(Util.create('span', {class: 'carousel-control-next-icon', 'aria-hidden': "true"}));
-    rightButtonElm.setAttribute("data-target", "#monday-show-display");
+    rightButtonElm.setAttribute("data-target", "#"+showDisplayElm);
     
     showSectionElm.appendChild(daySectionElm);
     daySectionElm.appendChild(headerElm);
