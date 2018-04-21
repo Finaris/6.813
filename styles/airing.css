@@ -29,9 +29,10 @@ body main {
   grid-row: 2/3;
   grid-column: 2/3;
 
+  /*width: 87%;*/
   overflow: auto;
   padding: 50px;
-  padding-top: 0px;
+  padding-top: 10px;
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
 }
@@ -69,7 +70,7 @@ body main {
 
   margin-left: var(--show-container-padding-sides);
   margin-right: var(--show-container-padding-sides);
-  width: var(--show-container-width);
+  width: calc(var(--show-container-width)*.95);
 }
 
 .show-img {
