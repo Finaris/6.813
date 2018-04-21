@@ -2,7 +2,7 @@ body {
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
   grid-template-columns: var(--filter-bar-width) 1fr;
-  
+
   background-color: var(--color-super-light-gray);
 }
 
@@ -31,7 +31,7 @@ body main {
   font-weight: 400;
 
   padding: 50px;
-  padding-top: 0px;
+  padding-top: 10px;
 }
 
 main div {
@@ -53,7 +53,8 @@ main div {
   width: calc(100% - 20px);
   justify-self: center;
   justify-items: start;
-  
+  font-weight: lighter;
+
   background-color: var(--color-white);
   box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
   border: 1px solid rgba(0,0,0,0.15);
@@ -84,11 +85,11 @@ div.category {
   background-color: var(--color-white);
   padding: 5px 25px 5px 25px;
   border-radius: 4px;
-  
+
   display: flex;
   flex-direction: row;
   align-items: center;
-  
+
   font-size: 15px;
   font-family: 'Oswald', sans-serif;
   color: var(--color-black);
@@ -97,7 +98,7 @@ div.category {
 
 #bar-chart {
   margin-top: 15px; !important
-  
+
   padding-left: 1px; !important
   padding-top: 1px; !important
   background-color: var(--color-white); !important
@@ -107,7 +108,7 @@ div.category {
 }
 
 #included-shows-section {
-  
+
 }
 
 .modebar{
