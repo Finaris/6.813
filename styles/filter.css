@@ -35,8 +35,7 @@
 }
 
 #filter-top {
-  /*padding: 6px 8px 6px 16px;*/
-  margin: 6px 8px 6px 16px;
+  padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 20px;
   color: #818181;
@@ -49,7 +48,15 @@
   background: none;
   text-align: left;
 
+  background-color: var(--color-white);
+  position: sticky;
+  top: 0;
+  overflow: hidden; !important
   outline: none;
+}
+
+#filter-content {
+  overflow: scroll; !important
 }
 
 #filter-title h1 {

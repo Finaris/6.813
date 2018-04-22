@@ -78,7 +78,7 @@ function applyAiringFilter() {
   } catch {}
   const airingShowsByDay = getAiringShowsData(numOfShows);*/
   
-  updateAiringPage(getAiringShowsData(1));
+  updateAiringPage(getAiringShowsData(2));
 }
 
 function applyListsFilter() {
