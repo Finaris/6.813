@@ -99,7 +99,7 @@ function updateAiringPage(shows) {
 }
 
 function getShowElmFromShowData(show) {
-  let showElm = Util.create('div', {class: 'airing-show-container col-3 float-left'});
+  let showElm = Util.create('div', {class: 'airing-show-container float-left'});
   let imgElm = Util.create('img', {src: show.img, class: 'show-img img-fluid'});
   let listButtonElm = Util.create('button', {class: 'add-btn'});
   listButtonElm.innerHTML = " Add ";
