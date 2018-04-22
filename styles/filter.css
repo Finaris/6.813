@@ -74,7 +74,6 @@
 #filter-button {
   text-decoration: none;
   font-size: 20px;
-  color: var(--color-dark-midnight-blue);
   display: block;
   border: none;
   background-color: var(--color-gray);
@@ -82,14 +81,16 @@
   text-align: center;
   cursor: pointer;
   outline: none;
+  
+  background-color: var(--color-navy-blue);
+  color: var(--color-white);
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
 }
 
-/* Mouse-over
-#filter a:hover, .dropdown-btn:hover {
-    background-color: var(--color-sky-blue);
-}*/
+#filter-button:hover {
+  background-color: var(--color-sky-blue);
+}
 
 /* Active class to help indicate open dropdowns */
 .active {

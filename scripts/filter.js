@@ -71,16 +71,18 @@ function getFilterDict() {
 }
 
 function applyAiringFilter() {
-  filterShowsGivenFilterAiring(getAiringShowsData(100),getFilterDict());
+  // Try to fetch the number of shows to generate from the URL.
+  /*var numOfShows = 100;
+  try {
+    numOfShows = parseInt(Util.getURLParam("size")) || 100;
+  } catch {}
+  const airingShowsByDay = getAiringShowsData(numOfShows);*/
+  
+  updateAiringPage(getAiringShowsData(1));
 }
 
 function applyListsFilter() {
   filterShowsGivenFilterLists(getMyListsData(),getFilterDict());
-}
-
-function filterShowsGivenFilterAiring(shows, filter) {
-  data = getAiringShowsData(100);
-  updateAiringPage(data);
 }
 
 function filterShowsGivenFilterLists(data, filter) {

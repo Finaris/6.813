@@ -16,7 +16,9 @@ function initAiringPageDOM() {
   let showSectionElm = Util.one('#show-section');
   for(let day of daysOfWeek) {
     let showsOnDay = airingShowsByDay[day];
-
+    if (showsOnDay.length == 0) {
+      continue;
+    }
 
     let daySectionElm = Util.create('div', {id: day.toLowerCase() + '-section', class: 'day-section'});
     let headerElm = Util.create('h2', {});
@@ -25,10 +27,9 @@ function initAiringPageDOM() {
     let showDisplayID = day.toLowerCase() + '-show-display';
     let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide'});
     showDisplayElm.setAttribute("data-interval", "false");
-    showDisplayElm.setAttribute("data-target", "#"+showDisplayID);
-
+    
     let carouselInnerElm = Util.create('div', {class: 'carousel-inner', role: 'listbox', id: day.toLowerCase() + '-carousel-inner'});
-
+    
     let showNumber = 0;
     let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
     for(let show of showsOnDay) {
@@ -41,13 +42,15 @@ function initAiringPageDOM() {
       showNumber++;
     }
     carouselInnerElm.appendChild(carouselItemElm);
-
-
-    let leftButtonElm = Util.create('a', {class: 'carousel-control-prev', href: '#' + showDisplayID, role: "button", 'data-slide': "prev"});
+    
+    
+    let leftButtonElm = Util.create('a', {class: 'carousel-control-prev', role: "button", 'data-slide': "prev"});
     leftButtonElm.appendChild(Util.create('span', {class: 'carousel-control-prev-icon', 'aria-hidden': "true"}));
-    let rightButtonElm = Util.create('a', {class: 'carousel-control-next', href: '#' + showDisplayID, role: "button", 'data-slide': "next"});
+    leftButtonElm.setAttribute("data-target", "#"+showDisplayID);
+    
+    let rightButtonElm = Util.create('a', {class: 'carousel-control-next', role: "button", 'data-slide': "next"});
     rightButtonElm.appendChild(Util.create('span', {class: 'carousel-control-next-icon', 'aria-hidden': "true"}));
-
+    rightButtonElm.setAttribute("data-target", "#"+showDisplayID);
 
     showSectionElm.appendChild(daySectionElm);
     daySectionElm.appendChild(headerElm);
@@ -60,7 +63,6 @@ function initAiringPageDOM() {
 
 function updateAiringPage(shows) {
   let daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  let showSectionElm = Util.one('#show-section');
   for(let day of daysOfWeek) {
     let showsOnDay = shows[day];
 
@@ -74,7 +76,7 @@ function updateAiringPage(shows) {
 
     let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
 
-    for(let show of showsOnDay) {
+    for (let show of showsOnDay) {
       if (showNumber == 5) {
         showNumber = 0;
         carouselInnerElm.appendChild(carouselItemElm);
@@ -83,6 +85,13 @@ function updateAiringPage(shows) {
       carouselItemElm.appendChild(getShowElmFromShowData(show));
       showNumber++;
     }
+    
+    if (!carouselItemElm.hasChildNodes()) {
+      let currentSection = document.getElementById(day.toLowerCase()+'-section');
+      currentSection.remove();
+      continue;
+    }
+    
     carouselInnerElm.appendChild(carouselItemElm);
   }
 }
