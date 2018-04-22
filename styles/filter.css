@@ -3,14 +3,13 @@
     color: var(--color-dark-midnight-blue);
     width: 100%;
     overflow: auto;
-
     margin: 20px;
     background-color: var(--color-white);
     box-shadow: rgba(0,0,0,0.2) 0px 0px 1px;
     border: 1px solid rgba(0,0,0,0.15);
     border-radius: 4px;
     align-self: start;
-    max-height: 88vh;
+    max-height: 85vh;
 }
 
 /* Sidenav links and dropdown button */
@@ -55,7 +54,7 @@
   background-color: var(--color-white);
   position: sticky;
   top: 0;
-  overflow: hidden; !important
+  overflow: hidden, !important;
   outline: none;
 }
 
@@ -64,7 +63,8 @@
 }
 
 #filter-content {
-  overflow: scroll; !important
+  overflow: auto, !important;
+  
 }
 
 #filter-title h1 {
@@ -96,7 +96,7 @@
   text-align: center;
   cursor: pointer;
   outline: none;
-  
+
   background-color: var(--color-navy-blue);
   color: var(--color-white);
   font-family: 'Oswald', sans-serif;
