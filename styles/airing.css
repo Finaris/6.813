@@ -97,3 +97,16 @@ body main {
   color: var(--color-black);
   text-align: center;
 }
+
+.list-container {
+    background-color: var(--color-white);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 200;
+    z-index: 9999999;
+    position: relative;
+}
+
+.list-container.gone {
+  display: none;
+}
