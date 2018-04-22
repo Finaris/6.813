@@ -29,11 +29,17 @@ body main {
   grid-row: 2/3;
   grid-column: 2/3;
 
-  overflow: auto;
+  /*overflow: auto;*/
+  overflow: hidden;
   margin: 0px 60px 0px 60px;
   padding: 10px 0px 50px 0px;
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
+}
+
+div#show-section {
+  overflow: hidden;
+  position: absolute;
 }
 
 .airing-show-display {
