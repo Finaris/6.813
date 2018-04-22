@@ -10,7 +10,7 @@
     border: 1px solid rgba(0,0,0,0.15);
     border-radius: 4px;
     align-self: start;
-    max-height: 89vh;
+    max-height: 88vh;
 }
 
 /* Sidenav links and dropdown button */
@@ -34,6 +34,10 @@
     font-weight: 400;
 }
 
+#filter button {
+  outline: none;
+}
+
 #filter-top {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -53,6 +57,10 @@
   top: 0;
   overflow: hidden; !important
   outline: none;
+}
+
+.filter-checkbox {
+  margin-right: 5px;
 }
 
 #filter-content {
