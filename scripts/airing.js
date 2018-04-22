@@ -27,7 +27,7 @@ function initAiringPageDOM() {
     let showDisplayID = day.toLowerCase() + '-show-display';
     let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide'});
     showDisplayElm.setAttribute("data-interval", "false");
-
+    
     let carouselInnerElm = Util.create('div', {class: 'carousel-inner', role: 'listbox', id: day.toLowerCase() + '-carousel-inner'});
 
     let showNumber = 0;
@@ -65,7 +65,7 @@ function updateAiringPage(shows) {
   let daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   for(let day of daysOfWeek) {
     let showsOnDay = shows[day];
-
+    
     let carouselInnerElm = Util.one('#'+day.toLowerCase()+'-carousel-inner');
 
     let showNumber = 0;
@@ -86,10 +86,12 @@ function updateAiringPage(shows) {
       showNumber++;
     }
 
+    let currentSection = document.getElementById(day.toLowerCase()+'-section');
     if (!carouselItemElm.hasChildNodes()) {
-      let currentSection = document.getElementById(day.toLowerCase()+'-section');
-      currentSection.remove();
+      currentSection.style.display = "none";
       continue;
+    } else {
+      currentSection.style.display = "initial";
     }
 
     carouselInnerElm.appendChild(carouselItemElm);
