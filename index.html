@@ -31,8 +31,8 @@
   <!-- Load custom scripts -->
   <script src="./scripts/data.js"></script>
   <script src="./scripts/util.js"></script>
-  <script src="./scripts/filter.js"></script>
   <script src="./scripts/airing.js"></script>
+  <script src="./scripts/filter.js"></script>
 </head>
 
 <body>
@@ -51,8 +51,9 @@
 
   <div id="filter">
     <!-- Name at top of div -->
-    <div id="filter-title">
-    <h1>Filter</h1>
+    <div id="filter-top">
+    <div id="filter-title"><h1>Filter</h1></div>
+    <button id="filter-button" onclick=applyAiringFilter()>Apply Filter</button>
     </div>
     <!-- Rating Dropdown -->
     <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
