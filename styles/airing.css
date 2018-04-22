@@ -30,8 +30,8 @@ body main {
   grid-column: 2/3;
 
   overflow: auto;
-  padding: 50px;
-  padding-top: 10px;
+  margin: 0px 60px 0px 60px;
+  padding: 10px 0px 50px 0px;
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
 }
@@ -61,7 +61,7 @@ body main {
 }
 
 .carousel-inner {
-  overflow: visible; !important
+    overflow: visible;
 }
 
 .airing-show-container {
@@ -108,8 +108,9 @@ body main {
     border-bottom: 1px solid rgba(0,0,0,0.15);
     font-family: 'Oswald', sans-serif;
     font-weight: 200;
-  
+    
     position: absolute;
+    clip: rect(auto, auto, auto, auto);
     top: 100%;
     z-index: 100;
 }
