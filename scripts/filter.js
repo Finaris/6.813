@@ -70,6 +70,22 @@ function getFilterDict() {
   return filter;
 }
 
-function filterShowsGivenFilter(shows, filter) {
-  return;
+function applyAiringFilter() {
+  // Try to fetch the number of shows to generate from the URL.
+  /*var numOfShows = 100;
+  try {
+    numOfShows = parseInt(Util.getURLParam("size")) || 100;
+  } catch {}
+  const airingShowsByDay = getAiringShowsData(numOfShows);*/
+  
+  updateAiringPage(getAiringShowsData(1));
+}
+
+function applyListsFilter() {
+  filterShowsGivenFilterLists(getMyListsData(),getFilterDict());
+}
+
+function filterShowsGivenFilterLists(data, filter) {
+  data = getMyListsData();
+  updateStatsPage(data);
 }
