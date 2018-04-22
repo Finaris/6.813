@@ -10,7 +10,7 @@
     border: 1px solid rgba(0,0,0,0.15);
     border-radius: 4px;
     align-self: start;
-    max-height: 89vh;
+    max-height: 88vh;
 }
 
 /* Sidenav links and dropdown button */
@@ -34,9 +34,12 @@
     font-weight: 400;
 }
 
+#filter button {
+  outline: none;
+}
+
 #filter-top {
-  /*padding: 6px 8px 6px 16px;*/
-  margin: 6px 8px 6px 16px;
+  padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 20px;
   color: #818181;
@@ -49,7 +52,19 @@
   background: none;
   text-align: left;
 
+  background-color: var(--color-white);
+  position: sticky;
+  top: 0;
+  overflow: hidden; !important
   outline: none;
+}
+
+.filter-checkbox {
+  margin-right: 5px;
+}
+
+#filter-content {
+  overflow: scroll; !important
 }
 
 #filter-title h1 {
