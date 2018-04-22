@@ -80,7 +80,7 @@ function applyAiringFilter() {
   } catch {}
   const airingShowsByDay = getAiringShowsData(numOfShows);*/
   
-  updateAiringPage(getAiringShowsData(2));
+  updateAiringPage(getAiringShowsData(200));
 }
 
 function applyListsFilter() {
