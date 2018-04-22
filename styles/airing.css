@@ -40,10 +40,10 @@ body main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  
+
   padding-left: 30px;
   padding-right: 30px;
-  
+
   height: 300px;
   width: var(--show-slider-width);
 
@@ -76,4 +76,24 @@ body main {
   width: var(--show-img-width);
   border: 1px solid rgba(0,0,0,0.15);
   box-shadow: rgba(0,0,0,0.2) 1px 2px 2px;
+}
+
+#add-btn-caret {
+  padding: 0px;
+  margin-left: 5px;
+}
+
+.add-btn {
+  background-color: var(--color-white);
+  padding: 5px 25px 5px 25px;
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-size: 15px;
+  font-family: 'Oswald', sans-serif;
+  color: var(--color-black);
+  text-align: center;
 }
