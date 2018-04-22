@@ -1,5 +1,5 @@
 const maxShowsPerRow = 5;
-const airingShowsByDay = getAiringShowsData(100);
+const airingShowsByDay = getAiringShowsData(200);
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
