@@ -60,6 +60,10 @@ body main {
   background-color: var(--color-gray); !important
 }
 
+.carousel-inner {
+  overflow: visible; !important
+}
+
 .airing-show-container {
   display: flex;
   flex-direction: column;
@@ -67,6 +71,7 @@ body main {
 
   border-radius: 8px;
 
+  z-index: 0;
   margin-left: var(--show-container-padding-sides);
   margin-right: var(--show-container-padding-sides);
   width: calc(var(--show-container-width)*.85);
@@ -103,8 +108,10 @@ body main {
     border-bottom: 1px solid rgba(0,0,0,0.15);
     font-family: 'Oswald', sans-serif;
     font-weight: 200;
-    z-index: 9999999;
-    position: relative;
+  
+    position: absolute;
+    top: 100%;
+    z-index: 100;
 }
 
 .list-container.gone {
