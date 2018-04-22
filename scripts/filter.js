@@ -46,11 +46,13 @@ function setupFilterSection(sectionName, sourceList) {
   let sortedSourceList = sourceList.sort();
   for (let item of sortedSourceList) {
     let newSectionDiv = document.createElement("div");
-
+    
+    
     // Define a new input box.
     let newInput = document.createElement("input");
     newInput.type = "checkbox";
     newInput.value = item;
+    newInput.classList.add("filter-checkbox");
 
     // Append the new elements to the genre div.
     newSectionDiv.appendChild(newInput);
