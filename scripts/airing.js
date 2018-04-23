@@ -153,6 +153,13 @@ function getShowElmFromShowData(show) {
   let listSelectionElm = Util.create('div', {class: 'input-group mb-3'})
   listSelectionElm.innerHTML = "<div class='input-group-prepend'><label class='input-group-text' for='userLists'>List</label></div><select class='custom-select' id='userLists'><option selected>To Watch</option><option>Watching</option><option>Completed</option><option>Airing</option></select>";
   let submitButtonElm = Util.create('button', {class: 'btn btn-primary'});
+  
+  
+  formElm.onsubmit = function(e) {
+    dropdownMenuElm.classList.remove("show");
+    e.preventDefault();
+    alert("Successfully added show to list(s).");
+  };
   submitButtonElm.innerHTML = 'Add';
   
   dropdownMenuElm.appendChild(formElm);
