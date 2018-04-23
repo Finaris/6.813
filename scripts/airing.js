@@ -27,7 +27,7 @@ function initAiringPageDOM() {
     let showDisplayID = day.toLowerCase() + '-show-display';
     let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide'});
     showDisplayElm.setAttribute("data-interval", "false");
-    
+
     let carouselInnerElm = Util.create('div', {class: 'carousel-inner', role: 'listbox', id: day.toLowerCase() + '-carousel-inner'});
 
     let showNumber = 0;
@@ -65,7 +65,7 @@ function updateAiringPage(shows) {
   let daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   for(let day of daysOfWeek) {
     let showsOnDay = shows[day];
-    
+
     let carouselInnerElm = Util.one('#'+day.toLowerCase()+'-carousel-inner');
 
     let showNumber = 0;
@@ -143,33 +143,36 @@ function updateAiringPage(shows) {
 function getShowElmFromShowData(show) {
   let showElm = Util.create('div', {class: 'airing-show-container col-3 float-left'});
   let imgElm = Util.create('img', {src: show.img, class: 'show-img img-fluid'});
+  let showTitle = Util.create('div', {class: 'title-div'});
+  showTitle.textContent = show.title;
   let dropdownElm = Util.create('div', {class: 'dropdown'});
-  
+
   let dropdownButtonElm = Util.create('button', {class: 'btn btn-default dropdown-toggle add-btn', 'data-toggle': 'dropdown'});
   dropdownButtonElm.innerHTML = "Add <span class='caret'></span>"
-  
+
   let dropdownMenuElm = Util.create('ul', {class: 'dropdown-menu'})
   let formElm = Util.create('form');
   let listSelectionElm = Util.create('div', {class: 'input-group mb-3'})
   listSelectionElm.innerHTML = "<div class='input-group-prepend'><label class='input-group-text' for='userLists'>List</label></div><select class='custom-select' id='userLists'><option selected>To Watch</option><option>Watching</option><option>Completed</option><option>Airing</option></select>";
   let submitButtonElm = Util.create('button', {class: 'btn btn-primary'});
-  
-  
+
+
   formElm.onsubmit = function(e) {
     dropdownMenuElm.classList.remove("show");
     e.preventDefault();
     alert("Successfully added show to list(s).");
   };
   submitButtonElm.innerHTML = 'Add';
-  
+
   dropdownMenuElm.appendChild(formElm);
   formElm.appendChild(listSelectionElm);
   formElm.appendChild(submitButtonElm);
-  
+
   showElm.appendChild(imgElm);
+  showElm.appendChild(showTitle);
   showElm.appendChild(dropdownElm);
   dropdownElm.appendChild(dropdownButtonElm);
   dropdownElm.appendChild(dropdownMenuElm);
-  
+
   return showElm;
 }
