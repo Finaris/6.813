@@ -107,6 +107,11 @@ div#show-section {
   font-family: 'Oswald', sans-serif;
   color: var(--color-black);
   text-align: center;
+  
+  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 10px;
 }
 
 .list-container {
@@ -123,4 +128,12 @@ div#show-section {
 
 .list-container.gone {
   display: none;
+}
+
+.dropdown-menu {
+  width: 200px !important;
+}
+
+form {
+  padding: 5px;
 }

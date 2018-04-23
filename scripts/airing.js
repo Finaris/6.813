@@ -98,44 +98,71 @@ function updateAiringPage(shows) {
   }
 }
 
+//function getShowElmFromShowData(show) {
+//  let showElm = Util.create('div', {class: 'airing-show-container col-3 float-left'});
+//  let imgElm = Util.create('img', {src: show.img, class: 'show-img img-fluid'});
+//  let listButtonElm = Util.create('button', {class: 'add-btn'});
+//  listButtonElm.innerHTML = " Add ";
+//  let listButtonCaret = Util.create('i', {id: 'add-btn-caret', class: 'fa fa-caret-down'});
+//
+//
+//  listButtonElm.appendChild(listButtonCaret);
+//  listButtonElm.style.marginTop = "10px";
+//
+//  let listDropdown = Util.create('div', {class: 'list-container gone'});
+//
+//  for(let item of ["Airing", "Completed", "To Watch", "Watching"]) {
+//    let newSectionDiv = document.createElement("div");
+//
+//    let newInput = document.createElement("input");
+//    newInput.type = "checkbox";
+//    newInput.value = item;
+//    newInput.classList.add("filter-checkbox");
+//
+//    // Append the new elements to the genre div.
+//    newSectionDiv.appendChild(newInput);
+//    newSectionDiv.innerHTML += item;
+//    listDropdown.appendChild(newSectionDiv);
+//  }
+//  /*<div id='rating-container' class="dropdown-container gone">
+//    <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
+//    <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
+//  </div>*/
+//  listButtonElm.addEventListener("click", function(e) {
+//    e.preventDefault();
+//    this.classList.toggle("active");
+//    this.nextElementSibling.classList.toggle("gone");
+//  });
+//
+//  showElm.appendChild(imgElm);
+//  showElm.appendChild(listButtonElm);
+//  showElm.appendChild(listDropdown);
+//  return showElm;
+//}
+
 function getShowElmFromShowData(show) {
   let showElm = Util.create('div', {class: 'airing-show-container col-3 float-left'});
   let imgElm = Util.create('img', {src: show.img, class: 'show-img img-fluid'});
-  let listButtonElm = Util.create('button', {class: 'add-btn'});
-  listButtonElm.innerHTML = " Add ";
-  let listButtonCaret = Util.create('i', {id: 'add-btn-caret', class: 'fa fa-caret-down'});
-
-
-  listButtonElm.appendChild(listButtonCaret);
-  listButtonElm.style.marginTop = "10px";
-
-  let listDropdown = Util.create('div', {class: 'list-container gone'});
-
-  for(let item of ["Airing", "Completed", "To Watch", "Watching"]) {
-    let newSectionDiv = document.createElement("div");
-
-    let newInput = document.createElement("input");
-    newInput.type = "checkbox";
-    newInput.value = item;
-    newInput.classList.add("filter-checkbox");
-
-    // Append the new elements to the genre div.
-    newSectionDiv.appendChild(newInput);
-    newSectionDiv.innerHTML += item;
-    listDropdown.appendChild(newSectionDiv);
-  }
-  /*<div id='rating-container' class="dropdown-container gone">
-    <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
-    <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
-  </div>*/
-  listButtonElm.addEventListener("click", function(e) {
-    e.preventDefault();
-    this.classList.toggle("active");
-    this.nextElementSibling.classList.toggle("gone");
-  });
-
+  let dropdownElm = Util.create('div', {class: 'dropdown'});
+  
+  let dropdownButtonElm = Util.create('button', {class: 'btn btn-default dropdown-toggle add-btn', 'data-toggle': 'dropdown'});
+  dropdownButtonElm.innerHTML = "Add <span class='caret'></span>"
+  
+  let dropdownMenuElm = Util.create('ul', {class: 'dropdown-menu'})
+  let formElm = Util.create('form');
+  let listSelectionElm = Util.create('div', {class: 'input-group mb-3'})
+  listSelectionElm.innerHTML = "<div class='input-group-prepend'><label class='input-group-text' for='userLists'>List</label></div><select class='custom-select' id='userLists'><option selected>To Watch</option><option>Watching</option><option>Completed</option><option>Airing</option></select>";
+  let submitButtonElm = Util.create('button', {class: 'btn btn-primary'});
+  submitButtonElm.innerHTML = 'Add';
+  
+  dropdownMenuElm.appendChild(formElm);
+  formElm.appendChild(listSelectionElm);
+  formElm.appendChild(submitButtonElm);
+  
   showElm.appendChild(imgElm);
-  showElm.appendChild(listButtonElm);
-  showElm.appendChild(listDropdown);
+  showElm.appendChild(dropdownElm);
+  dropdownElm.appendChild(dropdownButtonElm);
+  dropdownElm.appendChild(dropdownMenuElm);
+  
   return showElm;
 }
