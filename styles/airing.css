@@ -94,6 +94,11 @@ div#show-section {
   margin-left: 5px;
 }
 
+.title-div {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .add-btn {
   background-color: var(--color-white);
   padding: 5px 25px 5px 25px;
@@ -107,11 +112,10 @@ div#show-section {
   font-family: 'Oswald', sans-serif;
   color: var(--color-black);
   text-align: center;
-  
+
   border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
   border-style: solid;
   border-width: 1px;
-  margin-top: 10px;
 }
 
 .list-container {
@@ -119,7 +123,7 @@ div#show-section {
     border-bottom: 1px solid rgba(0,0,0,0.15);
     font-family: 'Oswald', sans-serif;
     font-weight: 200;
-    
+
     position: absolute;
     clip: rect(auto, auto, auto, auto);
     top: 100%;
