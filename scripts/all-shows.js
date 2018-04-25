@@ -20,11 +20,47 @@ function initAllShowsPageDOM() {
     let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'all-show-display'});
     let imgElm = Util.create('img', {src: "../"+show.img, class: 'show-img img-fluid'});
     let showInfo = Util.create('div', {class: 'info-div'});
-    showInfo.textContent = show.title;
+    let dataElm = getDataElmFromShowData(show, showDisplayID);
+    //showInfo.textContent = show.title;
+    showInfo.appendChild(dataElm);
+    let descriptionElm = Util.create('div', {class: 'description-div'});
+    descriptionElm.textContent = show.description;
+    showInfo.appendChild(descriptionElm);
+
     showDisplayElm.appendChild(imgElm);
     showDisplayElm.appendChild(showInfo);
     showSectionElm.appendChild(showDisplayElm);
   }
+}
+
+function getDataElmFromShowData(show, showDisplayID) {
+  let dataElm = Util.create('div', {id: showDisplayID+'-data', class: 'data-div'});
+
+  let titleElm = Util.create('div', {id: showDisplayID+'-title'});
+  titleElm.textContent = show.title;
+  dataElm.appendChild(titleElm);
+
+  let yearAndEpsElm = Util.create('div', {id: showDisplayID+'-year-and-eps'});
+  yearAndEpsElm.textContent = show.year + ', ' + show.numEpisodes + ' Episodes'; //rip i18n
+  dataElm.appendChild(yearAndEpsElm);
+
+  let statusElm = Util.create('div', {id: showDisplayID+'-status'});
+  if(statusElm === "Airing") {
+    statusElm.textContent = "Airs " + statusElm.airDays.join(', ')
+  } else {
+    statusElm.textContent = show.status;
+  }
+  dataElm.append(statusElm);
+
+  let genresElm = Util.create('div', {id: showDisplayID+'-genres'});
+  genresElm.textContent = show.genres.join(", ") + ' '
+  dataElm.appendChild(genresElm);
+
+  let ratingElm = Util.create('div', {id: showDisplayID+'-rating'});
+  ratingElm.textContent = "Rating: " + show.rating + " from " + show.numRated + " users";
+  dataElm.appendChild(ratingElm);
+
+  return dataElm;
 }
 
 function updateAllShowsPage(shows) {
