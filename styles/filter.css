@@ -1,7 +1,6 @@
 /* Fixed sidenav, full height */
 #filter {
     color: var(--color-dark-midnight-blue);
-    width: 100%;
     overflow: auto;
     margin: 20px;
     background-color: var(--color-white);
