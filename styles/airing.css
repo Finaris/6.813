@@ -29,10 +29,6 @@ body main {
   grid-row: 2/3;
   grid-column: 2/3;
 
-  overflow: auto;
-  /*overflow: hidden;*/
-  margin: 0px 60px 0px 60px;
-  padding: 10px 0px 50px 0px;
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
 }
@@ -42,97 +38,17 @@ body main {
   flex-direction: row;
   align-items: center;
 
-  padding-left: 30px;
-  padding-right: 30px;
-
   height: 300px;
   width: var(--show-slider-width);
-
-  background-color: var(--color-white);
-  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
-  border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 4px;
-  margin-top: 20px;
-  margin-bottom: 50px;
 }
 
-.carousel-control-prev, .carousel-control-next {
-  width: 3%;
-  background-color: var(--color-gray); !important
-}
-
-.carousel-inner {
-    overflow: visible;
-}
-
-.airing-show-container {
+.carousel-show-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-
-  border-radius: 8px;
-
-  z-index: 0;
-  margin-left: var(--show-container-padding-sides);
-  margin-right: var(--show-container-padding-sides);
-  width: calc(var(--show-container-width)*.85);
+  
 }
 
 .show-img {
   width: var(--show-img-width);
-  border: 1px solid rgba(0,0,0,0.15);
-  box-shadow: rgba(0,0,0,0.2) 1px 2px 2px;
-}
-
-#add-btn-caret {
-  padding: 0px;
-  margin-left: 5px;
-}
-
-.title-div {
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-.add-btn {
-  background-color: var(--color-white);
-  padding: 5px 25px 5px 25px;
-  border-radius: 4px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  font-size: 15px;
-  font-family: 'Oswald', sans-serif;
-  color: var(--color-black);
-  text-align: center;
-
-  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
-  border-style: solid;
-  border-width: 1px;
-}
-
-.list-container {
-    background-color: var(--color-white);
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    font-family: 'Oswald', sans-serif;
-    font-weight: 200;
-
-    position: absolute;
-    clip: rect(auto, auto, auto, auto);
-    top: 100%;
-    z-index: 100;
-}
-
-.list-container.gone {
-  display: none;
-}
-
-.dropdown-menu {
-  width: 200px !important;
-}
-
-form {
-  padding: 5px;
 }
