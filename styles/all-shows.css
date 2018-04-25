@@ -39,9 +39,18 @@ body main {
 }
 
 #shows-title {
-  font-weight: bold;
+  /*font-weight: bold;*/
   font-size: 30px;
   width: 100%;
+}
+
+#shows-title h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #212529;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+  text-align: center; /* not sure how I feel about centering title; remove by commenting out this line*/
 }
 
 #results-section {
@@ -51,7 +60,7 @@ body main {
   justify-self: center;
   align-items: center;
   font-weight: lighter;
-  width: 100%;
+  width: 80%;
   /*background-color: var(--color-white);
   box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
   border: 1px solid rgba(0,0,0,0.15);
@@ -61,27 +70,41 @@ body main {
 .all-show-display {
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: var(--show-img-width) 1fr;
   justify-items: center;
-  grid-column-gap: 5px;
+  grid-column-gap: 20px;
   grid-template-rows: 1fr;
   background-color: var(--color-white);
   box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
   border: 1px solid rgba(0,0,0,0.15);
   border-radius: 4px;
-  padding: 10px;
+  padding: 20px;
   margin-top: 5px;
 
 }
 
 .info-div {
   display: grid;
+  justify-items: start;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(3,1fr);
+  grid-template-rows: repeat(2,1fr);
+  justify-self: start;
+}
+
+.data-div {
+  display: grid;
+  justify-items: start;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 1fr;
+}
+
+.description-div {
 
 }
+
 .all-show-display img {
   width: var(--show-img-width);
+  justify-self: start;
 }
 
 .stat {
