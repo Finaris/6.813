@@ -33,6 +33,27 @@ function initAllShowsPageDOM() {
   }
 }
 
+// https://stackoverflow.com/questions/34066752/sort-object-of-weekdays-like-sunday-monday-saturday
+
+function sortByDaysOfWeek(days) {
+  var sorter = {
+    // "sunday": 0, // << if sunday is first day of week
+    "monday": 1,
+    "tuesday": 2,
+    "wednesday": 3,
+    "thursday": 4,
+    "friday": 5,
+    "saturday": 6,
+    "sunday": 7
+  }
+
+  days.sort(function sortByDay(a, b) {
+    var day1 = a.toLowerCase();
+    var day2 = b.toLowerCase();
+    return sorter[day1] > sorter[day2];
+  });
+}
+
 function getDataElmFromShowData(show, showDisplayID) {
   let dataElm = Util.create('div', {id: showDisplayID+'-data', class: 'data-div'});
 
@@ -45,8 +66,9 @@ function getDataElmFromShowData(show, showDisplayID) {
   dataElm.appendChild(yearAndEpsElm);
 
   let statusElm = Util.create('div', {id: showDisplayID+'-status'});
-  if(statusElm === "Airing") {
-    statusElm.textContent = "Airs " + statusElm.airDays.join(', ')
+  if(show.status === "Airing") {
+    sortByDaysOfWeek(show.airDays);
+    statusElm.textContent = "Airs " + show.airDays.join(', ')
   } else {
     statusElm.textContent = show.status;
   }
@@ -60,6 +82,11 @@ function getDataElmFromShowData(show, showDisplayID) {
   ratingElm.textContent = "Rating: " + show.rating + " from " + show.numRated + " users";
   dataElm.appendChild(ratingElm);
 
+  let buttonElm = Util.create('button', {id: showDisplayID+'-add', class: 'all-show-add-btn'});
+  let buttonText = Util.create('div', {id: showDisplayID+'-add-text'});
+  buttonText.textContent = '+';
+  buttonElm.appendChild(buttonText);
+  dataElm.appendChild(buttonElm);
   return dataElm;
 }
 
