@@ -49,7 +49,7 @@ function generateRandomShowOfType(type) {
   let show = {
     status: type,
     img: './graphics/shows/' + generateElementsFromArray(stockImgs, 1, 1)[0],
-    description: 'DESCRIPTION',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     title: 'Title '  + showNumber,
     rating: getRandomNumber(1, 10),
     numRated: getRandomDiscreteNumber(200, 300000),
