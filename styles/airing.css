@@ -147,6 +147,8 @@ body main {
   margin-right: var(--show-img-hor-margins);
   
   box-shadow: rgba(0,0,0,0.2) 1px 2px 2px;
+  
+  cursor: pointer;
 }
 
 .dropdown-menu {

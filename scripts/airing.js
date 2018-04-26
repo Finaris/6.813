@@ -180,43 +180,6 @@ function onRightCarouselClick(evt) {
   }
 }
 
-function updateAiringPage(shows) {
-  let daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  for(let day of daysOfWeek) {
-    let showsOnDay = shows[day];
-
-    let carouselInnerElm = Util.one('#'+day.toLowerCase()+'-carousel-inner');
-
-    let showNumber = 0;
-
-    while(carouselInnerElm.firstChild) {
-      carouselInnerElm.removeChild(carouselInnerElm.firstChild);
-    }
-
-    let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
-
-    for (let show of showsOnDay) {
-      if (showNumber == 5) {
-        showNumber = 0;
-        carouselInnerElm.appendChild(carouselItemElm);
-        carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters"})
-      }
-      carouselItemElm.appendChild(getShowElmFromShowData(show));
-      showNumber++;
-    }
-
-    let currentSection = document.getElementById(day.toLowerCase()+'-section');
-    if (!carouselItemElm.hasChildNodes()) {
-      currentSection.style.display = "none";
-      continue;
-    } else {
-      currentSection.style.display = "initial";
-    }
-
-    carouselInnerElm.appendChild(carouselItemElm);
-  }
-}
-
 //--------------------------------------- Helper Functions -----------------------------------------//
 
 function removeAddShowDropdownMenu() {
