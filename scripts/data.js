@@ -28,10 +28,10 @@ var cannedShows = [
 
 var showNumber = 0;
 const stockShowImg = './graphics/shows/stockShowImg.jpg';
-var stockImgs = 
-  ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', 
-  '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', 
-  '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg', '25.jpg', '26.jpg', '27.jpg', '28.jpg', 
+var stockImgs =
+  ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg',
+  '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg',
+  '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg', '25.jpg', '26.jpg', '27.jpg', '28.jpg',
   '29.jpg', '30.jpg', '31.jpg', '32.jpg', '33.jpg', '34.jpg', '35.jpg'];
 var statuses = ['Completed', 'Airing', 'Upcoming'];
 var lists = ['Completed', 'Watching', 'To Watch', 'Airing'];
@@ -135,7 +135,7 @@ function getMyListsData() {
       'Sunday': []
     }
   };
-  
+
   // Add airing shows
   let airingShows = generateNumRandomShowOfType(7, 'Airing');
   userLists['Watching']['Airing Shows'] = airingShows;
@@ -144,7 +144,7 @@ function getMyListsData() {
       userLists['Airing'][day].push(show);
     }
   }
-  
+
   // Make All sections
   for (let list in userLists) {
     userLists[list].All = getAllShowsInList(userLists[list]);
@@ -179,8 +179,9 @@ function getAiringShowsData(numOfShows) {
   return airingShowsByDay;
 }
 
-function getAllShowsData() {
-  return;
+function getAllShowsData(numOfShows) {
+  let allShows = generateNumRandomShow(numOfShows);
+  return allShows;
 }
 
 function getAllShowsInList(listDict) {
