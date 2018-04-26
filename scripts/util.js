@@ -55,4 +55,42 @@ class Util {
 	static all(selector) {
 		return Array.from(document.querySelectorAll(selector));
 	}
+  
+  /**
+	 * Return a promise that is resolved after all animations of a given name
+	 * have stopped on one or more elements.
+	 * Caveat: The animations need to be *already* applied when this is called.
+	 * @param target {Element|Array<Element>}
+	 * @param animationName {String}
+	 */
+	static afterAnimation(target, animationName) {
+		target = Array.isArray(target)? target : [target];
+		var animating = target.filter(candy => getComputedStyle(candy).animationName.includes(animationName));
+
+		return Promise.all(animating.map(el => Util.when(el, "animationend", evt => evt.animationName == animationName)));
+	}
+  
+  /**
+	 * Returns a promise that is resolved when the event fires
+	 * @param target {EventTarget|Array<EventTarget>}
+	 * @param eventName {String}
+	 * @param test {callback} resolved when the event fires
+	 */
+	static async when(target, eventName, test = evt => true) {
+		if (Array.isArray(target)) {
+			return Promise.all(target.map(a => Util.when(a, eventName, test)));
+		}
+
+		var callback;
+		var evt = await new Promise(resolve => {
+			target.addEventListener(eventName, callback = evt => {
+				if (test(evt)) {
+					resolve(evt);
+				}
+			});
+		});
+
+		target.removeEventListener(eventName, callback);
+		return evt;
+	}
 }
