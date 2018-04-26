@@ -46,8 +46,8 @@ function setupFilterSection(sectionName, sourceList) {
   let sortedSourceList = sourceList.sort();
   for (let item of sortedSourceList) {
     let newSectionDiv = document.createElement("div");
-    
-    
+
+
     // Define a new input box.
     let newInput = document.createElement("input");
     newInput.type = "checkbox";
@@ -79,12 +79,16 @@ function applyAiringFilter() {
     numOfShows = parseInt(Util.getURLParam("size")) || 100;
   } catch {}
   const airingShowsByDay = getAiringShowsData(numOfShows);*/
-  
+
   updateAiringPage(getAiringShowsData(200));
 }
 
 function applyListsFilter() {
   filterShowsGivenFilterLists(getMyListsData(),getFilterDict());
+}
+
+function applyAllShowsFilter() {
+  updateAllShowsPage(getAllShowsData(200));
 }
 
 function filterShowsGivenFilterLists(data, filter) {
