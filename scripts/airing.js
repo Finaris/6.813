@@ -1,5 +1,8 @@
 const maxShowsPerRow = 5;
-const airingShowsByDay = getAiringShowsData(200);
+const airingShowsByDay = getAiringShowsData(100);
+let currentAddButtonElm = null;
+let currentDropDownMenuElm = null;
+let canPress = true;
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
@@ -7,6 +10,7 @@ Util.events(document, {
     "DOMContentLoaded": function() {
 
       initAiringPageDOM();
+      initAiringPageListeners();
 
     },
 });
@@ -25,154 +29,163 @@ function initAiringPageDOM() {
     headerElm.innerHTML = day;
 
     let showDisplayID = day.toLowerCase() + '-show-display';
-    let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display carousel slide'});
-    showDisplayElm.setAttribute("data-interval", "false");
+    let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display'});
 
-    let carouselInnerElm = Util.create('div', {class: 'carousel-inner', role: 'listbox', id: day.toLowerCase() + '-carousel-inner'});
-
-    let showNumber = 0;
-    let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
+    let carouselElm = Util.create('div', {class: 'carousel', id: day.toLowerCase() + '-carousel'});
+    let carouselLeftButtonElm = Util.create('a', {class: 'carousel-button carousel-left-button', id: day.toLocaleLowerCase() + '-carousel-left-button'});
+    carouselLeftButtonElm.innerHTML = "<i class='fa fa-angle-left'></i>"
+    let carouselRightButtonElm = Util.create('a', {class: 'carousel-button carousel-right-button', id: day.toLocaleLowerCase() + '-carousel-right-button'});
+    carouselRightButtonElm.innerHTML = "<i class='fa fa-angle-right'></i>"
+    let carouselShowContainerElm = Util.create('div', {class: 'carousel-show-container', id: day.toLocaleLowerCase() + '-carousel-show-container'})
     for(let show of showsOnDay) {
-      if (showNumber == 5) {
-        showNumber = 0;
-        carouselInnerElm.appendChild(carouselItemElm);
-        carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters"})
-      }
-      carouselItemElm.appendChild(getShowElmFromShowData(show));
-      showNumber++;
+      carouselShowContainerElm.appendChild(getShowElmFromShowData(show));
     }
-    carouselInnerElm.appendChild(carouselItemElm);
-
-
-    let leftButtonElm = Util.create('a', {class: 'carousel-control-prev', role: "button", 'data-slide': "prev"});
-    leftButtonElm.appendChild(Util.create('span', {class: 'carousel-control-prev-icon', 'aria-hidden': "true"}));
-    leftButtonElm.setAttribute("data-target", "#"+showDisplayID);
-
-    let rightButtonElm = Util.create('a', {class: 'carousel-control-next', role: "button", 'data-slide': "next"});
-    rightButtonElm.appendChild(Util.create('span', {class: 'carousel-control-next-icon', 'aria-hidden': "true"}));
-    rightButtonElm.setAttribute("data-target", "#"+showDisplayID);
 
     showSectionElm.appendChild(daySectionElm);
     daySectionElm.appendChild(headerElm);
     daySectionElm.appendChild(showDisplayElm);
-    showDisplayElm.appendChild(carouselInnerElm);
-    showDisplayElm.appendChild(leftButtonElm);
-    showDisplayElm.appendChild(rightButtonElm);
+    showDisplayElm.appendChild(carouselElm);
+    carouselElm.appendChild(carouselLeftButtonElm);
+    carouselElm.appendChild(carouselShowContainerElm);
+    carouselElm.appendChild(carouselRightButtonElm);
   }
 }
-
-function updateAiringPage(shows) {
-  let daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  for(let day of daysOfWeek) {
-    let showsOnDay = shows[day];
-
-    let carouselInnerElm = Util.one('#'+day.toLowerCase()+'-carousel-inner');
-
-    let showNumber = 0;
-
-    while(carouselInnerElm.firstChild) {
-      carouselInnerElm.removeChild(carouselInnerElm.firstChild);
-    }
-
-    let carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters active"})
-
-    for (let show of showsOnDay) {
-      if (showNumber == 5) {
-        showNumber = 0;
-        carouselInnerElm.appendChild(carouselItemElm);
-        carouselItemElm = Util.create('div', {class: "carousel-item row no-gutters"})
-      }
-      carouselItemElm.appendChild(getShowElmFromShowData(show));
-      showNumber++;
-    }
-
-    let currentSection = document.getElementById(day.toLowerCase()+'-section');
-    if (!carouselItemElm.hasChildNodes()) {
-      currentSection.style.display = "none";
-      continue;
-    } else {
-      currentSection.style.display = "initial";
-    }
-
-    carouselInnerElm.appendChild(carouselItemElm);
-  }
-}
-
-//function getShowElmFromShowData(show) {
-//  let showElm = Util.create('div', {class: 'airing-show-container col-3 float-left'});
-//  let imgElm = Util.create('img', {src: show.img, class: 'show-img img-fluid'});
-//  let listButtonElm = Util.create('button', {class: 'add-btn'});
-//  listButtonElm.innerHTML = " Add ";
-//  let listButtonCaret = Util.create('i', {id: 'add-btn-caret', class: 'fa fa-caret-down'});
-//
-//
-//  listButtonElm.appendChild(listButtonCaret);
-//  listButtonElm.style.marginTop = "10px";
-//
-//  let listDropdown = Util.create('div', {class: 'list-container gone'});
-//
-//  for(let item of ["Airing", "Completed", "To Watch", "Watching"]) {
-//    let newSectionDiv = document.createElement("div");
-//
-//    let newInput = document.createElement("input");
-//    newInput.type = "checkbox";
-//    newInput.value = item;
-//    newInput.classList.add("filter-checkbox");
-//
-//    // Append the new elements to the genre div.
-//    newSectionDiv.appendChild(newInput);
-//    newSectionDiv.innerHTML += item;
-//    listDropdown.appendChild(newSectionDiv);
-//  }
-//  /*<div id='rating-container' class="dropdown-container gone">
-//    <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
-//    <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
-//  </div>*/
-//  listButtonElm.addEventListener("click", function(e) {
-//    e.preventDefault();
-//    this.classList.toggle("active");
-//    this.nextElementSibling.classList.toggle("gone");
-//  });
-//
-//  showElm.appendChild(imgElm);
-//  showElm.appendChild(listButtonElm);
-//  showElm.appendChild(listDropdown);
-//  return showElm;
-//}
 
 function getShowElmFromShowData(show) {
-  let showElm = Util.create('div', {class: 'airing-show-container col-3 float-left'});
-  let imgElm = Util.create('img', {src: show.img, class: 'show-img img-fluid'});
+  let showElm = Util.create('div', {class: 'airing-show-container'});
+  let imgElm = Util.create('img', {src: show.img, class: 'show-img'});
   let showTitle = Util.create('div', {class: 'title-div'});
   showTitle.textContent = show.title;
   let dropdownElm = Util.create('div', {class: 'dropdown'});
 
-  let dropdownButtonElm = Util.create('button', {class: 'btn btn-default dropdown-toggle add-btn', 'data-toggle': 'dropdown'});
-  dropdownButtonElm.innerHTML = "Add <span class='caret'></span>"
-
-  let dropdownMenuElm = Util.create('ul', {class: 'dropdown-menu'})
-  let formElm = Util.create('form');
-  let listSelectionElm = Util.create('div', {class: 'input-group mb-3'})
-  listSelectionElm.innerHTML = "<div class='input-group-prepend'><label class='input-group-text' for='userLists'>List</label></div><select class='custom-select' id='userLists'><option selected>To Watch</option><option>Watching</option><option>Completed</option><option>Airing</option></select>";
-  let submitButtonElm = Util.create('button', {class: 'btn btn-primary'});
-
-
-  formElm.onsubmit = function(e) {
-    dropdownMenuElm.classList.remove("show");
-    e.preventDefault();
-    alert("Successfully added show to list(s).");
-  };
-  submitButtonElm.innerHTML = 'Add';
-
-  dropdownMenuElm.appendChild(formElm);
-  formElm.appendChild(listSelectionElm);
-  formElm.appendChild(submitButtonElm);
+  let dropdownButtonElm = Util.create('button', {class: 'add-btn'});
+  dropdownButtonElm.innerHTML = "Add <i class='fa fa-caret-down add-btn-caret'></i>"
 
   showElm.appendChild(imgElm);
   showElm.appendChild(showTitle);
   showElm.appendChild(dropdownElm);
   dropdownElm.appendChild(dropdownButtonElm);
-  dropdownElm.appendChild(dropdownMenuElm);
 
   return showElm;
+}
+
+function initAiringPageListeners() {
+  let leftCarouselButtonElms = Util.all('.carousel-left-button');
+  for (let button of leftCarouselButtonElms) {
+    button.addEventListener('click', onLeftCarouselClick);
+  }
+  
+  let rightCarouselButtonElms = Util.all('.carousel-right-button');
+  for (let button of rightCarouselButtonElms) {
+    button.addEventListener('click', onRightCarouselClick);
+  }
+  
+  let addButtonElms = Util.all('.add-btn');
+  for (let button of addButtonElms) {
+    button.addEventListener('click', onAddButtonClick);
+  }
+  
+  window.addEventListener('resize', function() {
+    // Moves the dropdown upon resize
+    if (currentDropDownMenuElm != null) {
+      currentDropDownMenuElm.style.setProperty('left', currentAddButtonElm.offsetLeft +'px');
+      currentDropDownMenuElm.style.setProperty('top', (currentAddButtonElm.offsetTop + currentAddButtonElm.offsetHeight + 5) +'px');
+    }
+  });
+  
+  document.addEventListener('click', function(evt) {
+    // Makes dropdown disappear if clicked outside
+    if (currentDropDownMenuElm != null) {
+      if (!currentDropDownMenuElm.contains(evt.target)) {
+        removeAddShowDropdownMenu();
+      }
+    }
+  });
+}
+
+function onAddButtonClick(evt) {
+  evt.stopPropagation();
+  if (currentDropDownMenuElm == null) {    
+    let dropdownMenuElm = Util.create('div', {class: 'dropdown-menu'})
+    let listSelectionElm = Util.create('div', {class: 'list-input-section'})
+    listSelectionElm.innerHTML = "List: ";
+    let submitButtonElm = Util.create('button', {class: 'btn btn-primary'});
+    submitButtonElm.innerHTML = 'Add';
+    
+    dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft +'px');
+    dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) +'px');
+
+    dropdownMenuElm.appendChild(listSelectionElm);
+    dropdownMenuElm.appendChild(submitButtonElm);
+    
+    Util.one('main').appendChild(dropdownMenuElm);
+    currentDropDownMenuElm = dropdownMenuElm;
+    currentAddButtonElm = evt.target;
+  } else {
+    let temp = currentAddButtonElm;
+    removeAddShowDropdownMenu();
+    if (temp != evt.target && evt.target.classList.contains('add-btn')) {
+      onAddButtonClick(evt); 
+    }
+  }
+}
+
+function onLeftCarouselClick(evt) {
+  if (canPress) {
+    canPress = false;
+    let day = evt.target.id.split('-')[0];
+    let carouselShowContainerElm = Util.one('#' + day + '-carousel-show-container');
+
+    let copies = [];
+    for (let i = 0; i < maxShowsPerRow; i++) {
+      copies.push(carouselShowContainerElm.children.item(i).cloneNode(true));
+      carouselShowContainerElm.appendChild(copies[i]);
+    }
+
+    carouselShowContainerElm.style.setProperty('--move-dir', -1);
+    carouselShowContainerElm.classList.add('move-left-animation');
+
+    Util.afterAnimation(carouselShowContainerElm, 'moveleft').then(function(value) {
+      carouselShowContainerElm.classList.remove('move-left-animation'); 
+      for (let i = 0; i < maxShowsPerRow; i++) {
+        carouselShowContainerElm.replaceChild(carouselShowContainerElm.firstChild, copies[i]);
+      }
+      canPress = true;
+    });
+  }
+}
+
+function onRightCarouselClick(evt) {
+  if (canPress) {
+    canPress = false;
+    let day = evt.target.id.split('-')[0];
+    let carouselShowContainerElm = Util.one('#' + day + '-carousel-show-container');
+
+    let copies = [];
+    for (let i = 0; i < maxShowsPerRow; i++) {
+      let index = carouselShowContainerElm.children.length - 1 - i;
+      copies.push(carouselShowContainerElm.children.item(index).cloneNode(true));
+      carouselShowContainerElm.insertBefore(copies[i], carouselShowContainerElm.firstChild);
+    }
+
+    carouselShowContainerElm.classList.add('move-right-animation');
+
+    Util.afterAnimation(carouselShowContainerElm, 'moveright').then(function(value) {
+      carouselShowContainerElm.classList.remove('move-right-animation'); 
+      for (let i = 0; i < maxShowsPerRow; i++) {
+        carouselShowContainerElm.replaceChild(carouselShowContainerElm.lastChild, copies[i]);
+      }
+      canPress = true;
+    }); 
+  }
+}
+
+//--------------------------------------- Helper Functions -----------------------------------------//
+
+function removeAddShowDropdownMenu() {
+  if (currentDropDownMenuElm != null) {
+    Util.one('main').removeChild(currentDropDownMenuElm);
+    currentDropDownMenuElm = null;
+    currentAddButtonElm = null;
+  }
 }
