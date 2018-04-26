@@ -1,7 +1,7 @@
 body {
   --show-img-width: 175px;
-  --show-img-padding-sides: 5px;
-  --show-container-width: calc(var(--show-img-width) + 2 * var(--show-img-padding-sides));
+  --show-img-height: calc(422 / 300 * var(--show-img-width));
+  --add-btn-diameter: 50px;
 
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
@@ -29,7 +29,6 @@ body main {
   justify-items: center;
   overflow: auto;
 
-  grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
@@ -38,8 +37,8 @@ body main {
   padding-top: 10px;
 }
 
+/*
 #shows-title {
-  /*font-weight: bold;*/
   font-size: 30px;
   width: 100%;
 }
@@ -50,90 +49,66 @@ body main {
   color: #212529;
   margin-bottom: 0.5rem;
   margin-top: 0;
-  text-align: center; /* not sure how I feel about centering title; remove by commenting out this line*/
+  text-align: center;
 }
+*/
 
 #results-section {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-row-gap: 20px;
-  justify-self: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  
+  width: 100%;
+
   font-weight: lighter;
-  width: 80%;
-  /*background-color: var(--color-white);
-  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
-  border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 4px;*/
 }
 
 .all-show-display {
-
   display: grid;
-  grid-template-columns: var(--show-img-width) 1fr;
-  justify-items: center;
+  grid-template-columns: var(--show-img-width) 1fr var(--add-btn-diameter);
+  
   grid-column-gap: 20px;
-  grid-template-rows: 1fr;
+  
+  height: var(--show-img-height);
+  width: 80%;
+  
+  padding: 20px;
+  margin-bottom: 20px;
+  
   background-color: var(--color-white);
+  border-radius: 4px;
+  
   box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
   border: 1px solid rgba(0,0,0,0.15);
-  border-radius: 4px;
-  padding: 20px;
-  margin-top: 5px;
-
 }
 
-.info-div {
-  display: grid;
-  justify-items: start;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(2,1fr);
-  grid-row-gap: 10px;
-  justify-self: start;
-  width: 100%;
+.show-img {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  
+  width: var(--show-img-width);
 }
 
 .data-div {
-  display: grid;
-  justify-items: start;
-  grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: 90% 10%;
-  grid-auto-flow: column;
-  width: 100%;
+  grid-row: 1/2;
+  grid-column: 2/4;
 }
 
-.description-div {
-  width: 100%;
-}
-
-.all-show-display img {
-  width: var(--show-img-width);
-  justify-self: start;
-}
-
-.all-show-add-btn {
-  background-color: var(--color-white);
-  padding: 5px 10px 5px 10px;
-  border-radius: 4px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  font-size: 10px;
-  font-family: 'Oswald', sans-serif;
-  color: var(--color-black);
+.fa.all-show-add-btn {
+  grid-row: 1/2;
+  grid-column: 3/4;
+  
+  font-size: var(--add-btn-diameter);
+  height: var(--add-btn-diameter);
+  width: var(--add-btn-diameter);
+  
+  color: var(--color-navy-blue);
+      
   text-align: center;
-
-  border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
-  border-style: solid;
-  border-width: 1px;
+  
+  cursor: pointer;
 }
 
-.stat {
-
-}
-
-div.category {
-  border: 1px red solid;
+.fa.all-show-add-btn:hover {
+  color: var(--color-steel-blue);
 }
