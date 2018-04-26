@@ -78,6 +78,9 @@ header #navsearch {
 #searchdiv {
   justify-self: start;
   width: 100%;
+  
+  display: flex;
+  align-items: center;
 }
 
 .glass {
