@@ -30,6 +30,7 @@ body main {
   overflow: auto;
 
   grid-template-columns: 1fr;
+  grid-template-rows: 10% 1fr;
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
 
@@ -57,36 +58,36 @@ body main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   width: 100%;
 }
 
 .all-show-display {
   display: grid;
   grid-template-columns: var(--show-img-width) 1fr var(--add-btn-diameter);
-  
+
   grid-column-gap: 20px;
-  
+
   height: var(--show-img-height);
   width: 80%;
-  
+
   padding: 20px;
   margin-bottom: 20px;
-  
+
   background-color: var(--color-white);
   border-radius: 4px;
-  
+
   box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
   border: 1px solid rgba(0,0,0,0.15);
-  
-  font-family: 'Lora', serif;  
+
+  font-family: 'Lora', serif;
 /*  font-weight: lighter;*/
 }
 
 .show-img {
   grid-row: 1/2;
   grid-column: 1/2;
-  
+
   width: var(--show-img-width);
 }
 
@@ -114,15 +115,15 @@ body main {
 .fa.all-show-add-btn {
   grid-row: 1/2;
   grid-column: 3/4;
-  
+
   font-size: var(--add-btn-diameter);
   height: var(--add-btn-diameter);
   width: var(--add-btn-diameter);
-  
+
   color: var(--color-navy-blue);
-      
+
   text-align: center;
-  
+
   cursor: pointer;
 }
 
