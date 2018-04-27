@@ -33,13 +33,13 @@ body main {
 
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  
-  overflow: scroll;
-  
+
+  overflow-y: scroll;
+
   position: relative;
 }
 
@@ -47,21 +47,21 @@ body main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  
+
   width: calc(2 * var(--carousel-button-width) + var(--carousel-show-container-width));
-  
+
   box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
   border: 1px solid rgba(0,0,0,0.15);
   background-color: var(--color-white);
   border-radius: 4px;
-  
+
   overflow: hidden;
 }
 
 .carousel {
   display: grid;
   grid-template-columns: var(--carousel-button-width) 1fr var(--carousel-button-width);
-  
+
   height: var(--carousel-height);
   width: calc(2 * var(--carousel-button-width) + var(--carousel-show-container-width));
 }
@@ -69,16 +69,16 @@ body main {
 .carousel-button {
   color: var(--color-white);
   background-color: var(--color-gainsboro);
-  
+
   height: var(--carousel-height);
-  
+
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
+
   font-size: 32px;
-  
+
   z-index: 2;
 }
 
@@ -87,20 +87,20 @@ body main {
   background-color: var(--color-gray);
 }
 
-.carousel-show-container {  
+.carousel-show-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-    
+
   width: var(--carousel-show-container-width);
-    
+
   z-index: 1;
 }
 
 .airing-show-container {
   margin-left: var(--show-container-hor-margins);
   margin-right: var(--show-container-hor-margins);
-  
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -120,8 +120,8 @@ body main {
   align-items: center;
 
   font-size: 15px;
-  font-family: 'Oswald', sans-serif;  
-  
+  font-family: 'Oswald', sans-serif;
+
   outline: none;
 }
 
@@ -134,9 +134,9 @@ body main {
 .dropdown-menu {
   display: flex;
   flex-direction: column;
-  
+
   width: 100px;
-  
+
   padding: 0px;
 }
 
@@ -146,24 +146,24 @@ body main {
 
 .show-img {
   width: var(--show-img-width);
-  
+
   margin: 5px;
   margin-left: var(--show-img-hor-margins);
   margin-right: var(--show-img-hor-margins);
-  
+
   box-shadow: rgba(0,0,0,0.2) 1px 2px 2px;
-  
+
   cursor: pointer;
 }
 
 .dropdown-menu {
   position: absolute;
-  
+
   z-index: 3;
-  
+
   background-color: var(--color-white);
   border: 1px solid var(--color-black);
-  
+
   padding: 5px;
   border-radius: 4px;
 }
@@ -173,7 +173,7 @@ i.fa {
 }
 
 @keyframes moveleft {
-  from { transform: translateX(0px);} 
+  from { transform: translateX(0px);}
   to { transform: translateX(calc(-1 * var(--carousel-show-container-width)));}
 }
 
@@ -182,7 +182,7 @@ i.fa {
 }
 
 @keyframes moveright {
-  from { transform: translateX(calc(-1 * var(--carousel-show-container-width)));} 
+  from { transform: translateX(calc(-1 * var(--carousel-show-container-width)));}
   to { transform: translateX(0px));}
 }
 
