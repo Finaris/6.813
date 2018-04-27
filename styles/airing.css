@@ -140,9 +140,14 @@ body main {
   padding: 0px;
 }
 
+.title-div {
+  font-size: 22px;
+}
+
 .show-img {
   width: var(--show-img-width);
   
+  margin: 5px;
   margin-left: var(--show-img-hor-margins);
   margin-right: var(--show-img-hor-margins);
   

@@ -61,8 +61,8 @@ function getShowElmFromShowData(show) {
   let dropdownButtonElm = Util.create('button', {class: 'add-btn'});
   dropdownButtonElm.innerHTML = "Add <i class='fa fa-caret-down add-btn-caret'></i>"
 
-  showElm.appendChild(imgElm);
   showElm.appendChild(showTitle);
+  showElm.appendChild(imgElm);
   showElm.appendChild(dropdownElm);
   dropdownElm.appendChild(dropdownButtonElm);
 
@@ -130,7 +130,7 @@ function onAddButtonClick(evt) {
   }
 }
 
-function onLeftCarouselClick(evt) {
+function onRightCarouselClick(evt) {
   if (canPress) {
     canPress = false;
     let day = evt.target.id.split('-')[0];
@@ -155,7 +155,7 @@ function onLeftCarouselClick(evt) {
   }
 }
 
-function onRightCarouselClick(evt) {
+function onLeftCarouselClick(evt) {
   if (canPress) {
     canPress = false;
     let day = evt.target.id.split('-')[0];

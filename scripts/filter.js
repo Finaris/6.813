@@ -53,6 +53,7 @@ function setupFilterSection(sectionName, sourceList) {
     newInput.type = "checkbox";
     newInput.value = item;
     newInput.classList.add("filter-checkbox");
+    newInput.classList.add(sectionName + "-filter-checkbox");
 
     // Append the new elements to the genre div.
     newSectionDiv.appendChild(newInput);
@@ -63,35 +64,57 @@ function setupFilterSection(sectionName, sourceList) {
 
 function getFilterDict() {
   let filter = {
-    genres: [],
-    minRating: 1,
-    maxRating: 10,
-    lists: [],
-    statuses: []
+    genres: new Set([]),
+    minRating: Util.one('#min-rating').value,
+    maxRating: Util.one('#max-rating').value,
+    lists: new Set([]),
+    statuses: new Set([])
   };
+  
+  let genreCheckboxElms = Util.all('.genre-filter-checkbox');
+  for (let elm of genreCheckboxElms) {
+    if (elm.checked) {
+      filter.genres.add(elm.value);
+    }
+  }
+  
+  let statusCheckboxElms = Util.all('.status-filter-checkbox');
+  for (let elm of statusCheckboxElms) {
+    if (elm.checked) {
+      filter.statuses.add(elm.value);
+    }
+  }
+    
   return filter;
 }
 
-function applyAiringFilter() {
-  // Try to fetch the number of shows to generate from the URL.
-  /*var numOfShows = 100;
-  try {
-    numOfShows = parseInt(Util.getURLParam("size")) || 100;
-  } catch {}
-  const airingShowsByDay = getAiringShowsData(numOfShows);*/
-
-  updateAiringPage(getAiringShowsData(200));
-}
-
-function applyListsFilter() {
-  filterShowsGivenFilterLists(getMyListsData(),getFilterDict());
-}
-
-function applyAllShowsFilter() {
-  updateAllShowsPage(getAllShowsData(200));
-}
-
-function filterShowsGivenFilterLists(data, filter) {
-  data = getMyListsData();
-  updateStatsPage(data);
+// Only filters by show properties (i.e. not by lists)
+function filterShowsGivenFilter(shows, filter) {
+  let filteredShows = shows.filter(function(show) {
+    if (Number(show.rating) < filter.minRating || Number(show.rating) > filter.maxRating) {
+      return false;
+    }
+    
+    if (filter.genres.size > 0) {
+      console.log('HI')
+      let failed = true;
+      for (let genre of show.genres) {
+        if (filter.genres.has(genre)) {
+          failed = false;
+          break;
+        }
+      }
+      if (failed) {
+        return false;
+      }
+    }
+    
+    if (filter.statuses.size > 0 && !filter.statuses.has(show.status)) {
+      return false;
+    }
+    return true;
+  });
+  
+  console.log(filteredShows);
+  return filteredShows;
 }
