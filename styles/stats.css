@@ -25,22 +25,16 @@ body main {
   justify-items: center;
   overflow: auto;
 
-  grid-template-rows: 1fr .5fr 3fr 1fr 2fr;
+  grid-template-rows: .5fr 3fr 1fr 2fr;
   grid-template-columns: 1fr;
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
 
   padding: 50px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 #stats-info-text {
-  width: 80%;
-}
-
-#stats-title {
-  font-weight: bold;
-  font-size: 30px;
   width: 80%;
 }
 
@@ -70,7 +64,7 @@ div.category {
 }
 
 #hist-section {
-  margin-top: 75px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
