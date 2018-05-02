@@ -34,7 +34,7 @@ var stockImgs =
   '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg', '25.jpg', '26.jpg', '27.jpg', '28.jpg',
   '29.jpg', '30.jpg', '31.jpg', '32.jpg', '33.jpg', '34.jpg', '35.jpg'];
 var statuses = ['Completed', 'Airing', 'Upcoming'];
-var lists = ['Completed', 'Watching', 'To Watch', 'Airing'];
+var lists = ['Completed', 'Watching', 'To Watch'];
 var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 var genres = ['Action', 'Horror', 'Adventure', 'Music', 'Comedy', 'Mystery', 'Crime', 'Romance', 'Sci-fi', 'Drama', 'Fantasy', 'War', 'Historical', 'Western', 'Animals', 'Melodrama', 'Detective', 'Food', 'Psychological', 'Supernatural', 'Medical', 'School', 'Thriller'];
 var actors = ['Lee Min Ho', 'Lee Jong Suk', 'Park Shin Hye', 'Ji Chang Wook', 'Song Joong Ki']
@@ -115,7 +115,7 @@ function getMyListsData() {
     },
     'Watching': {
       'Completed Shows': generateNumRandomShowOfType(5, 'Completed'),
-      'Airing Shows': []
+      'Airing Shows': generateNumRandomShowOfType(7, 'Airing')
     },
     'To Watch': {
       'Feels': generateNumRandomShow(2),
@@ -124,26 +124,8 @@ function getMyListsData() {
       'Action': generateNumRandomShow(1),
       'Thriller': generateNumRandomShow(2),
       'Psycholgical': generateNumRandomShow(4)
-    },
-    'Airing': {
-      'Monday': [],
-      'Tuesday': [],
-      'Wednesday': [],
-      'Thursday': [],
-      'Friday': [],
-      'Saturday': [],
-      'Sunday': []
     }
   };
-
-  // Add airing shows
-  let airingShows = generateNumRandomShowOfType(7, 'Airing');
-  userLists['Watching']['Airing Shows'] = airingShows;
-  for (let show of airingShows) {
-    for (let day of show.airDays) {
-      userLists['Airing'][day].push(show);
-    }
-  }
 
   // Make All sections
   for (let list in userLists) {
@@ -151,6 +133,22 @@ function getMyListsData() {
   }
   userLists['All Dramas'] = getAllShowsInAllLists(userLists);
   return userLists;
+}
+
+function getIdNamesToDisplayNames() {
+  return {
+    'completed': 'Completed',
+    'watching': 'Watching',
+    'towatch': 'To Watch'
+  };
+}
+
+function getDisplayNamesToIdNames() {
+  return {
+    'Completed': 'completed',
+    'Watching': 'watching',
+    'Towatch': 'towatch'
+  };
 }
 
 function getAiringShowsData(numOfShows) {
