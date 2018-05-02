@@ -45,12 +45,33 @@
 
   <main>
     <div id='list-btns-section'>
-      <div id='to-watch-btn' class='list-btn list-btns-btn'>To Watch<div class='tab-blocker'></div></div>
-      <div id='watching-btn' class='list-btn list-btns-btn'>Watching<div class='tab-blocker'></div></div>
-      <div id='completed-btn' class='list-btn list-btns-btn'>Completed<div class='tab-blocker'></div></div>
+      <div id='towatch-btn' class='list-btn list-btns-btn'>To Watch<div class='tab-blocker not-blocking'></div></div>
+      <div id='watching-btn' class='list-btn list-btns-btn'>Watching<div class='tab-blocker not-blocking'></div></div>
+      <div id='completed-btn' class='list-btn list-btns-btn'>Completed<div class='tab-blocker not-blocking'></div></div>
       <div id='add-list-btn' class='list-btns-btn'><i class='fa fa-plus'></i></div>
     </div>
-    <div id='list-section'></div>
+    <div id='list-section'>
+      <div id='column-guide'>
+        <div id='column-header-first' class='column-header'>Title</div>
+        <div class='column-header'>Type</div>
+        <div class='column-header'>Year</div>
+        <div class='column-header'>Rating</div>
+        <div id='column-header-last' class='column-header'>Progress</div>
+      </div>
+      
+      <div id=shows-section>
+        <div id='main-bar' class='bar main-bar'></div>
+<!--
+        <div class='bar header-bar'></div>
+        <div class='bar show-bar'></div>
+-->
+      </div>
+      
+      <div id='given-list-btns'>
+        <button id='delete-btn' class='given-list-btn'>Delete List</button>
+        <button id='stats-btn' class='given-list-btn'>Show Stats</button>
+      </div>
+    </div>
   </main>
 
 </body>

@@ -30,12 +30,12 @@ body main {
   overflow: auto;
 
   grid-template-columns: 1fr;
-  grid-template-rows: 10% 1fr;
+  grid-template-rows: 1fr;
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
 
   padding: 50px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 /*
@@ -94,11 +94,6 @@ body main {
 .data-div {
   grid-row: 1/2;
   grid-column: 2/4;
-}
-
-.title-elm {
-  font-family: 'Oswald', sans-serif;
-  font-size: 32px;
 }
 
 .leader {

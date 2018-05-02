@@ -139,10 +139,6 @@ body main {
   padding: 0px;
 }
 
-.title-div {
-  font-size: 22px;
-}
-
 .show-img {
   width: var(--show-img-width);
 
