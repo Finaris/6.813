@@ -9,7 +9,6 @@ body {
   --carousel-height: 300px;
   --translation-time: .3s;
 
-  height: 100vh;
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
   grid-template-columns: var(--filter-bar-width) 1fr;
