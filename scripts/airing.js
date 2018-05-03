@@ -4,6 +4,11 @@ let currentAddButtonElm = null;
 let currentDropDownMenuElm = null;
 let canPress = true;
 
+let listNames = ['To Watch', 'Watching', 'Completed'];
+let listsToSections = {'To Watch': ['Feels', 'Romance', 'Comedy', 'Action', 'Thriller', 'Psychological'],
+                       'Watching': ['Completed Shows', 'Airing Shows'],
+                       'Completed': ['Amazing', 'Good', 'Okay', 'Bad']};
+
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
 	// This runs when the DOM is ready.
@@ -74,17 +79,17 @@ function initAiringPageListeners() {
   for (let button of leftCarouselButtonElms) {
     button.addEventListener('click', onLeftCarouselClick);
   }
-  
+
   let rightCarouselButtonElms = Util.all('.carousel-right-button');
   for (let button of rightCarouselButtonElms) {
     button.addEventListener('click', onRightCarouselClick);
   }
-  
+
   let addButtonElms = Util.all('.add-btn');
   for (let button of addButtonElms) {
     button.addEventListener('click', onAddButtonClick);
   }
-  
+
   window.addEventListener('resize', function() {
     // Moves the dropdown upon resize
     if (currentDropDownMenuElm != null) {
@@ -92,7 +97,7 @@ function initAiringPageListeners() {
       currentDropDownMenuElm.style.setProperty('top', (currentAddButtonElm.offsetTop + currentAddButtonElm.offsetHeight + 5) +'px');
     }
   });
-  
+
   document.addEventListener('click', function(evt) {
     // Makes dropdown disappear if clicked outside
     if (currentDropDownMenuElm != null) {
@@ -103,21 +108,54 @@ function initAiringPageListeners() {
   });
 }
 
+function addOptionToSelect(sel, name) {
+  option = Util.create('option', {value: name});
+  option.innerHTML = name;
+  sel.appendChild(option);
+}
+
 function onAddButtonClick(evt) {
   evt.stopPropagation();
-  if (currentDropDownMenuElm == null) {    
-    let dropdownMenuElm = Util.create('div', {class: 'dropdown-menu'})
-    let listSelectionElm = Util.create('div', {class: 'list-input-section'})
-    listSelectionElm.innerHTML = "List: ";
+  if (currentDropDownMenuElm == null) {
+    let dropdownMenuElm = Util.create('div', {class: 'dropdown-menu'});
+    let listSelectionElm = Util.create('div', {class: 'list-input-section'});
+    let listLabelElm = Util.create('div');
+    listLabelElm.innerHTML = "List: ";
+
+    let listSelect = Util.create('select', {id: 'list-select'});
+
+    listNames.forEach(function(elt) {addOptionToSelect(listSelect, elt)});
+
+    listSelect.onchange = function(e) {
+      let listSel = Util.one('#list-select');
+      let sectionSel = Util.one('#section-select');
+      while (sectionSel.firstChild) {
+        sectionSel.removeChild(sectionSel.firstChild);
+      }
+      listsToSections[listSel.options[listSel.selectedIndex].value].forEach(function(elt) {addOptionToSelect(sectionSel, elt)});
+    };
+
+    let sectionLabelElm = Util.create("div");
+    sectionLabelElm.innerHTML = "Section: ";
+
+    let sectionSelect = Util.create('select', {id: 'section-select'});
+    listsToSections["To Watch"].forEach(function(elt) {addOptionToSelect(sectionSelect, elt)});
+
+    listSelectionElm.appendChild(listLabelElm);
+    listSelectionElm.appendChild(listSelect);
+    listSelectionElm.appendChild(sectionLabelElm);
+    listSelectionElm.appendChild(sectionSelect);
+
+    //listSelectionElm.innerHTML = "List: ";
     let submitButtonElm = Util.create('button', {class: 'btn btn-primary'});
     submitButtonElm.innerHTML = 'Add';
-    
+
     dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft +'px');
     dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) +'px');
 
     dropdownMenuElm.appendChild(listSelectionElm);
     dropdownMenuElm.appendChild(submitButtonElm);
-    
+
     Util.one('main').appendChild(dropdownMenuElm);
     currentDropDownMenuElm = dropdownMenuElm;
     currentAddButtonElm = evt.target;
@@ -125,7 +163,7 @@ function onAddButtonClick(evt) {
     let temp = currentAddButtonElm;
     removeAddShowDropdownMenu();
     if (temp != evt.target && evt.target.classList.contains('add-btn')) {
-      onAddButtonClick(evt); 
+      onAddButtonClick(evt);
     }
   }
 }
@@ -146,7 +184,7 @@ function onRightCarouselClick(evt) {
     carouselShowContainerElm.classList.add('move-left-animation');
 
     Util.afterAnimation(carouselShowContainerElm, 'moveleft').then(function(value) {
-      carouselShowContainerElm.classList.remove('move-left-animation'); 
+      carouselShowContainerElm.classList.remove('move-left-animation');
       for (let i = 0; i < maxShowsPerRow; i++) {
         carouselShowContainerElm.replaceChild(carouselShowContainerElm.firstChild, copies[i]);
       }
@@ -171,12 +209,12 @@ function onLeftCarouselClick(evt) {
     carouselShowContainerElm.classList.add('move-right-animation');
 
     Util.afterAnimation(carouselShowContainerElm, 'moveright').then(function(value) {
-      carouselShowContainerElm.classList.remove('move-right-animation'); 
+      carouselShowContainerElm.classList.remove('move-right-animation');
       for (let i = 0; i < maxShowsPerRow; i++) {
         carouselShowContainerElm.replaceChild(carouselShowContainerElm.lastChild, copies[i]);
       }
       canPress = true;
-    }); 
+    });
   }
 }
 
