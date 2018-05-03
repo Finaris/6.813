@@ -1,4 +1,5 @@
 let userLists = getMyListsData();
+let idNamesToDisplayNames = getIdNamesToDisplayNames();
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
@@ -12,6 +13,7 @@ Util.events(document, {
 
 function onListBtnClick(listBtnId) {
   updateTabBorders(listBtnId);
+  updateMainBar(listBtnId);
 }
 
 function initListeners() {
@@ -36,4 +38,18 @@ function updateTabBorders(listBtnId) {
       listBtnElm.lastChild.classList.add('not-blocking');
     }
   }
+}
+
+function updateMainBar(listBtnId) {
+  let listIdName = listBtnId.slice(0,-4);
+  Util.one('#current-list-name').innerHTML = idNamesToDisplayNames[listIdName];
+  Util.one('#num-elms-in-list').innerHTML = userLists[idNamesToDisplayNames[listIdName]].All.length;
+}
+
+function updateHeaderShowBars(listBtnId) {
+  
+}
+
+function clearHeaderShowBars() {
+  
 }
