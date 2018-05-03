@@ -163,6 +163,14 @@ body main {
   border-radius: 4px;
 }
 
+.list-input-section {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 30% 70%;
+  justify-items: start;
+  align-items: start;
+}
+
 i.fa {
   pointer-events: none;
 }
