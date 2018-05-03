@@ -144,6 +144,8 @@ body main {
 #main-bar {
   display: grid;
   grid-template-columns: 1fr 50px;
+  align-items: center;
+  justify-items: center;
   
   width: 80%;
   height: 50px;
@@ -154,8 +156,10 @@ body main {
 }
 
 .header-bar {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  align-items: center;
+  justify-items: center;
   
   width: 70%;
   height: 50px;
@@ -165,8 +169,10 @@ body main {
 }
 
 .show-bar {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr 2fr 2fr 75px 1fr;
+  align-items: center;
+  justify-items: center;
   
   width: 60%;
   height: 50px;
@@ -174,6 +180,18 @@ body main {
   
   border: 1px solid var(--color-black);
   border-top: none;
+}
+
+.show-bar-progress {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-items: center;
+  
+  width: 100%;
+}
+
+.left-align {
+  justify-self: left;
 }
 
 #given-list-btns {

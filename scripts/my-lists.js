@@ -81,10 +81,41 @@ function clearHeaderShowBars() {
 
 function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
   let headerBarElm = Util.create('div', {class: 'header-bar'});
+  
+  let dragElm = Util.create('i', {class: 'fa fa-bars header-bar-drag'});
+  let textElm = Util.create('div', {class: 'header-bar-text left-align'});
+  textElm.innerHTML = headerDisplayName + ' (' + numShowsInHeader + ')';
+  let dropdownElm = Util.create('i', {class: 'fa fa-caret-down header-bar-dropdown'});
+  
+  headerBarElm.appendChild(dragElm);
+  headerBarElm.appendChild(textElm);
+  headerBarElm.appendChild(dropdownElm);
   return headerBarElm;
 }
 
 function getShowBarElm(show) {
   let showBarElm = Util.create('div', {class: 'show-bar'});
+  
+  let dragElm = Util.create('i', {class: 'fa fa-bars show-bar-drag'});
+  let titleElm = Util.create('div', {class: 'show-bar-title left-align'});
+  let typeElm = Util.create('div', {class: 'show-bar-type'})
+  let yearElm = Util.create('div', {class: 'show-bar-year'})
+  let ratingElm = Util.create('div', {class: 'show-bar-rating'})
+  let progressElm = Util.create('div', {class: 'show-bar-progress'})
+  let editElm = Util.create('i', {class: 'fa fa-edit show-bar-edit'});
+  
+  titleElm.innerHTML = show.title;
+  typeElm.innerHTML = 'TV';
+  yearElm.innerHTML = show.releaseYear;
+  ratingElm.innerHTML = show.rating;
+  progressElm.innerHTML = "<i class='fa fa-minus'></i> <div>" + show.userCurrentEpisode + '/' + show.numEpisodes + "</div> <i class='fa fa-plus'></i>"
+  
+  showBarElm.appendChild(dragElm);
+  showBarElm.appendChild(titleElm);
+  showBarElm.appendChild(typeElm);
+  showBarElm.appendChild(yearElm);
+  showBarElm.appendChild(ratingElm);
+  showBarElm.appendChild(progressElm);
+  showBarElm.appendChild(editElm);
   return showBarElm;
 }
