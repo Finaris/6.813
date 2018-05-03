@@ -1,5 +1,9 @@
 body {
   --list-btn-height: 40px;
+  --main-top-bot-padding: 20px;
+  --column-guide-height: 35px;
+  --given-list-btn-height: 30px;
+  --shows-section-height: calc(100vh - var(--nav-bar-height) - var(--list-btn-height) - var(--column-guide-height) - var(--given-list-btn-height) - 4 * var(--main-top-bot-padding) - 12px);
   
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
@@ -21,6 +25,7 @@ body main {
   grid-template-rows: var(--list-btn-height) 1fr;
   
   width: 80%;
+  
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -128,9 +133,12 @@ body main {
   flex-direction: column;
   align-items: center;
   
+  height: var(--shows-section-height);
   width: 100%;
   
   margin-top: 10px;
+  
+  overflow: scroll;
 }
 
 #main-bar {
@@ -139,9 +147,33 @@ body main {
   
   width: 80%;
   height: 50px;
+  min-height: 50px;
   
   border-radius: 4px;
   border: 1px solid var(--color-black);
+}
+
+.header-bar {
+  display: flex;
+  flex-direction: row;
+  
+  width: 70%;
+  height: 50px;
+  min-height: 50px;
+  
+  border: 1px solid var(--color-black);
+}
+
+.show-bar {
+  display: flex;
+  flex-direction: row;
+  
+  width: 60%;
+  height: 50px;
+  min-height: 50px;
+  
+  border: 1px solid var(--color-black);
+  border-top: none;
 }
 
 #given-list-btns {
