@@ -25,7 +25,7 @@ Util.events(document, {
       // To keep track of changes.
       addChangeListeners();
       Util.one("#filter-button").addEventListener("click", updateFilterState);
-      
+
       // Initialize previous filter options to be empty.
       previousFilterOptions = defaultOptions();
       currentFilterOptions = defaultOptions();
@@ -36,7 +36,7 @@ Util.events(document, {
 function updateFilterState(e) {
   // First, disable the Apply Filter button.
   enableFilter(false);
-  
+
   // Then, shuffle the current options into previousFilterOptions.
   previousFilterOptions = currentFilterOptions;
   currentFilterOptions = defaultOptions();
@@ -47,12 +47,12 @@ function handleApplyFilterState(e) {
   // Update the current state.
   let currentElt = e.currentTarget;
   if (currentElt.type == "checkbox") {
-    currentFilterOptions[currentElt.value] = currentElt.checked; 
+    currentFilterOptions[currentElt.value] = currentElt.checked;
   } else if (currentElt.type == "range") {
     currentFilterOptions['min-rating'] = Util.one("#min-rating").innerHTML;
     currentFilterOptions['max-rating'] = Util.one("#max-rating").innerHTML;
   }
-  
+
   // Check if the state is different from the previous. If it is, enable the button, otherwise disable it.
   if (JSON.stringify(previousFilterOptions) === JSON.stringify(currentFilterOptions)) {
     enableFilter(false);
@@ -93,7 +93,12 @@ function setupFilterSection(sectionName, sourceList) {
   let sortedSourceList = sourceList.sort();
   for (let item of sortedSourceList) {
     let newSectionDiv = document.createElement("div");
+
+    // prevent text from being selectable
     newSectionDiv.classList.add("not-selectable");
+
+    // Define a label for input box.
+    let newLabel = Util.create("label");
 
     // Define a new input box.
     let newInput = document.createElement("input");
@@ -103,8 +108,9 @@ function setupFilterSection(sectionName, sourceList) {
     newInput.classList.add(sectionName + "-filter-checkbox");
 
     // Append the new elements to the genre div.
-    newSectionDiv.appendChild(newInput);
-    newSectionDiv.innerHTML += item;
+    newLabel.appendChild(newInput);
+    newLabel.innerHTML += item;
+    newSectionDiv.appendChild(newLabel);
     container.appendChild(newSectionDiv);
   }
 }
@@ -192,7 +198,7 @@ function defaultOptions() {
       options[input.id] = input.value;
     }
   }
-  
+
   // Specify the min and max ratings.
   options['min-rating'] = "1.0";
   options['max-rating'] = "10.0";
