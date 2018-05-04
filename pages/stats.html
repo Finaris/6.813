@@ -4,10 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>KTracker | Stats</title>
-
   <!-- Use mobile-aware viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
   <!-- Load style sheets/fonts -->
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/stats.css">
@@ -15,14 +13,11 @@
   <link rel="stylesheet" href="../styles/nav-bar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lora|Oswald:regular,light,extra-light" rel="stylesheet">
-
   <!-- Load any supplemental Javascript libraries here -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
   <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
   <script src="https://unpkg.com/event-target@latest/min.js"></script>
-
   <!-- Load custom scripts -->
   <script src="../scripts/data.js"></script>
   <script src="../scripts/util.js"></script>
@@ -31,7 +26,6 @@
 </head>
 
 <body>
-
   <header id="navbar">
     <div id="logo"><a href="../index.html">KTracker</a></div>
     <div id="nav-links">
@@ -40,36 +34,35 @@
       <a class="navlink" href="../pages/my-lists.html">My Lists</a>
       <a class="navlink active-page" href="../pages/stats.html">Stats</a>
     </div>
-    <div id="searchdiv"><input id="navsearch" type="text" placeholder="Search KDrama" maxlength="40"><span class="glass fa fa-search"></span></div>
+    <div id="searchdiv">
+      <input id="navsearch" type="text" placeholder="Search KDrama" maxlength="40"><span class="glass fa fa-search"></span></div>
     <button id="profile-button"><img src="../graphics/avatar.png" id="profPic"><i id="profile-caret" class="fa fa-caret-down"></i></button>
   </header>
-
   <div id="filter">
     <!-- Name at top of div -->
     <div id="filter-top">
     <div id="filter-title"><h1>Filter</h1></div>
     <button id="filter-button" onclick=applyStatsFilter() class="enabled-filter-button">Apply Filter</button>
     </div>
-
     <!-- List Dropdown -->
     <button class="dropdown-btn"> List <i class="fa fa-caret-down"></i></button>
     <div id='list-container' class="dropdown-container gone"></div>
-
     <!-- Status Dropdown -->
     <button class="dropdown-btn"> Status <i class="fa fa-caret-down"></i></button>
     <div id='status-container' class="dropdown-container gone"></div>
-
     <!-- Rating Dropdown -->
     <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
     <div id='rating-container' class="dropdown-container gone">
-      <div>Min: <input id="min-rating" type="number" placeholder="1" min="1" max="10"></div>
-      <div>Max: <input id="max-rating" type="number" placeholder="10" min="1" max="10"></div>
+      <div>Min:
+        <input id="min-rating" type="number" placeholder="1" min="1" max="10">
+      </div>
+      <div>Max:
+        <input id="max-rating" type="number" placeholder="10" min="1" max="10">
+      </div>
     </div>
-
     <!-- Genre Dropdown -->
     <button class="dropdown-btn"> Genre <i class="fa fa-caret-down"></i></button>
     <div id='genre-container' class="dropdown-container gone"></div>
-
     <!-- Unimplemented Filters -->
     <button class="dropdown-btn"> # Episodes <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-container"></div>
@@ -80,7 +73,6 @@
     <button class="dropdown-btn"> Service <i class="fa fa-caret-down"></i></button>
     <div class="dropdown-container"></div>
   </div>
-
   <main>
     <div id='stats-info-text'><i>Displaying statistics for <span>ALL</span> shows</i></div>
     <div id='stats-section'>
@@ -112,7 +104,6 @@
       </div>
     </div> -->
   </main>
-
 </body>
 
 </html>
