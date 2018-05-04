@@ -55,7 +55,6 @@ div.not-selectable {
   text-decoration: none;
   font-size: 20px;
   display: block;
-  border: none;
   border-radius: var(--corner-radius);
   text-align: center;
   outline: none;
@@ -121,6 +120,8 @@ div.not-selectable {
 .enabled-filter-button {
   cursor: pointer;
   background-color: var(--color-navy-blue);
+  border-width: 0px 2.5px 2.5px 0px;
+  border-color: var(--color-super-light-gray);
 }
 
 .enabled-filter-button:hover {
@@ -133,6 +134,9 @@ div.not-selectable {
 .disabled-filter-button {
   cursor: not-allowed;
   background-color: var(--color-gray);
+  border-width: 0px 2.5px 2.5px 0px;
+  border-color: white;
+  /*border: none;*/
 }
 
 
