@@ -25,14 +25,14 @@ function addShowsToDOM(shows) {
     const show = shows[i];
 
     // prepare a placeholder for each show
-    let showDisplayElm = Util.create('div', { class: 'individual-showcard' }); 
+    let showDisplayElm = Util.create('div', { class: 'individual-showcard' });
     showSectionElm.appendChild(showDisplayElm);
-   
+
     // each show card has three components (imgElm, dataElm, and buttonElm)
     let imgElm = Util.create('img', { src: '../' + show.img, class: 'show-img' });
     let dataElm = getInfo(show);
     let buttonElm = Util.create('i', { class: 'all-show-add-btn fa fa-plus-circle' });
-    
+
     showDisplayElm.appendChild(imgElm);
     showDisplayElm.appendChild(dataElm);
     showDisplayElm.appendChild(buttonElm);
@@ -78,7 +78,7 @@ function onFilterButtonClick() {
   clearShowsFromDOM();
 
   // gets user input from the filter (filter.js)
-  let filter = getFilterDict(); 
+  let filter = getFilterDict();
 
   // gets a subset of the shows from ALL_SHOWS, using the filter
   let filteredShows = filterShowsGivenFilter(ALL_SHOWS, filter);

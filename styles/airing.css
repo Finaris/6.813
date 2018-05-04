@@ -49,8 +49,8 @@ body main {
 
   width: calc(2 * var(--carousel-button-width) + var(--carousel-show-container-width));
 
-  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
-  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: var(--color-white);
   border-radius: 4px;
 
@@ -146,7 +146,7 @@ body main {
   margin-left: var(--show-img-hor-margins);
   margin-right: var(--show-img-hor-margins);
 
-  box-shadow: rgba(0,0,0,0.2) 1px 2px 2px;
+  box-shadow: rgba(0, 0, 0, 0.2) 1px 2px 2px;
 
   cursor: pointer;
 }
@@ -176,8 +176,12 @@ i.fa {
 }
 
 @keyframes moveleft {
-  from { transform: translateX(0px);}
-  to { transform: translateX(calc(-1 * var(--carousel-show-container-width)));}
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(calc(-1 * var(--carousel-show-container-width)));
+  }
 }
 
 .move-left-animation {
@@ -185,8 +189,12 @@ i.fa {
 }
 
 @keyframes moveright {
-  from { transform: translateX(calc(-1 * var(--carousel-show-container-width)));}
-  to { transform: translateX(0px));}
+  from {
+    transform: translateX(calc(-1 * var(--carousel-show-container-width)));
+  }
+  to {
+    transform: translateX(0px));
+  }
 }
 
 .move-right-animation {
