@@ -13,7 +13,9 @@ Util.events(document, {
 });
 
 function onListBtnClick(listBtnId) {
+  // show content for the chosen list
   updateTabBorders(listBtnId);
+
   clearHeaderShowBars();
   updateBars(listBtnId);
 }
@@ -46,13 +48,14 @@ function initDOM() {
 
 //------------------------------------------------------- Helper Functions -----------------------------------------------------------//
 
+// update the class for the chosen (and other) lists to display appropriate content
 function updateTabBorders(listBtnId) {
   let listBtnElms = Util.all('.list-btn');
-  for (let listBtnElm of listBtnElms) {
+  for (let listBtnElm of listBtnElms) { // "To Watch", "Watching", "Completed", ...
     if (listBtnId == listBtnElm.id) {
-      listBtnElm.lastChild.classList.remove('not-blocking');
+      listBtnElm.children[0].classList.remove('not-blocking');
     } else {
-      listBtnElm.lastChild.classList.add('not-blocking');
+      listBtnElm.children[0].classList.add('not-blocking');
     }
   }
 }
