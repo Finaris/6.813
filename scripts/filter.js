@@ -167,7 +167,6 @@ function filterShowsGivenFilter(shows, filter) {
     return true;
   });
 
-  console.log(filteredShows);
   return filteredShows;
 }
 
