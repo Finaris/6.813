@@ -36,6 +36,21 @@
   outline: none;
 }
 
+/* This defines the button used to apply filters! */
+#filter-button {
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  border: none;
+  border-radius: var(--corner-radius);
+  text-align: center;
+  outline: none;
+
+  color: var(--color-white);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+}
+
 #filter-top {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -90,25 +105,19 @@
   vertical-align: middle;
 }
 
-#filter-button {
-  text-decoration: none;
-  font-size: 20px;
-  display: block;
-  border: none;
-  background-color: var(--color-gray);
-  border-radius: var(--corner-radius);
-  text-align: center;
+.enabled-filter-button {
   cursor: pointer;
-  outline: none;
-
   background-color: var(--color-navy-blue);
-  color: var(--color-white);
-  font-family: 'Oswald', sans-serif;
-  font-weight: 400;
 }
 
-#filter-button:hover {
+.enabled-filter-button:hover {
   background-color: var(--color-sky-blue);
+}
+
+/* For when we need to disable the filter button */
+.disabled-filter-button = {
+  cursor: not-allowed;
+  background-color: #FFFFFF; 
 }
 
 /* Active class to help indicate open dropdowns */

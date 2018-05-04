@@ -1,3 +1,7 @@
+// Define filter options to remember.
+var previousFilterOptions;
+var currentFilterOptions;
+
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
 	// This runs when the DOM is ready.
@@ -18,8 +22,43 @@ Util.events(document, {
         }
       }
 
+      // To keep track of changes.
+      addChangeListeners();
+      Util.one("#filter-button").addEventListener("click", updateFilterState);
+      
+      // Initialize previous filter options to be empty.
+      previousFilterOptions = defaultOptions();
+      currentFilterOptions = defaultOptions();
     },
 });
+
+// Updates our previously stored options as well as the current state of the filter.
+async function updateFilterState(e) {
+  var filterButton = e.currentTarget;
+  filterButton.classList.remove("enabled-filter-button");
+  //await new Promise(resolve => {setTimeout(() => {}, 0);});
+  filterButton.classList.add("disabled-filter-button");
+  filterButton.disabled = true;
+}
+
+// Conditionally enables or disables the filter checkbox depending on what options were selected previously.
+function handleApplyFilterState(e) {
+  // Update the current state.
+  let currentElt = e.currentTarget;
+  if (currentElt.type == "checkbox") {
+    currentFilterOptions[currentElt.value] = currentElt.checked; 
+  } else if (currentElt.type == "number") {
+    currentFilterOptions[currentElt.id] = currentElt.value;
+  }
+  
+}
+
+// Apply a listener for change to each of the dropdown elements.
+function addChangeListeners() {
+  for (let input of document.getElementById("filter").getElementsByTagName("input")) {
+    input.addEventListener("change", handleApplyFilterState);
+  }
+}
 
 // Establishes the initial DOM as well as listeners for dropdowns in the filter section.
 function initFilterSetup() {
@@ -117,4 +156,19 @@ function filterShowsGivenFilter(shows, filter) {
   
   console.log(filteredShows);
   return filteredShows;
+}
+
+// ---------- HELPER/SETUP METHODS
+
+// Creates a default state for the initial filter options
+function defaultOptions() {
+  let options = {};
+  for (let input of document.getElementById("filter").getElementsByTagName("input")) {
+    if (input.type == "checkbox") {
+      options[input.value] = input.checked;
+    } else if (input.type == "number") {
+      options[input.id] = null;
+    }
+  }
+  return options;
 }
