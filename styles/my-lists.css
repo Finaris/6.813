@@ -5,6 +5,8 @@ body {
   --given-list-btn-height: 30px;
   --shows-section-height: calc(100vh - var(--nav-bar-height) - var(--list-btn-height) - var(--column-guide-height) - var(--given-list-btn-height) - 4 * var(--main-top-bot-padding) - 12px);
   
+  position: relative;
+  
   display: grid;
   grid-template-rows: var(--nav-bar-height) 1fr;
 
@@ -95,7 +97,7 @@ body main {
   grid-auto-columns: 100%;
   justify-items: center;
   
-  width: 100%;
+  width: calc(100% - 40px);
 }
 
 #column-guide {
@@ -168,6 +170,19 @@ body main {
   border: 1px solid var(--color-black);
 }
 
+.fa.header-bar-dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  
+  cursor: pointer;
+  padding: 0px;
+  
+  width: 100%;
+  height: 100%;
+}
+
 .show-bar {
   display: grid;
   grid-template-columns: 1fr 5fr 1fr 2fr 2fr 75px 1fr;
@@ -190,6 +205,10 @@ body main {
   width: 100%;
 }
 
+.fa.fa-bars {
+  cursor: -webkit-grab;
+}
+
 .left-align {
   justify-self: left;
 }
@@ -210,5 +229,49 @@ body main {
 }
 
 #stats-btn {
+  grid-column: 3/4;
+}
+
+#add-list-modal {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  
+  width: 300px;
+  height: 150px;
+  
+  background-color: var(--color-silver);
+  border: 1px solid var(--color-black);
+  
+  display: grid;
+  grid-template-rows: 1fr 30px;
+  grid-template-columns: 75px 1fr 75px;
+  align-items: center;
+  
+  padding: 20px;
+}
+
+#modal-name-section {
+  grid-row: 1/2;
+  grid-column: 1/4;
+  
+  display: flex;
+  flex-direction: row;
+  
+  height: 30px;
+}
+
+#modal-name-input {
+  margin-left: 10px;
+}
+
+#modal-submit-btn {
+  grid-row: 2/3;
+  grid-column: 1/2;
+}
+
+#modal-cancel-btn {
+  grid-row: 2/3;
   grid-column: 3/4;
 }
