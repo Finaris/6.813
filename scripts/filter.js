@@ -92,11 +92,6 @@ function setupFilterSection(sectionName, sourceList) {
 
   let sortedSourceList = sourceList.sort();
   for (let item of sortedSourceList) {
-    let newSectionDiv = document.createElement("div");
-
-    // prevent text component of genre options from being selectable
-    newSectionDiv.classList.add("not-selectable");
-
     // Define a label for input box.
     let newLabel = Util.create("label");
 
@@ -110,8 +105,7 @@ function setupFilterSection(sectionName, sourceList) {
     // Append the new elements to the genre div.
     newLabel.appendChild(newInput);
     newLabel.innerHTML += item;
-    newSectionDiv.appendChild(newLabel);
-    container.appendChild(newSectionDiv);
+    container.appendChild(newLabel);
   }
 }
 

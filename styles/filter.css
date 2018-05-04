@@ -12,15 +12,17 @@
   overflow: hidden;
 }
 
-div.not-selectable {
+/* each option under a filter (e.g. "action", "adventure", ... ) */
+/* prevent text component of genre options from being selectable */
+label {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  font-size: 17px; /* larger font as requested by user */
 }
-
 
 /* Sidenav links and dropdown button */
 
@@ -48,7 +50,6 @@ div.not-selectable {
 #filter button {
   outline: none;
 }
-
 
 
 /* This defines the button used to apply filters! */
@@ -93,8 +94,12 @@ div.not-selectable {
 }
 
 .filter-checkbox {
+  /* space around the checkbox */
   margin: 10px;
-  margin-bottom: 13px;
+  margin-left: 12px;
+  padding-bottom: 15px;
+  /* space between the options */
+  margin-bottom: 12px;
   -ms-transform: scale(1.5);
   -moz-transform: scale(1.5);
   -webkit-transform: scale(1.5);
@@ -136,7 +141,6 @@ div.not-selectable {
 }
 
 
-
 /* For when we need to disable the filter button */
 
 .disabled-filter-button {
@@ -148,14 +152,11 @@ div.not-selectable {
 }
 
 
-
 /* Active class to help indicate open dropdowns */
 
 .active {
   border-bottom: 0px;
 }
-
-
 
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
@@ -169,8 +170,6 @@ div.not-selectable {
   font-weight: 200;
   padding-bottom: 5px;
 }
-
-
 
 
 /* Push the caret to the right and add padding */
