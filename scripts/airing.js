@@ -1,15 +1,17 @@
-const maxShowsPerRow = 5;
-const airingShowsByDay = getAiringShowsData(100);
+const MAX_NUM_SHOWS_ROW = 5;
+const AIRING_SHOWS_BY_DAY = getAiringShowsData(100);
 let currentAddButtonElm = null;
 let currentDropDownMenuElm = null;
 let canPress = true;
 
+// options for the user to choose from
 let listNames = ['To Watch', 'Watching', 'Completed'];
 let listsToSections = {
   'To Watch': ['Feels', 'Romance', 'Comedy', 'Action', 'Thriller', 'Psychological'],
   'Watching': ['Completed Shows', 'Airing Shows'],
   'Completed': ['Amazing', 'Good', 'Okay', 'Bad']
 };
+const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
@@ -23,10 +25,9 @@ Util.events(document, {
 });
 
 function initAiringPageDOM() {
-  let daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   let showSectionElm = Util.one('#show-section');
-  for (let day of daysOfWeek) {
-    let showsOnDay = airingShowsByDay[day];
+  for (let day of DAYS) {
+    let showsOnDay = AIRING_SHOWS_BY_DAY[day];
     if (showsOnDay.length == 0) {
       continue;
     }
@@ -177,7 +178,7 @@ function onRightCarouselClick(evt) {
     let carouselShowContainerElm = Util.one('#' + day + '-carousel-show-container');
 
     let copies = [];
-    for (let i = 0; i < maxShowsPerRow; i++) {
+    for (let i = 0; i < MAX_NUM_SHOWS_ROW; i++) {
       copies.push(carouselShowContainerElm.children.item(i).cloneNode(true));
       carouselShowContainerElm.appendChild(copies[i]);
     }
@@ -187,7 +188,7 @@ function onRightCarouselClick(evt) {
 
     Util.afterAnimation(carouselShowContainerElm, 'moveleft').then(function(value) {
       carouselShowContainerElm.classList.remove('move-left-animation');
-      for (let i = 0; i < maxShowsPerRow; i++) {
+      for (let i = 0; i < MAX_NUM_SHOWS_ROW; i++) {
         carouselShowContainerElm.replaceChild(carouselShowContainerElm.firstChild, copies[i]);
       }
       canPress = true;
@@ -202,7 +203,7 @@ function onLeftCarouselClick(evt) {
     let carouselShowContainerElm = Util.one('#' + day + '-carousel-show-container');
 
     let copies = [];
-    for (let i = 0; i < maxShowsPerRow; i++) {
+    for (let i = 0; i < MAX_NUM_SHOWS_ROW; i++) {
       let index = carouselShowContainerElm.children.length - 1 - i;
       copies.push(carouselShowContainerElm.children.item(index).cloneNode(true));
       carouselShowContainerElm.insertBefore(copies[i], carouselShowContainerElm.firstChild);
@@ -212,7 +213,7 @@ function onLeftCarouselClick(evt) {
 
     Util.afterAnimation(carouselShowContainerElm, 'moveright').then(function(value) {
       carouselShowContainerElm.classList.remove('move-right-animation');
-      for (let i = 0; i < maxShowsPerRow; i++) {
+      for (let i = 0; i < MAX_NUM_SHOWS_ROW; i++) {
         carouselShowContainerElm.replaceChild(carouselShowContainerElm.lastChild, copies[i]);
       }
       canPress = true;
