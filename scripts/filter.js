@@ -96,7 +96,6 @@ function filterShowsGivenFilter(shows, filter) {
     }
     
     if (filter.genres.size > 0) {
-      console.log('HI')
       let failed = true;
       for (let genre of show.genres) {
         if (filter.genres.has(genre)) {
