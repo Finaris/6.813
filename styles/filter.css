@@ -21,6 +21,7 @@ div.not-selectable {
   user-select: none;
 }
 
+
 /* Sidenav links and dropdown button */
 
 #filter-bot a,
@@ -47,6 +48,7 @@ div.not-selectable {
 #filter button {
   outline: none;
 }
+
 
 
 /* This defines the button used to apply filters! */
@@ -91,7 +93,12 @@ div.not-selectable {
 }
 
 .filter-checkbox {
-  margin-right: 5px;
+  margin: 10px;
+  margin-bottom: 13px;
+  -ms-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -o-transform: scale(1.5);
 }
 
 #filter-content {
@@ -129,6 +136,7 @@ div.not-selectable {
 }
 
 
+
 /* For when we need to disable the filter button */
 
 .disabled-filter-button {
@@ -140,11 +148,13 @@ div.not-selectable {
 }
 
 
+
 /* Active class to help indicate open dropdowns */
 
 .active {
   border-bottom: 0px;
 }
+
 
 
 
@@ -159,6 +169,7 @@ div.not-selectable {
   font-weight: 200;
   padding-bottom: 5px;
 }
+
 
 
 
