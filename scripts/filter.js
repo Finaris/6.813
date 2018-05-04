@@ -39,7 +39,7 @@ function updateFilterState(e) {
   
   // Then, shuffle the current options into previousFilterOptions.
   previousFilterOptions = currentFilterOptions;
-  currentFilterOptions = defaultOptions();
+  currentFilterOptions = Object.assign({}, previousFilterOptions);
 }
 
 // Conditionally enables or disables the filter checkbox depending on what options were selected previously.
