@@ -70,11 +70,16 @@ function addChangeListeners() {
 
 // Establishes the initial DOM as well as listeners for dropdowns in the filter section.
 function initFilterSetup() {
-  //Creates event listeners for all dropdowns and update the DOM.
+  // Creates event listeners for all dropdowns and update the DOM.
   let dropdown = document.getElementsByClassName("dropdown-btn");
   for (let element of dropdown) {
     /*element.nextElementSibling.classList.toggle("gone");*/
     element.addEventListener("click", function() {
+      if (this.children[0].classList == 'fa fa-caret-up') {
+        this.children[0].classList = 'fa fa-caret-down';
+      } else {
+        this.children[0].classList = 'fa fa-caret-up';
+      }
       this.classList.toggle("active");
       this.nextElementSibling.classList.toggle("gone");
     });
