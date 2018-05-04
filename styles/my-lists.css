@@ -209,6 +209,12 @@ body main {
   cursor: -webkit-grab;
 }
 
+.fa.fa-edit,
+.fa.fa-plus,
+.fa.fa-minus{
+  cursor: pointer;
+}
+
 .left-align {
   justify-self: left;
 }
