@@ -12,13 +12,16 @@
   overflow: hidden;
 }
 
-div.not-selectable {
+/* each option under a filter (e.g. "action", "adventure", ... ) */
+/* prevent text component of genre options from being selectable */
+label {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  font-size: 17px; /* larger font as requested by user */
 }
 
 /* Sidenav links and dropdown button */
@@ -55,7 +58,6 @@ div.not-selectable {
   text-decoration: none;
   font-size: 20px;
   display: block;
-  border: none;
   border-radius: var(--corner-radius);
   text-align: center;
   outline: none;
@@ -92,7 +94,16 @@ div.not-selectable {
 }
 
 .filter-checkbox {
-  margin-right: 5px;
+  /* space around the checkbox */
+  margin: 10px;
+  margin-left: 12px;
+  padding-bottom: 15px;
+  /* space between the options */
+  margin-bottom: 12px;
+  -ms-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -o-transform: scale(1.5);
 }
 
 #filter-content {
@@ -121,6 +132,8 @@ div.not-selectable {
 .enabled-filter-button {
   cursor: pointer;
   background-color: var(--color-navy-blue);
+  border-width: 0px 2.5px 2.5px 0px;
+  border-color: var(--color-super-light-gray);
 }
 
 .enabled-filter-button:hover {
@@ -133,6 +146,9 @@ div.not-selectable {
 .disabled-filter-button {
   cursor: not-allowed;
   background-color: var(--color-gray);
+  border-width: 0px 2.5px 2.5px 0px;
+  border-color: white;
+  /*border: none;*/
 }
 
 
@@ -141,7 +157,6 @@ div.not-selectable {
 .active {
   border-bottom: 0px;
 }
-
 
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
@@ -155,7 +170,6 @@ div.not-selectable {
   font-weight: 200;
   padding-bottom: 5px;
 }
-
 
 
 /* Push the caret to the right and add padding */
