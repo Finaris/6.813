@@ -14,7 +14,7 @@ self.multirange = function(input) {
 	var values = value === null ? [] : value.split(",");
 	var min = +(input.min || 0);
 	var max = +(input.max || 100);
-	var ghost = input.cloneNode();
+	var ghost = input.cloneNode(true);
 
 	input.classList.add("multirange", "original");
 	ghost.classList.add("multirange", "ghost");
