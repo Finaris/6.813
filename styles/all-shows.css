@@ -62,7 +62,7 @@ body main {
   width: 100%;
 }
 
-.all-show-display {
+.individual-showcard {
   display: grid;
   grid-template-columns: var(--show-img-width) 1fr var(--add-btn-diameter);
 
@@ -72,7 +72,9 @@ body main {
   width: 80%;
 
   padding: 20px;
-  margin-bottom: 20px;
+
+  /* spacing between each shows */
+  margin-bottom: 20px; 
 
   background-color: var(--color-white);
   border-radius: 4px;
