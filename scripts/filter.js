@@ -48,8 +48,9 @@ function handleApplyFilterState(e) {
   let currentElt = e.currentTarget;
   if (currentElt.type == "checkbox") {
     currentFilterOptions[currentElt.value] = currentElt.checked; 
-  } else if (currentElt.type == "number") {
-    currentFilterOptions[currentElt.id] = currentElt.value;
+  } else if (currentElt.type == "range") {
+    currentFilterOptions['min-rating'] = Util.one("#min-rating").innerHTML;
+    currentFilterOptions['max-rating'] = Util.one("#max-rating").innerHTML;
   }
   
   // Check if the state is different from the previous. If it is, enable the button, otherwise disable it.
@@ -187,10 +188,13 @@ function defaultOptions() {
   for (let input of document.getElementById("filter").getElementsByTagName("input")) {
     if (input.type == "checkbox") {
       options[input.value] = input.checked;
-    } else if (input.type == "number") {
-      options[input.id] = input.placeholder;
+    } else if (input.type == "range") {
+      options[input.id] = input.value;
     }
   }
-  console.log(options);
+  
+  // Specify the min and max ratings.
+  options['min-rating'] = "1.0";
+  options['max-rating'] = "10.0";
   return options;
 }
