@@ -93,7 +93,7 @@ function setupFilterSection(sectionName, sourceList) {
   let sortedSourceList = sourceList.sort();
   for (let item of sortedSourceList) {
     let newSectionDiv = document.createElement("div");
-
+    newSectionDiv.classList.add("not-selectable");
 
     // Define a new input box.
     let newInput = document.createElement("input");
