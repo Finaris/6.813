@@ -7,7 +7,8 @@
 	}
 
 	input[type="range"].multirange.original {
-		position: absolute;
+		position: relative;
+		left: 25%;
 	}
 
 		input[type="range"].multirange.original::-webkit-slider-thumb {
@@ -25,7 +26,8 @@
 		}
 
 	input[type="range"].multirange.ghost {
-		position: absolute;
+		position: relative;
+		left: -25%;
 		background: var(--track-background);
 		--track-background: linear-gradient(to right,
 				transparent var(--low), var(--range-color) 0,
