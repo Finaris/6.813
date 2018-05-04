@@ -1,6 +1,5 @@
-
-let userLists = getMyListsData();
-let dom = {};
+var userLists = getMyListsData();
+var dom = {};
 
 Util.events(document, {
 	// This runs when the DOM is ready.
@@ -66,6 +65,10 @@ function getStatsData(shows, genreCounts) {
   stats.avgEpisodesPerWeek = (stats.completedEpisodes / 52).toFixed(1);
   stats.avgHoursPerWeek = (stats.completedHours / 52).toFixed(1);
   return stats;
+}
+
+function applyStatsFilter() {
+  // TODO
 }
 
 function getGenreCountDict(shows) {
