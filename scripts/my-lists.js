@@ -13,7 +13,6 @@ Util.events(document, {
 });
 
 function onListBtnClick(listBtnId) {
-  // show content for the chosen list
   updateTabBorders(listBtnId);
 
   clearHeaderShowBars();
@@ -151,10 +150,33 @@ function applyAddListModalListeners() {
   Util.one('#modal-submit-btn').addEventListener('click', function() {
     currentModal = null;
     let modalElm = Util.one('#add-list-modal');
+    let newListDisplayName = Util.one('#modal-name-input').value;
+    let newListIdName = newListDisplayName.toLowerCase().replace(/\s+/g, '');
+    
+    if (newListIdName != '') {
+      // Make and add tab
+      let tabElm = Util.create('div', {id: newListIdName + '-btn', class: 'list-btn list-btns-btn'});
+      tabElm.innerHTML = newListDisplayName;
+      let blockerElm = Util.create('div', {class: 'tab-blocker not-blocking'});
+      tabElm.appendChild(blockerElm);
+      Util.one('#list-btns-section').insertBefore(tabElm, Util.one('#add-list-btn'));
 
+      // Add listener to tab
+      tabElm.addEventListener('click', function(evt) {
+        if (evt.target.classList.contains('list-btn')) {
+          onListBtnClick(evt.target.id);
+        }
+      });
 
+      // Update data structures
+      idNamesToDisplayNames[newListIdName] = newListDisplayName;
+      userLists[newListDisplayName] = {'All': []};
 
-    Util.one('body').removeChild(modalElm);
+      // Update make it as if one clicked the new shows tab button
+      onListBtnClick(newListIdName + '-btn')
+
+      Util.one('body').removeChild(modalElm); 
+    }
   });
   Util.one('#modal-cancel-btn').addEventListener('click', function() {
     currentModal = null;
