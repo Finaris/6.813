@@ -1,6 +1,7 @@
 let userLists = getMyListsData();
 let idNamesToDisplayNames = getIdNamesToDisplayNames();
 let currentModal = null;
+let currentHeaderDict = null;
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
@@ -13,7 +14,6 @@ Util.events(document, {
 });
 
 function onListBtnClick(listBtnId) {
-  // show content for the chosen list
   updateTabBorders(listBtnId);
 
   clearHeaderShowBars();
@@ -65,22 +65,20 @@ function updateBars(listBtnId) {
 
   let listIdName = listBtnId.slice(0, -4);
   let listDisplayName = idNamesToDisplayNames[listIdName];
+  
+  // Update header dictionary
+  currentHeaderDict = userLists[listDisplayName];
 
   // Update main bar
   Util.one('#current-list-name').innerHTML = listDisplayName;
   Util.one('#num-elms-in-list').innerHTML = userLists[listDisplayName].All.length;
 
   // Update header and show bars
-  let listHeaderDict = userLists[listDisplayName];
-  for (let header in listHeaderDict) {
+  for (let header in currentHeaderDict) {
     if (header == 'All') {
       continue;
     }
-    showSectionElm.appendChild(getHeaderBarElm(header, listHeaderDict[header].length));
-    let shows = listHeaderDict[header]; // Sorting shows within header would go here
-    for (let show of shows) {
-      showSectionElm.appendChild(getShowBarElm(show));
-    }
+    showSectionElm.appendChild(getHeaderBarElm(header, currentHeaderDict[header].length));
   }
 }
 
@@ -94,12 +92,31 @@ function clearHeaderShowBars() {
 }
 
 function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
-  let headerBarElm = Util.create('div', { class: 'header-bar' });
+  let showSectionElm = Util.one('#shows-section');
+  let headerBarId = getIdNameFromDisplayName(headerDisplayName) + '-header-bar';
+  let headerBarElm = Util.create('div', { id: headerBarId, class: 'header-bar' });
 
   let dragElm = Util.create('i', { class: 'fa fa-bars header-bar-drag' });
   let textElm = Util.create('div', { class: 'header-bar-text left-align' });
   textElm.innerHTML = headerDisplayName + ' (' + numShowsInHeader + ')';
   let dropdownElm = Util.create('i', { class: 'fa fa-caret-down header-bar-dropdown' });
+  
+  dropdownElm.addEventListener('click', function(evt) {
+    let shows = currentHeaderDict[headerDisplayName];
+    if (headerBarElm.nextSibling == null) {
+      for (let show of shows) {
+        showSectionElm.appendChild(getShowBarElm(show));
+      }
+    } else if (headerBarElm.nextSibling.classList.contains('header-bar')) {
+      for (let show of shows) {
+        showSectionElm.insertBefore(getShowBarElm(show), headerBarElm.nextSibling);
+      }
+    } else {
+      while ( headerBarElm.nextSibling != null && headerBarElm.nextSibling.classList.contains('show-bar')) {
+        showSectionElm.removeChild(headerBarElm.nextSibling);
+      }
+    }
+  });
 
   headerBarElm.appendChild(dragElm);
   headerBarElm.appendChild(textElm);
@@ -151,14 +168,41 @@ function applyAddListModalListeners() {
   Util.one('#modal-submit-btn').addEventListener('click', function() {
     currentModal = null;
     let modalElm = Util.one('#add-list-modal');
+    let newListDisplayName = Util.one('#modal-name-input').value;
+    let newListIdName = getIdNameFromDisplayName(newListDisplayName);
+    
+    if (newListIdName != '') {
+      // Make and add tab
+      let tabElm = Util.create('div', {id: newListIdName + '-btn', class: 'list-btn list-btns-btn'});
+      tabElm.innerHTML = newListDisplayName;
+      let blockerElm = Util.create('div', {class: 'tab-blocker not-blocking'});
+      tabElm.appendChild(blockerElm);
+      Util.one('#list-btns-section').insertBefore(tabElm, Util.one('#add-list-btn'));
 
+      // Add listener to tab
+      tabElm.addEventListener('click', function(evt) {
+        if (evt.target.classList.contains('list-btn')) {
+          onListBtnClick(evt.target.id);
+        }
+      });
 
+      // Update data structures
+      idNamesToDisplayNames[newListIdName] = newListDisplayName;
+      userLists[newListDisplayName] = {'All': []};
 
-    Util.one('body').removeChild(modalElm);
+      // Update make it as if one clicked the new shows tab button
+      onListBtnClick(newListIdName + '-btn')
+
+      Util.one('body').removeChild(modalElm); 
+    }
   });
   Util.one('#modal-cancel-btn').addEventListener('click', function() {
     currentModal = null;
     let modalElm = Util.one('#add-list-modal');
     Util.one('body').removeChild(modalElm);
   });
+}
+
+function getIdNameFromDisplayName(displayName) {
+  return displayName.toLowerCase().replace(/\s+/g, '');
 }
