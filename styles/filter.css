@@ -164,6 +164,7 @@
   align-items: baseline;
   justify-content: space-around;
   grid-column: 1/3;
+  align-self: start;
 }
 
 #min-rating {
