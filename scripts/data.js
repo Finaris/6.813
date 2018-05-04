@@ -26,7 +26,9 @@ var cannedShows = [
   },
 ];
 
-var showNumber = 0;
+const CANNED_DESCRIPTION_TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+
+var globalShowNumber = 0;
 const stockShowImg = './graphics/shows/stockShowImg.jpg';
 var stockImgs =
   ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg',
@@ -39,18 +41,19 @@ var daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satur
 var genres = ['Action', 'Horror', 'Adventure', 'Music', 'Comedy', 'Mystery', 'Crime', 'Romance', 'Sci-fi', 'Drama', 'Fantasy', 'War', 'Historical', 'Western', 'Animals', 'Melodrama', 'Detective', 'Food', 'Psychological', 'Supernatural', 'Medical', 'School', 'Thriller'];
 var actors = ['Lee Min Ho', 'Lee Jong Suk', 'Park Shin Hye', 'Ji Chang Wook', 'Song Joong Ki']
 
-function generateRandomShow() {
-  return generateRandomShowOfType(generateElementsFromArray(statuses, 1, 1)[0]);
+function getOneRandomShow() {
+  const randomShowStatus = generateElementsFromArray(statuses, 1, 1)[0]; // one of the statuses
+  return generateRandomShowOfType(randomShowStatus);
 }
 
 function generateRandomShowOfType(type) {
-  showNumber += 1;
+  globalShowNumber += 1;
   let numEpisodes = getRandomDiscreteNumber(10, 80);
   let show = {
     status: type,
     img: './graphics/shows/' + generateElementsFromArray(stockImgs, 1, 1)[0],
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    title: 'Title '  + showNumber,
+    description: CANNED_DESCRIPTION_TEXT,
+    title: 'Title '  + globalShowNumber,
     rating: getRandomNumber(1, 10),
     numRated: getRandomDiscreteNumber(200, 300000),
     genres: generateElementsFromArray(genres, 1, 3),
@@ -75,10 +78,11 @@ function generateRandomShowOfType(type) {
   return show;
 }
 
-function generateNumRandomShow(num) {
+// get 
+function getRandomShows(N) {
   let shows = [];
-  for (let i = 0; i < num; i++) {
-    shows.push(generateRandomShow());
+  for (let i = 0; i < N; i++) {
+    shows.push(getOneRandomShow());
   }
   return shows;
 }
@@ -91,6 +95,7 @@ function generateNumRandomShowOfType(num, type) {
   return shows;
 }
 
+// returns a subset of the array of arbitrary length between minElements and maxElements
 function generateElementsFromArray(array, minElements, maxElements) {
   let numElements = getRandomDiscreteNumber(minElements, maxElements);
   array.sort( function() { return 0.5 - Math.random() } );
@@ -118,12 +123,12 @@ function getMyListsData() {
       'Airing Shows': generateNumRandomShowOfType(7, 'Airing')
     },
     'To Watch': {
-      'Feels': generateNumRandomShow(2),
-      'Romance': generateNumRandomShow(3),
-      'Comedy': generateNumRandomShow(1),
-      'Action': generateNumRandomShow(1),
-      'Thriller': generateNumRandomShow(2),
-      'Psycholgical': generateNumRandomShow(4)
+      'Feels': getRandomShows(2),
+      'Romance': getRandomShows(3),
+      'Comedy': getRandomShows(1),
+      'Action': getRandomShows(1),
+      'Thriller': getRandomShows(2),
+      'Psycholgical': getRandomShows(4)
     }
   };
 
@@ -175,11 +180,6 @@ function getAiringShowsData(numOfShows) {
     }
   }
   return airingShowsByDay;
-}
-
-function getAllShowsData(numOfShows) {
-  let allShows = generateNumRandomShow(numOfShows);
-  return allShows;
 }
 
 function getAllShowsInList(listDict) {
