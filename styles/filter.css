@@ -118,9 +118,9 @@
 }
 
 /* For when we need to disable the filter button */
-.disabled-filter-button = {
+.disabled-filter-button {
   cursor: not-allowed;
-  background-color: #FFFFFF; 
+  background-color: var(--color-gray); 
 }
 
 /* Active class to help indicate open dropdowns */

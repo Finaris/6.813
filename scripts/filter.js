@@ -30,16 +30,16 @@ Util.events(document, {
       previousFilterOptions = defaultOptions();
       currentFilterOptions = defaultOptions();
     },
-  },
 });
 
 // Updates our previously stored options as well as the current state of the filter.
-async function updateFilterState(e) {
-  var filterButton = e.currentTarget;
-  filterButton.classList.remove("enabled-filter-button");
-  //await new Promise(resolve => {setTimeout(() => {}, 0);});
-  filterButton.classList.add("disabled-filter-button");
-  filterButton.disabled = true;
+function updateFilterState(e) {
+  // First, disable the Apply Filter button.
+  enableFilter(false);
+  
+  // Then, shuffle the current options into previousFilterOptions.
+  previousFilterOptions = currentFilterOptions;
+  currentFilterOptions = defaultOptions();
 }
 
 // Conditionally enables or disables the filter checkbox depending on what options were selected previously.
@@ -52,6 +52,12 @@ function handleApplyFilterState(e) {
     currentFilterOptions[currentElt.id] = currentElt.value;
   }
   
+  // Check if the state is different from the previous. If it is, enable the button, otherwise disable it.
+  if (JSON.stringify(previousFilterOptions) === JSON.stringify(currentFilterOptions)) {
+    enableFilter(false);
+  } else {
+    enableFilter(true);
+  }
 }
 
 // Apply a listener for change to each of the dropdown elements.
@@ -156,10 +162,24 @@ function filterShowsGivenFilter(shows, filter) {
 
   console.log(filteredShows);
   return filteredShows;
-<<<<<<< HEAD
 }
 
 // ---------- HELPER/SETUP METHODS
+
+// Enables or disables the Apply Filter button.
+// @param shouldEnable boolean determining if we enable or disable
+function enableFilter(shouldEnable) {
+  var filterButton = Util.one("#filter-button");
+  if (shouldEnable) {
+    filterButton.classList.remove("disabled-filter-button");
+    filterButton.classList.add("enabled-filter-button");
+    filterButton.disabled = false;
+  } else {
+    filterButton.classList.remove("enabled-filter-button");
+    filterButton.classList.add("disabled-filter-button");
+    filterButton.disabled = true;
+  }
+}
 
 // Creates a default state for the initial filter options
 function defaultOptions() {
@@ -168,11 +188,9 @@ function defaultOptions() {
     if (input.type == "checkbox") {
       options[input.value] = input.checked;
     } else if (input.type == "number") {
-      options[input.id] = null;
+      options[input.id] = input.placeholder;
     }
   }
+  console.log(options);
   return options;
 }
-=======
-}
->>>>>>> 2fdc873bce0b6f79b4fe27abfc3f849e6518defe
