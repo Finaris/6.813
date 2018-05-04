@@ -2,12 +2,12 @@ var userLists = getMyListsData();
 var dom = {};
 
 Util.events(document, {
-	// This runs when the DOM is ready.
-    "DOMContentLoaded": function() {
+  // This runs when the DOM is ready.
+  "DOMContentLoaded": function() {
 
-      initStatsPageDOM();
+    initStatsPageDOM();
 
-    },
+  },
 });
 
 function initStatsPageDOM() {
@@ -30,7 +30,7 @@ function initStatsPageDOM() {
   initBarChart(genreCounts);
 
   for (var key in stats) {
-    dom[key].textContent=stats[key];
+    dom[key].textContent = stats[key];
   }
 }
 
@@ -41,7 +41,7 @@ function updateStatsPage(data) {
   initBarChart(genreCounts);
 
   for (var key in stats) {
-    dom[key].textContent=stats[key];
+    dom[key].textContent = stats[key];
   }
 }
 
