@@ -94,7 +94,7 @@ function setupFilterSection(sectionName, sourceList) {
   for (let item of sortedSourceList) {
     let newSectionDiv = document.createElement("div");
 
-    // prevent text from being selectable
+    // prevent text component of genre options from being selectable
     newSectionDiv.classList.add("not-selectable");
 
     // Define a label for input box.
