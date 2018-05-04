@@ -5,6 +5,13 @@ var supportsMultiple = self.HTMLInputElement && "valueLow" in HTMLInputElement.p
 
 var descriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value");
 
+//from https://gist.github.com/xposedbones/75ebaef3c10060a3ee3b246166caab56
+
+Number.prototype.map = function (in_min, in_max, out_min, out_max) {
+  return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+
 self.multirange = function(input) {
 	if (supportsMultiple || input.classList.contains("multirange")) {
 		return;
@@ -67,9 +74,9 @@ self.multirange = function(input) {
 		ghost.style.setProperty("--high", 100 * ((input.valueHigh - min) / (max - min)) - 1 + "%");
 
 		let minRating = Util.one('#min-rating');
-		minRating.innerHTML = input.valueLow / 10;
+		minRating.innerHTML = (Math.round(input.valueLow.map(0,100,1,10) * 10) / 10).toFixed(1);
 		let maxRating = Util.one('#max-rating');
-		maxRating.innerHTML = input.valueHigh / 10;
+		maxRating.innerHTML = (Math.round(input.valueHigh.map(0,100,1,10) * 10) / 10).toFixed(1);
 
 	}
 
