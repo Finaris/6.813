@@ -1,5 +1,6 @@
 let userLists = getMyListsData();
 let idNamesToDisplayNames = getIdNamesToDisplayNames();
+let currentModal = null;
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
@@ -26,6 +27,15 @@ function initListeners() {
       }
     });
   }
+  
+  Util.one('#add-list-btn').addEventListener('click', function(evt) {
+    if (currentModal == null) {
+      let modalElm = getAddListModalElm();
+      Util.one('body').appendChild(modalElm);
+      currentModal = modalElm;
+      applyAddListModalListeners(); 
+    }
+  }); 
 }
 
 function initDOM() {
@@ -77,6 +87,7 @@ function clearHeaderShowBars() {
   while (mainBarElm.nextSibling != null) {
     showSectionElm.removeChild(mainBarElm.nextSibling);
   }
+  showSectionElm.scrollTop = 0;
 }
 
 function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
@@ -118,4 +129,33 @@ function getShowBarElm(show) {
   showBarElm.appendChild(progressElm);
   showBarElm.appendChild(editElm);
   return showBarElm;
+}
+
+function getAddListModalElm() {
+  let addListModalElm = Util.create('div', {id: 'add-list-modal'});
+  addListModalElm.innerHTML = "\
+    <div id='modal-name-section'>\
+      <div>List Name: </div>\
+      <input type='text' id='modal-name-input'></input>\
+    </div>\
+    <button id='modal-submit-btn'>Submit</div>\
+    <button id='modal-cancel-btn'>Cancel</div>\
+  "
+  return addListModalElm;
+}
+
+function applyAddListModalListeners() {
+  Util.one('#modal-submit-btn').addEventListener('click', function() {
+    currentModal = null;
+    let modalElm = Util.one('#add-list-modal');
+    
+    
+    
+    Util.one('body').removeChild(modalElm);
+  });
+  Util.one('#modal-cancel-btn').addEventListener('click', function() {
+    currentModal = null;
+    let modalElm = Util.one('#add-list-modal');
+    Util.one('body').removeChild(modalElm);
+  });
 }
