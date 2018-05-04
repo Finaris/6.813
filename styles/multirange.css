@@ -33,7 +33,7 @@
 				transparent var(--low), var(--range-color) 0,
 				var(--range-color) var(--high), transparent 0
 			) no-repeat 0 45% / 100% 40%;
-		--range-color: hsl(190, 80%, 40%);
+		--range-color:  var(--color-navy-blue);
 	}
 
 		input[type="range"].multirange.ghost::-webkit-slider-runnable-track {
