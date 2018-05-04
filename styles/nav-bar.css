@@ -25,7 +25,7 @@ header #logo {
 }
 
 #logo a {
-  text-decoration: none;  
+  text-decoration: none;
   color: var(--color-white);
 }
 
@@ -71,14 +71,14 @@ header #navsearch {
   padding-left: 5px;
   border-radius: var(--corner-radius);
   outline: none;
-  
+
   font-family: 'Oswald', sans-serif;
 }
 
 #searchdiv {
   justify-self: start;
   width: 100%;
-  
+
   display: flex;
   align-items: center;
 }

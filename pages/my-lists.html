@@ -4,10 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>KTracker | My Lists</title>
-
   <!-- Use mobile-aware viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
   <!-- Load style sheets/fonts -->
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/my-lists.css">
@@ -15,13 +13,10 @@
   <link rel="stylesheet" href="../styles/nav-bar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Lora|Oswald:regular,light,extra-light" rel="stylesheet">
-
   <!-- Load any supplemental Javascript libraries here -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.2/seedrandom.js"></script>
-
   <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
   <script src="https://unpkg.com/event-target@latest/min.js"></script>
-
   <!-- Load custom scripts -->
   <script src="../scripts/data.js"></script>
   <script src="../scripts/util.js"></script>
@@ -30,7 +25,6 @@
 </head>
 
 <body>
-
   <header id="navbar">
     <div id="logo"><a href="../index.html">KTracker</a></div>
     <div id="nav-links">
@@ -39,15 +33,21 @@
       <a class="navlink active-page" href="../pages/my-lists.html">My Lists</a>
       <a class="navlink" href="../pages/stats.html">Stats</a>
     </div>
-    <div id="searchdiv"><input id="navsearch" type="text" placeholder="Search KDrama" maxlength="40"><span class="glass fa fa-search"></span></div>
+    <div id="searchdiv">
+      <input id="navsearch" type="text" placeholder="Search KDrama" maxlength="40"><span class="glass fa fa-search"></span></div>
     <button id="profile-button"><img src="../graphics/avatar.png" id="profPic"><i id="profile-caret" class="fa fa-caret-down"></i></button>
   </header>
-
   <main>
     <div id='list-btns-section'>
-      <div id='towatch-btn' class='list-btn list-btns-btn'>To Watch<div class='tab-blocker not-blocking'></div></div>
-      <div id='watching-btn' class='list-btn list-btns-btn'>Watching<div class='tab-blocker not-blocking'></div></div>
-      <div id='completed-btn' class='list-btn list-btns-btn'>Completed<div class='tab-blocker not-blocking'></div></div>
+      <div id='towatch-btn' class='list-btn list-btns-btn'>To Watch
+        <div class='tab-blocker not-blocking'></div>
+      </div>
+      <div id='watching-btn' class='list-btn list-btns-btn'>Watching
+        <div class='tab-blocker not-blocking'></div>
+      </div>
+      <div id='completed-btn' class='list-btn list-btns-btn'>Completed
+        <div class='tab-blocker not-blocking'></div>
+      </div>
       <div id='add-list-btn' class='list-btns-btn'><i class='fa fa-plus'></i></div>
     </div>
     <div id='list-section'>
@@ -58,21 +58,18 @@
         <div class='column-header'>Rating</div>
         <div id='column-header-last' class='column-header'>Progress</div>
       </div>
-      
       <div id=shows-section>
         <div id='main-bar' class='bar main-bar'>
           <div class="left-align"><span id='current-list-name'></span> (<span id='num-elms-in-list'></span>)</div>
           <i class='fa fa-edit'></i>
         </div>
       </div>
-      
       <div id='given-list-btns'>
         <button id='delete-btn' class='given-list-btn'>Delete List</button>
         <button id='stats-btn' class='given-list-btn'>Show Stats</button>
       </div>
     </div>
   </main>
-
 </body>
 
 </html>

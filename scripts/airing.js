@@ -5,44 +5,46 @@ let currentDropDownMenuElm = null;
 let canPress = true;
 
 let listNames = ['To Watch', 'Watching', 'Completed'];
-let listsToSections = {'To Watch': ['Feels', 'Romance', 'Comedy', 'Action', 'Thriller', 'Psychological'],
-                       'Watching': ['Completed Shows', 'Airing Shows'],
-                       'Completed': ['Amazing', 'Good', 'Okay', 'Bad']};
+let listsToSections = {
+  'To Watch': ['Feels', 'Romance', 'Comedy', 'Action', 'Thriller', 'Psychological'],
+  'Watching': ['Completed Shows', 'Airing Shows'],
+  'Completed': ['Amazing', 'Good', 'Okay', 'Bad']
+};
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
-	// This runs when the DOM is ready.
-    "DOMContentLoaded": function() {
+  // This runs when the DOM is ready.
+  "DOMContentLoaded": function() {
 
-      initAiringPageDOM();
-      initAiringPageListeners();
+    initAiringPageDOM();
+    initAiringPageListeners();
 
-    },
+  },
 });
 
 function initAiringPageDOM() {
   let daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   let showSectionElm = Util.one('#show-section');
-  for(let day of daysOfWeek) {
+  for (let day of daysOfWeek) {
     let showsOnDay = airingShowsByDay[day];
     if (showsOnDay.length == 0) {
       continue;
     }
 
-    let daySectionElm = Util.create('div', {id: day.toLowerCase() + '-section', class: 'day-section'});
+    let daySectionElm = Util.create('div', { id: day.toLowerCase() + '-section', class: 'day-section' });
     let headerElm = Util.create('h2', {});
     headerElm.innerHTML = day;
 
     let showDisplayID = day.toLowerCase() + '-show-display';
-    let showDisplayElm = Util.create('div', {id: showDisplayID, class: 'airing-show-display'});
+    let showDisplayElm = Util.create('div', { id: showDisplayID, class: 'airing-show-display' });
 
-    let carouselElm = Util.create('div', {class: 'carousel', id: day.toLowerCase() + '-carousel'});
-    let carouselLeftButtonElm = Util.create('a', {class: 'carousel-button carousel-left-button', id: day.toLocaleLowerCase() + '-carousel-left-button'});
+    let carouselElm = Util.create('div', { class: 'carousel', id: day.toLowerCase() + '-carousel' });
+    let carouselLeftButtonElm = Util.create('a', { class: 'carousel-button carousel-left-button', id: day.toLocaleLowerCase() + '-carousel-left-button' });
     carouselLeftButtonElm.innerHTML = "<i class='fa fa-angle-left'></i>"
-    let carouselRightButtonElm = Util.create('a', {class: 'carousel-button carousel-right-button', id: day.toLocaleLowerCase() + '-carousel-right-button'});
+    let carouselRightButtonElm = Util.create('a', { class: 'carousel-button carousel-right-button', id: day.toLocaleLowerCase() + '-carousel-right-button' });
     carouselRightButtonElm.innerHTML = "<i class='fa fa-angle-right'></i>"
-    let carouselShowContainerElm = Util.create('div', {class: 'carousel-show-container', id: day.toLocaleLowerCase() + '-carousel-show-container'})
-    for(let show of showsOnDay) {
+    let carouselShowContainerElm = Util.create('div', { class: 'carousel-show-container', id: day.toLocaleLowerCase() + '-carousel-show-container' })
+    for (let show of showsOnDay) {
       carouselShowContainerElm.appendChild(getShowElmFromShowData(show));
     }
 
@@ -57,13 +59,13 @@ function initAiringPageDOM() {
 }
 
 function getShowElmFromShowData(show) {
-  let showElm = Util.create('div', {class: 'airing-show-container'});
-  let imgElm = Util.create('img', {src: show.img, class: 'show-img'});
-  let showTitle = Util.create('div', {class: 'title-div'});
+  let showElm = Util.create('div', { class: 'airing-show-container' });
+  let imgElm = Util.create('img', { src: show.img, class: 'show-img' });
+  let showTitle = Util.create('div', { class: 'title-div' });
   showTitle.textContent = show.title;
-  let dropdownElm = Util.create('div', {class: 'dropdown'});
+  let dropdownElm = Util.create('div', { class: 'dropdown' });
 
-  let dropdownButtonElm = Util.create('button', {class: 'add-btn'});
+  let dropdownButtonElm = Util.create('button', { class: 'add-btn' });
   dropdownButtonElm.innerHTML = "Add <i class='fa fa-caret-down add-btn-caret'></i>"
 
   showElm.appendChild(showTitle);
@@ -93,8 +95,8 @@ function initAiringPageListeners() {
   window.addEventListener('resize', function() {
     // Moves the dropdown upon resize
     if (currentDropDownMenuElm != null) {
-      currentDropDownMenuElm.style.setProperty('left', currentAddButtonElm.offsetLeft +'px');
-      currentDropDownMenuElm.style.setProperty('top', (currentAddButtonElm.offsetTop + currentAddButtonElm.offsetHeight + 5) +'px');
+      currentDropDownMenuElm.style.setProperty('left', currentAddButtonElm.offsetLeft + 'px');
+      currentDropDownMenuElm.style.setProperty('top', (currentAddButtonElm.offsetTop + currentAddButtonElm.offsetHeight + 5) + 'px');
     }
   });
 
@@ -109,7 +111,7 @@ function initAiringPageListeners() {
 }
 
 function addOptionToSelect(sel, name) {
-  option = Util.create('option', {value: name});
+  option = Util.create('option', { value: name });
   option.innerHTML = name;
   sel.appendChild(option);
 }
@@ -117,14 +119,14 @@ function addOptionToSelect(sel, name) {
 function onAddButtonClick(evt) {
   evt.stopPropagation();
   if (currentDropDownMenuElm == null) {
-    let dropdownMenuElm = Util.create('div', {class: 'dropdown-menu'});
-    let listSelectionElm = Util.create('div', {class: 'list-input-section'});
+    let dropdownMenuElm = Util.create('div', { class: 'dropdown-menu' });
+    let listSelectionElm = Util.create('div', { class: 'list-input-section' });
     let listLabelElm = Util.create('div');
     listLabelElm.innerHTML = "List: ";
 
-    let listSelect = Util.create('select', {id: 'list-select'});
+    let listSelect = Util.create('select', { id: 'list-select' });
 
-    listNames.forEach(function(elt) {addOptionToSelect(listSelect, elt)});
+    listNames.forEach(function(elt) { addOptionToSelect(listSelect, elt) });
 
     listSelect.onchange = function(e) {
       let listSel = Util.one('#list-select');
@@ -132,14 +134,14 @@ function onAddButtonClick(evt) {
       while (sectionSel.firstChild) {
         sectionSel.removeChild(sectionSel.firstChild);
       }
-      listsToSections[listSel.options[listSel.selectedIndex].value].forEach(function(elt) {addOptionToSelect(sectionSel, elt)});
+      listsToSections[listSel.options[listSel.selectedIndex].value].forEach(function(elt) { addOptionToSelect(sectionSel, elt) });
     };
 
     let sectionLabelElm = Util.create("div");
     sectionLabelElm.innerHTML = "Section: ";
 
-    let sectionSelect = Util.create('select', {id: 'section-select'});
-    listsToSections["To Watch"].forEach(function(elt) {addOptionToSelect(sectionSelect, elt)});
+    let sectionSelect = Util.create('select', { id: 'section-select' });
+    listsToSections["To Watch"].forEach(function(elt) { addOptionToSelect(sectionSelect, elt) });
 
     listSelectionElm.appendChild(listLabelElm);
     listSelectionElm.appendChild(listSelect);
@@ -147,11 +149,11 @@ function onAddButtonClick(evt) {
     listSelectionElm.appendChild(sectionSelect);
 
     //listSelectionElm.innerHTML = "List: ";
-    let submitButtonElm = Util.create('button', {class: 'btn btn-primary'});
+    let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';
 
-    dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft +'px');
-    dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) +'px');
+    dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft + 'px');
+    dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) + 'px');
 
     dropdownMenuElm.appendChild(listSelectionElm);
     dropdownMenuElm.appendChild(submitButtonElm);

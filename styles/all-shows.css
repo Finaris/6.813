@@ -38,6 +38,7 @@ body main {
   padding-top: 20px;
 }
 
+
 /*
 #shows-title {
   font-size: 30px;
@@ -74,16 +75,16 @@ body main {
   padding: 20px;
 
   /* spacing between each shows */
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 
   background-color: var(--color-white);
   border-radius: 4px;
 
-  box-shadow: rgba(0,0,0,0.2) 0px 1px 1px;
-  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
 
   font-family: 'Lora', serif;
-/*  font-weight: lighter;*/
+  /*  font-weight: lighter;*/
 }
 
 .show-img {
