@@ -25,7 +25,7 @@
 		}
 
 	input[type="range"].multirange.ghost {
-		position: relative;
+		position: absolute;
 		background: var(--track-background);
 		--track-background: linear-gradient(to right,
 				transparent var(--low), var(--range-color) 0,

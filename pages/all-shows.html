@@ -7,6 +7,7 @@
   <!-- Use mobile-aware viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Load style sheets/fonts -->
+  <link rel="stylesheet" href="../styles/multirange.css">
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/all-shows.css">
   <link rel="stylesheet" href="../styles/filter.css">
@@ -18,6 +19,7 @@
   <!-- Constructible EventTarget polyfill — Only Chrome 64+ supports constructible EventTarget objects natively -->
   <script src="https://unpkg.com/event-target@latest/min.js"></script>
   <!-- Load custom scripts -->
+  <script src="../scripts/multirange.js"></script>
   <script src="../scripts/data.js"></script>
   <script src="../scripts/util.js"></script>
   <script src="../scripts/filter.js"></script>
@@ -52,11 +54,10 @@
       <!-- Rating Dropdown -->
       <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
       <div id='rating-container' class="dropdown-container gone">
-        <div>Min:
-          <input id="min-rating" type="number" value="1" min="1" max="10">
-        </div>
-        <div>Max:
-          <input id="max-rating" type="number" value="10" min="1" max="10">
+        <div id="min-rating"></div>
+        <div id="max-rating"></div>
+        <div id='slider-container'>
+        <input type="range" multiple value="0,100" id="rating-slider"/>
         </div>
       </div>
       <!-- Genre Dropdown -->
