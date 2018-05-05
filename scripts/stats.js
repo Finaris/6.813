@@ -75,6 +75,7 @@ function getStatsData(shows, genreCounts) {
 }
 
 function applyStatsFilter(listName) {
+  /*
   listDropdowns = Util.all('.dropdown-btn');
   for(let dropdown of listDropdowns) {
     if(dropdown.innerHTML && dropdown.innerHTML.includes("List")) {
@@ -82,7 +83,7 @@ function applyStatsFilter(listName) {
       panel = dropdown.nextElementSibling;
       panel.classList.toggle("gone");
       boxes = Util.all('.list-filter-checkbox');
-      console.log(boxes);
+      
       for(let box of boxes) {
         let value = box.value + "";
         if(value == String(listName) + "") {
@@ -93,7 +94,7 @@ function applyStatsFilter(listName) {
       }
       break;
     }
-  }
+  }*/
   //TODO Apply filter (also make filter button gray)
 }
 
