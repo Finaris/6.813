@@ -2,6 +2,7 @@ let userLists = getMyListsData();
 let idNamesToDisplayNames = getIdNamesToDisplayNames();
 let currentModal = null;
 let currentHeaderDict = null;
+let inEditMode = false;
 let listTitles = ["To Watch", "Watching", "Completed"]; //can avoid hardcoding later if desired
 
 // Attach events to the document prior to the DOM being ready.
@@ -62,7 +63,24 @@ function initListeners() {
     }
     Util.one('#'+currListID+'-btn').remove();
     listTitles.splice(index, 1);
-  })
+  });
+  
+  Util.one('#main-bar-edit').addEventListener('click', function(evt) {  
+    let showSectionElm = Util.one('#shows-section');
+    
+    // update data state
+    inEditMode = !inEditMode;
+    
+    // toggle minuses display on existing elements
+    for (let barElm of Util.all('.fa.fa-minus-circle')) {
+      barElm.classList.toggle('gone');
+    }
+
+    // add 'Add Section' part
+    
+    // toggle edit/check icon on main bar
+    toggleMainBarEditElm();
+  });
 }
 
 function initDOM() {
@@ -125,6 +143,7 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
   let textElm = Util.create('div', { class: 'header-bar-text left-align' });
   textElm.innerHTML = headerDisplayName + ' (' + numShowsInHeader + ')';
   let dropdownElm = Util.create('i', { class: 'fa fa-caret-down header-bar-dropdown' });
+  let minusBtnElm = Util.create('i', { class: 'fa fa-minus-circle header-minus-btn gone'})
 
   dropdownElm.addEventListener('click', function(evt) {
     let shows = currentHeaderDict[headerDisplayName];
@@ -149,6 +168,7 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
   headerBarElm.appendChild(dragElm);
   headerBarElm.appendChild(textElm);
   headerBarElm.appendChild(dropdownElm);
+  headerBarElm.appendChild(minusBtnElm);
   return headerBarElm;
 }
 
@@ -234,4 +254,10 @@ function applyAddListModalListeners() {
 
 function getIdNameFromDisplayName(displayName) {
   return displayName.toLowerCase().replace(/\s+/g, '');
+}
+
+function toggleMainBarEditElm() {
+  let mainBarEditElm = Util.one('#main-bar-edit');
+  mainBarEditElm.classList.toggle('fa-edit');
+  mainBarEditElm.classList.toggle('fa-check');
 }
