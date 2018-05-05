@@ -73,8 +73,8 @@ function initFilterSetup() {
   // Creates event listeners for all dropdowns and update the DOM.
   let dropdown = document.getElementsByClassName("dropdown-btn");
   for (let element of dropdown) {
-    /*element.nextElementSibling.classList.toggle("gone");*/
     element.addEventListener("click", function() {
+      // flip the caret direction when clicked
       if (this.children[0].classList == 'fa fa-caret-up') {
         this.children[0].classList = 'fa fa-caret-down';
       } else {
