@@ -30,6 +30,8 @@ body main {
 
   margin-top: 20px;
   margin-bottom: 20px;
+
+  font-family: 'Lora', serif;
 }
 
 #list-btns-section {
@@ -140,7 +142,8 @@ body main {
 
   margin-top: 10px;
 
-  overflow: scroll;
+  overflow-y: scroll;
+
 }
 
 #main-bar {
@@ -155,6 +158,9 @@ body main {
 
   border-radius: 4px;
   border: 1px solid var(--color-black);
+
+  background-color: var(--color-navy-blue);
+  color: white;
 }
 
 .header-bar {
@@ -170,6 +176,9 @@ body main {
   border-style: solid;
   border-color: var(--color-black);
   border-width: 1px 1px 0px 1px;
+
+  background-color: var(--color-light-midnight-blue);
+  color: white;
 }
 
 .header-bar.active {
@@ -177,11 +186,11 @@ body main {
   margin-bottom: 0px;
 }
 
-#shows-section div:nth-child(2) { 
+#shows-section div:nth-child(2) {
   border-top: 0px solid var(--color-black);
 }
 
-#shows-section div:last-child { 
+#shows-section div:last-child {
   border-bottom: 1px solid var(--color-black);
 }
 
@@ -210,13 +219,15 @@ body main {
 
   border: 1px solid var(--color-black);
   border-top: none;
+
+  background-color: var(--color-super-light-gray);
 }
 
 .show-bar-progress {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   justify-items: center;
-
+  align-items: center;
   width: 100%;
 }
 
