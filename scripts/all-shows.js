@@ -147,9 +147,6 @@ function addShowsToDOM(shows) {
     showDisplayElm.appendChild(dataElm);
     showDisplayElm.appendChild(buttonElm);
   }
-
-  // Add the thriller div to the bottom
-  scenarioThrillerDiv();
 }
 
 // gets all relevant information regarding the input show and returns a element with all info
