@@ -32,6 +32,13 @@ function initStatsPageDOM() {
   for (var key in stats) {
     dom[key].textContent = stats[key];
   }
+
+  let currList = Util.getURLParam("list");
+  //TODO Make sure user can't screw around with this (i.e. put in name of list that doesn't exist)
+
+  if(currList !== null) {
+    applyStatsFilter(currList);
+  }
 }
 
 function updateStatsPage(data) {
@@ -67,8 +74,27 @@ function getStatsData(shows, genreCounts) {
   return stats;
 }
 
-function applyStatsFilter() {
-  // TODO
+function applyStatsFilter(listName) {
+  listDropdowns = Util.all('.dropdown-btn');
+  for(let dropdown of listDropdowns) {
+    if(dropdown.innerHTML && dropdown.innerHTML.includes("List")) {
+      dropdown.classList.toggle("active");
+      panel = dropdown.nextElementSibling;
+      panel.classList.toggle("gone");
+      boxes = Util.all('.list-filter-checkbox');
+      console.log(boxes);
+      for(let box of boxes) {
+        let value = box.value + "";
+        if(value == String(listName) + "") {
+          console.log("works");
+          box.checked = true;
+          break;
+        }
+      }
+      break;
+    }
+  }
+  //TODO Apply filter (also make filter button gray)
 }
 
 function getGenreCountDict(shows) {
