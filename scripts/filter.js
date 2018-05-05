@@ -29,8 +29,23 @@ Util.events(document, {
       // Initialize previous filter options to be empty.
       previousFilterOptions = defaultOptions();
       currentFilterOptions = defaultOptions();
+    
+      // Update name at top of page.
+      updateStatsFilterText();
     },
 });
+
+// Updates the text at the top of the Stats body.
+function updateStatsFilterText() {
+  if (Util.one("#stats-shows") !== null) {
+    // Update name at top of page.
+    let showText = "FILTERED";
+    if (JSON.stringify(currentOptions()) === JSON.stringify(defaultOptions())) {
+      showText = "ALL";
+    }
+    Util.one("#stats-shows").innerHTML = showText; 
+  }
+}
 
 // Updates our previously stored options as well as the current state of the filter.
 function updateFilterState(e) {
@@ -40,6 +55,9 @@ function updateFilterState(e) {
   // Then, shuffle the current options into previousFilterOptions.
   previousFilterOptions = currentFilterOptions;
   currentFilterOptions = Object.assign({}, previousFilterOptions);
+  
+  // Update name at top of page.
+  updateStatsFilterText();
 }
 
 // Conditionally enables or disables the filter checkbox depending on what options were selected previously.
@@ -47,7 +65,7 @@ function handleApplyFilterState(e) {
   // Update the current state.
   let currentElt = e.currentTarget;
   if (currentElt.type == "checkbox") {
-    currentFilterOptions[currentElt.value] = currentElt.checked;
+    currentFilterOptions[currentElt.parentElement.parentElement.id + currentElt.value] = currentElt.checked;
   } else if (currentElt.type == "range") {
     currentFilterOptions['min-rating'] = Util.one("#min-rating").innerHTML;
     currentFilterOptions['max-rating'] = Util.one("#max-rating").innerHTML;
@@ -186,19 +204,34 @@ function enableFilter(shouldEnable) {
   }
 }
 
+// Calculates the current options selected.
+function currentOptions() {
+  let options = {};
+  for (let input of document.getElementById("filter").getElementsByTagName("input")) {
+    if (input.type == "checkbox") {
+      options[input.parentElement.parentElement.id + input.value] = input.checked;
+    }
+  }
+
+  // Specify the min and max ratings.
+  options['min-rating'] = Util.one("#min-rating").innerHTML;
+  options['max-rating'] = Util.one("#max-rating").innerHTML;
+  
+  return options;
+}
+
 // Creates a default state for the initial filter options
 function defaultOptions() {
   let options = {};
   for (let input of document.getElementById("filter").getElementsByTagName("input")) {
     if (input.type == "checkbox") {
-      options[input.value] = input.checked;
-    } else if (input.type == "range") {
-      options[input.id] = input.value;
+      options[input.parentElement.parentElement.id + input.value] = false;
     }
   }
 
   // Specify the min and max ratings.
   options['min-rating'] = "1.0";
   options['max-rating'] = "10.0";
+  
   return options;
 }
