@@ -145,25 +145,36 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
   let dropdownElm = Util.create('i', { class: 'fa fa-caret-down header-bar-dropdown' });
   let minusBtnElm = Util.create('i', { class: 'fa fa-minus-circle header-minus-btn gone'})
 
-  dropdownElm.addEventListener('click', function(evt) {
+  // note to whoever handles the merge conflict...
+  // this chunk should really be saved
+  headerBarElm.addEventListener('click', function(evt) {
     let shows = currentHeaderDict[headerDisplayName];
-    if (headerBarElm.nextSibling == null) {
+    // headerBarElm.nextSibling is the next subsection
+    if (headerBarElm.nextSibling == null) { // last subsection on the page
+      // expanding the subsection flips the caret
+      headerBarElm.children[2].classList = 'fa fa-caret-up header-bar-dropdown';
       for (let show of shows) {
         showSectionElm.appendChild(getShowBarElm(show));
       }
       headerBarElm.classList.add('active');
-    } else if (headerBarElm.nextSibling.classList.contains('header-bar')) {
+    } 
+    else if (headerBarElm.nextSibling.classList.contains('header-bar')) {
+      // expanding the subsection flips the caret
+      headerBarElm.children[2].classList = 'fa fa-caret-up header-bar-dropdown';
       for (let show of shows) {
         showSectionElm.insertBefore(getShowBarElm(show), headerBarElm.nextSibling);
       }
       headerBarElm.classList.add('active');
-    } else {
+    } else { // collapsing the subsections for the header bar
+      // collapsing the subsection flips the caret
+      headerBarElm.children[2].classList = 'fa fa-caret-down header-bar-dropdown';
       while ( headerBarElm.nextSibling != null && headerBarElm.nextSibling.classList.contains('show-bar')) {
         showSectionElm.removeChild(headerBarElm.nextSibling);
       }
       headerBarElm.classList.remove('active');
     }
   });
+  // until here
 
   headerBarElm.appendChild(dragElm);
   headerBarElm.appendChild(textElm);
