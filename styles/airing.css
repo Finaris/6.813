@@ -67,7 +67,7 @@ body main {
 
 .carousel-button {
   color: var(--color-white);
-  background-color: var(--color-gainsboro);
+  background-color: var(--color-dark-gray);
 
   height: var(--carousel-height);
 
