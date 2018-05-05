@@ -126,8 +126,6 @@ function initListeners() {
     // update data state
     inEditMode = !inEditMode;
   });
-  
-  
 }
 
 function initDOM() {

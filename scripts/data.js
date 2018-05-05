@@ -110,10 +110,10 @@ function getRandomDiscreteNumber(start, end) {
 function getMyListsData() {
   let userLists = {
     'Completed': {
-      'Amazing': generateNumRandomShowOfType(2, 'Completed'),
-      'Good': generateNumRandomShowOfType(3, 'Completed'),
-      'Okay': generateNumRandomShowOfType(4, 'Completed'),
-      'Bad': generateNumRandomShowOfType(1, 'Completed')
+      'Amazing': generateNumRandomShowOfType(2, 'Completed').map(setAllShowsToCompletedAndReturnShow),
+      'Good': generateNumRandomShowOfType(3, 'Completed').map(setAllShowsToCompletedAndReturnShow),
+      'Okay': generateNumRandomShowOfType(4, 'Completed').map(setAllShowsToCompletedAndReturnShow),
+      'Bad': generateNumRandomShowOfType(1, 'Completed').map(setAllShowsToCompletedAndReturnShow)
     },
     'Watching': {
       'Completed Shows': generateNumRandomShowOfType(5, 'Completed'),
@@ -196,4 +196,9 @@ function getAllShowsInAllLists(userLists) {
     }
   }
   return Array.from(allShowsSet);
+}
+
+function setAllShowsToCompletedAndReturnShow(show) {
+  show.userCurrentEpisode = show.numEpisodes;
+  return show;
 }
