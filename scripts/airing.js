@@ -152,6 +152,7 @@ function onAddButtonClick(evt) {
     //listSelectionElm.innerHTML = "List: ";
     let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';
+    submitButtonElm.addEventListener("click", addedShow);
 
     dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft + 'px');
     dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) + 'px');
@@ -222,6 +223,23 @@ function onLeftCarouselClick(evt) {
 }
 
 //--------------------------------------- Helper Functions -----------------------------------------//
+
+// Feign a success when adding a new list
+function addedShow(evt) {
+  evt.stopPropagation();  
+  // There's only ever one of these at a time.
+  let dropdownMenu = document.getElementsByClassName('dropdown-menu')[0];
+  
+  // Create a new div to add.
+  let addedDiv = document.createElement('div');
+  addedDiv.style.maxWidth = "75px";
+  addedDiv.innerHTML += "Successfully added show to your list.";
+  
+  for (let i = 0; i < 2; i++) {
+      dropdownMenu.removeChild(dropdownMenu.firstChild);
+  }
+  dropdownMenu.appendChild(addedDiv);
+}
 
 function removeAddShowDropdownMenu() {
   if (currentDropDownMenuElm != null) {
