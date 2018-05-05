@@ -28,6 +28,7 @@ function initAiringPageDOM() {
   let showSectionElm = Util.one('#show-section');
   for (let day of DAYS) {
     let showsOnDay = AIRING_SHOWS_BY_DAY[day];
+
     if (showsOnDay.length == 0) {
       continue;
     }
@@ -59,24 +60,6 @@ function initAiringPageDOM() {
   }
 }
 
-function getShowElmFromShowData(show) {
-  let showElm = Util.create('div', { class: 'airing-show-container' });
-  let imgElm = Util.create('img', { src: show.img, class: 'show-img' });
-  let showTitle = Util.create('div', { class: 'title-div' });
-  showTitle.textContent = show.title;
-  let dropdownElm = Util.create('div', { class: 'dropdown' });
-
-  let dropdownButtonElm = Util.create('button', { class: 'add-btn' });
-  dropdownButtonElm.innerHTML = "Add <i class='fa fa-caret-down add-btn-caret'></i>"
-
-  showElm.appendChild(showTitle);
-  showElm.appendChild(imgElm);
-  showElm.appendChild(dropdownElm);
-  dropdownElm.appendChild(dropdownButtonElm);
-
-  return showElm;
-}
-
 function initAiringPageListeners() {
   let leftCarouselButtonElms = Util.all('.carousel-left-button');
   for (let button of leftCarouselButtonElms) {
@@ -88,7 +71,7 @@ function initAiringPageListeners() {
     button.addEventListener('click', onRightCarouselClick);
   }
 
-  let addButtonElms = Util.all('.add-btn');
+  let addButtonElms = Util.all('.dropdown'); // plus button for each show
   for (let button of addButtonElms) {
     button.addEventListener('click', onAddButtonClick);
   }
@@ -109,6 +92,25 @@ function initAiringPageListeners() {
       }
     }
   });
+}
+
+function getShowElmFromShowData(show) {
+  let showElm = Util.create('div', { class: 'airing-show-container' });
+
+  let imgElm = Util.create('img', { src: show.img, class: 'show-img' });
+  let showTitle = Util.create('div', { class: 'title-div' });
+  showTitle.textContent = show.title;
+  let dropdownElm = Util.create('div', { class: 'dropdown' }); // needed to grab the element; weird behavior
+
+  // circle plus icon for the user to add show to list
+  let dropdownButtonElm = Util.create('i', { class: 'add-btn fa fa-plus-circle' });
+  
+  showElm.appendChild(showTitle);
+  showElm.appendChild(imgElm);
+  showElm.appendChild(dropdownElm);
+  dropdownElm.appendChild(dropdownButtonElm);
+
+  return showElm;
 }
 
 function addOptionToSelect(sel, name) {

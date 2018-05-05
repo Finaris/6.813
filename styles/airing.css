@@ -124,10 +124,28 @@ body main {
   outline: none;
 }
 
+/* TODO plus icon is too small - but this doesn't seem to grab the correct element */
+.fa.add-btn {
+  font-size: var(--add-btn-diameter);
+  height: var(--add-btn-diameter);
+  width: var(--add-btn-diameter);
+
+  color: var(--color-navy-blue);
+
+  text-align: center;
+
+}
+
+/* section that contains the plus icon */
 .dropdown {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer; 
+}
+
+.dropdown:hover {
+  color: var(--color-steel-blue);
 }
 
 .dropdown-menu {
