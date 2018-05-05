@@ -76,9 +76,46 @@ body main {
   border-radius: 4px;
 }
 
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+
+  /* have a fixed with to prevent distracting changes with list options */
+  width: 150px;
+
+  padding: 0px;
+}
+
+.menu-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  /* have a fixed with to prevent distracting changes with list options */
+  width: 150px;
+  overflow-y: auto;
+  max-height: 200px;
+  padding: 0px;
+}
+
+.dropdown-list-btn {
+  min-height: 40px;
+}
+
+.dropdown-list-container {
+  display: grid;
+  grid-template-rows: repeat(var(--num-sections), 1fr);
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: start;
+}
+
+.dropdown-list-container.gone {
+  display: none;
+}
+
 .dropdown-menu.confirmation-message {
   /* avoid awkward whitespace in the confirmation message */
-  width: auto; 
+  width: auto;
   font-size: 20px;
   padding: 20px;
   border: 1px solid var(--color-gray);
