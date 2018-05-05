@@ -58,9 +58,13 @@ body main {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 1px;
   border: 1px solid rgba(0, 0, 0, 0.15);
 
-  margin-bottom: -1px;
+  margin-bottom: 0px;
 
   cursor: pointer;
+}
+
+.list-btns-btn:last-child {
+  
 }
 
 .tab-blocker {
@@ -83,7 +87,8 @@ body main {
 }
 
 #list-section {
-  background-color: var(--color-white);
+  background: linear-gradient(var(--color-white), var(--color-light-midnight-blue));
+  /*background-color: var(--color-white);*/
 
   padding: 20px;
 
@@ -99,6 +104,7 @@ body main {
   grid-auto-columns: 100%;
   justify-items: center;
 
+  border-top: 0px solid black;
   width: calc(100% - 40px);
 }
 
@@ -161,7 +167,7 @@ body main {
   border-radius: 4px;
   border: 1px solid var(--color-black);
 
-  background-color: var(--color-navy-blue);
+  background: linear-gradient(var(--color-dark-midnight-blue), var(--color-navy-blue));
   color: white;
 }
 
@@ -181,7 +187,7 @@ body main {
   border-color: var(--color-black);
   border-width: 1px 1px 0px 1px;
 
-  background-color: var(--color-light-midnight-blue);
+  background: linear-gradient(var(--color-navy-blue), var(--color-light-midnight-blue));
   color: white;
 }
 
@@ -249,7 +255,7 @@ body main {
   border: 1px solid var(--color-black);
   border-bottom: none;
 
-  background-color: var(--color-super-light-gray);
+  background: linear-gradient(var(--color-super-light-gray), white);
 }
 
 .show-bar-progress {
@@ -288,6 +294,7 @@ body main {
 
 .given-list-btn {
   cursor: pointer;
+  font-family: 'Oswald', sans-serif;  
 }
 
 #delete-btn {
