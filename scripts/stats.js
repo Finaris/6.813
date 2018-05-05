@@ -34,8 +34,6 @@ function initStatsPageDOM() {
   }
 
   let currList = Util.getURLParam("list");
-  //TODO Make sure user can't screw around with this (i.e. put in name of list that doesn't exist)
-
   if(currList !== null) {
     applyStatsFilter(currList);
   }
@@ -75,26 +73,33 @@ function getStatsData(shows, genreCounts) {
 }
 
 function applyStatsFilter(listName) {
-  /*
   listDropdowns = Util.all('.dropdown-btn');
-  for(let dropdown of listDropdowns) {
+  for(let dropdown of listDropdowns) {  
     if(dropdown.innerHTML && dropdown.innerHTML.includes("List")) {
       dropdown.classList.toggle("active");
       panel = dropdown.nextElementSibling;
       panel.classList.toggle("gone");
-      boxes = Util.all('.list-filter-checkbox');
+      boxes = document.getElementsByClassName('list-filter-checkbox');
       
-      for(let box of boxes) {
+      window.addEventListener('load', function() {
+        for(let box of boxes) {
+        console.log(box);
         let value = box.value + "";
         if(value == String(listName) + "") {
           console.log("works");
           box.checked = true;
+          
+          // Apply the filters 
+          // TODO: add function which filters content too
+          updateFilterState();
           break;
         }
-      }
+      }  
+      });
       break;
     }
-  }*/
+  }
+  
   //TODO Apply filter (also make filter button gray)
 }
 
