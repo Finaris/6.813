@@ -189,6 +189,8 @@ body main {
 
   background: linear-gradient(var(--color-navy-blue), var(--color-light-midnight-blue));
   color: white;
+
+  cursor: pointer;
 }
 
 .header-bar.active {
