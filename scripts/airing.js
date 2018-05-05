@@ -122,13 +122,13 @@ function getShowElmFromShowData(show) {
 function addListToMenu(menuElm, name) {
   list = Util.create('button', { class: 'dropdown-btn' });
   list.classList.add('dropdown-list-btn');
-  list.innerHTML = name;
+  list.innerHTML = " " + name + " <i class=\"fa fa-caret-down\"></i>";
   list.addEventListener("click", function() {
-    /*if (this.children[0].classList == 'fa fa-caret-up') {
+    if (this.children[0].classList == 'fa fa-caret-up') {
       this.children[0].classList = 'fa fa-caret-down';
     } else {
       this.children[0].classList = 'fa fa-caret-up';
-    }*/
+    }
     this.classList.toggle("active");
     this.nextElementSibling.classList.toggle("gone");
   });
@@ -142,8 +142,6 @@ function addListToMenu(menuElm, name) {
     let newInput = document.createElement("input");
     newInput.type = "checkbox";
     newInput.value = elt;
-    //newInput.classList.add("filter-checkbox");
-    //newInput.classList.add(sectionName + "-filter-checkbox");
 
     // Append the new elements to the genre div.
     newLabel.appendChild(newInput);
@@ -160,34 +158,9 @@ function onAddButtonClick(evt) {
   if (currentDropDownMenuElm == null) {
     let dropdownMenuElm = Util.create('div', { class: 'dropdown-menu' });
     let menuWrapper = Util.create('div', {class: 'menu-wrapper'});
-    //let listSelectionElm = Util.create('div', { class: 'list-input-section' });
-    //let listLabelElm = Util.create('div');
-    //listLabelElm.innerHTML = "List: ";
-
-    //let listSelect = Util.create('select', { id: 'list-select' });
 
     listNames.forEach(function(elt) { addListToMenu(menuWrapper, elt) });
     dropdownMenuElm.appendChild(menuWrapper);
-    /*listSelect.onchange = function(e) {
-      let listSel = Util.one('#list-select');
-      let sectionSel = Util.one('#section-select');
-      while (sectionSel.firstChild) {
-        sectionSel.removeChild(sectionSel.firstChild);
-      }
-      listsToSections[listSel.options[listSel.selectedIndex].value].forEach(function(elt) { addOptionToSelect(sectionSel, elt) });
-    };
-
-    let sectionLabelElm = Util.create("div");
-    sectionLabelElm.innerHTML = "Section: ";
-
-    let sectionSelect = Util.create('select', { id: 'section-select' });
-    listsToSections["To Watch"].forEach(function(elt) { addOptionToSelect(sectionSelect, elt) });
-
-    listSelectionElm.appendChild(listLabelElm);
-    listSelectionElm.appendChild(listSelect);
-    listSelectionElm.appendChild(sectionLabelElm);
-    listSelectionElm.appendChild(sectionSelect);
-    */
 
     let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';

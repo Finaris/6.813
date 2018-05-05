@@ -52,10 +52,38 @@ let listsToSections = {
   'Completed': ['Amazing', 'Good', 'Okay', 'Bad']
 };
 
-function addOptionToSelect(sel, name) {
-  option = Util.create('option', { value: name });
-  option.innerHTML = name;
-  sel.appendChild(option);
+function addListToMenu(menuElm, name) {
+  list = Util.create('button', { class: 'dropdown-btn' });
+  list.classList.add('dropdown-list-btn');
+  list.innerHTML = " " + name + " <i class=\"fa fa-caret-down\"></i>";
+  list.addEventListener("click", function() {
+    if (this.children[0].classList == 'fa fa-caret-up') {
+      this.children[0].classList = 'fa fa-caret-down';
+    } else {
+      this.children[0].classList = 'fa fa-caret-up';
+    }
+    this.classList.toggle("active");
+    this.nextElementSibling.classList.toggle("gone");
+  });
+  panel = Util.create('div', { class: 'dropdown-list-container'});
+  panel.style.setProperty('--num-sections', listsToSections[name].length);
+  listsToSections[name].forEach(function(elt) {
+    // Define a label for input box.
+    let newLabel = Util.create("label");
+
+    // Define a new input box.
+    let newInput = document.createElement("input");
+    newInput.type = "checkbox";
+    newInput.value = elt;
+
+    // Append the new elements to the genre div.
+    newLabel.appendChild(newInput);
+    newLabel.innerHTML += elt;
+    panel.appendChild(newLabel);
+  });
+  menuElm.appendChild(list);
+  menuElm.appendChild(panel);
+  panel.classList.toggle("gone");
 }
 
 window.addEventListener('resize', function() {
@@ -102,7 +130,7 @@ function addShowsToDOM(shows) {
     showDisplayElm.appendChild(dataElm);
     showDisplayElm.appendChild(buttonElm);
   }
-  
+
   // Add the thriller div to the bottom
   scenarioThrillerDiv();
 }
@@ -162,44 +190,19 @@ function onAddButtonClick(evt) {
   evt.stopPropagation();
   if (currentDropDownMenuElm == null) {
     let dropdownMenuElm = Util.create('div', { class: 'dropdown-menu' });
-    let listSelectionElm = Util.create('div', { class: 'list-input-section' });
-    let listLabelElm = Util.create('div');
-    listLabelElm.innerHTML = "List: ";
+    let menuWrapper = Util.create('div', {class: 'menu-wrapper'});
 
-    let listSelect = Util.create('select', { id: 'list-select' });
+    listNames.forEach(function(elt) { addListToMenu(menuWrapper, elt) });
+    dropdownMenuElm.appendChild(menuWrapper);
 
-    listNames.forEach(function(elt) { addOptionToSelect(listSelect, elt) });
-
-    listSelect.onchange = function(e) {
-      let listSel = Util.one('#list-select');
-      let sectionSel = Util.one('#section-select');
-      while (sectionSel.firstChild) {
-        sectionSel.removeChild(sectionSel.firstChild);
-      }
-      listsToSections[listSel.options[listSel.selectedIndex].value].forEach(function(elt) { addOptionToSelect(sectionSel, elt) });
-    };
-
-    let sectionLabelElm = Util.create("div");
-    sectionLabelElm.innerHTML = "Section: ";
-
-    let sectionSelect = Util.create('select', { id: 'section-select' });
-    listsToSections["To Watch"].forEach(function(elt) { addOptionToSelect(sectionSelect, elt) });
-
-    listSelectionElm.appendChild(listLabelElm);
-    listSelectionElm.appendChild(listSelect);
-    listSelectionElm.appendChild(sectionLabelElm);
-    listSelectionElm.appendChild(sectionSelect);
-
-    //listSelectionElm.innerHTML = "List: ";
     let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';
-    submitButtonElm.style.marginTop = "5px";
     submitButtonElm.addEventListener("click", displayConfirmationMessage);
 
     dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft + 'px');
     dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) + 'px');
 
-    dropdownMenuElm.appendChild(listSelectionElm);
+    //dropdownMenuElm.appendChild(listSelectionElm);
     dropdownMenuElm.appendChild(submitButtonElm);
 
     Util.one('main').appendChild(dropdownMenuElm);
@@ -233,7 +236,7 @@ function displayConfirmationMessage(evt) {
   addedDiv.innerHTML += "Successfully added!";
 
   // to limit the width of the confirmation message
-  // addedDiv.style.maxWidth = "75px"; 
+  // addedDiv.style.maxWidth = "75px";
 
   for (let i = 0; i < 2; i++) {
     dropdownMenu.removeChild(dropdownMenu.firstChild);
