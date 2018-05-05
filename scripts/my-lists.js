@@ -2,6 +2,7 @@ let userLists = getMyListsData();
 let idNamesToDisplayNames = getIdNamesToDisplayNames();
 let currentModal = null;
 let currentHeaderDict = null;
+let listTitles = ["To Watch", "Watching", "Completed"]; //can avoid hardcoding later if desired
 
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
@@ -41,6 +42,27 @@ function initListeners() {
 
   Util.one('#stats-btn').addEventListener('click', function(evt) {
     location.href='./stats.html?list='+Util.one('#current-list-name').innerHTML;
+  });
+
+  Util.one('#delete-btn').addEventListener('click', function(evt) {
+    let currList = Util.one('#current-list-name').innerHTML;
+    let currListID = getIdNameFromDisplayName(currList);
+
+    let index = listTitles.indexOf(currList);
+
+    if(listTitles.length > 1) { //will kinda break otherwise; ideally we don't have to handle this...
+      let nextList = null;
+      if(index === listTitles.length-1) {
+        nextList = listTitles[listTitles.length-2];
+      } else {
+        nextList = listTitles[index+1];
+      }
+      let nextListID = getIdNameFromDisplayName(nextList);
+      onListBtnClick(nextListID + '-btn');
+    }
+    Util.one('#'+currListID+'-btn').remove();
+    listTitles.splice(index, 1);
+    console.log(listTitles);
   })
 }
 
@@ -193,6 +215,7 @@ function applyAddListModalListeners() {
       // Update data structures
       idNamesToDisplayNames[newListIdName] = newListDisplayName;
       userLists[newListDisplayName] = {'All': []};
+      listTitles.push(newListDisplayName);
 
       // Update make it as if one clicked the new shows tab button
       onListBtnClick(newListIdName + '-btn')
