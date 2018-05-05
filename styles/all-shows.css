@@ -76,6 +76,18 @@ body main {
   border-radius: 4px;
 }
 
+.dropdown-menu.confirmation-message {
+  /* avoid awkward whitespace in the confirmation message */
+  width: auto; 
+  font-size: 20px;
+  padding: 20px;
+  border: 1px solid var(--color-gray);
+  border-right: 3px solid var(--color-gray);
+  border-bottom: 3px solid var(--color-gray);
+  background-color: var(--color-super-light-gray);
+  /*font-family: 'Helvetica', 'Georgia', 'Times New Roman';*/
+}
+
 #results-section {
   display: flex;
   flex-direction: column;

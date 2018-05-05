@@ -194,7 +194,7 @@ function onAddButtonClick(evt) {
     let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';
     submitButtonElm.style.marginTop = "5px";
-    submitButtonElm.addEventListener("click", addedShow);
+    submitButtonElm.addEventListener("click", displayConfirmationMessage);
 
     dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft + 'px');
     dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) + 'px');
@@ -216,21 +216,35 @@ function onAddButtonClick(evt) {
 
 //--------------------------------------- Helper Functions -----------------------------------------//
 
-// Feign a success when adding a new list
-function addedShow(evt) {
-  evt.stopPropagation();  
+// Show a success when adding a new list
+function displayConfirmationMessage(evt) {
+  evt.stopPropagation();
   // There's only ever one of these at a time.
   let dropdownMenu = document.getElementsByClassName('dropdown-menu')[0];
-  
+
+  // display confirmation message in the middle of the screen
+  dropdownMenu.classList.add('confirmation-message')
+  dropdownMenu.style.position = "fixed"; // position the message in the middle of the screen
+  dropdownMenu.style.left = "50%";
+  dropdownMenu.style.top = "20%";
+
   // Create a new div to add.
   let addedDiv = document.createElement('div');
-  addedDiv.style.maxWidth = "75px";
-  addedDiv.innerHTML += "Successfully added show to your list.";
-  
+  addedDiv.innerHTML += "Successfully added!";
+
+  // to limit the width of the confirmation message
+  // addedDiv.style.maxWidth = "75px"; 
+
   for (let i = 0; i < 2; i++) {
-      dropdownMenu.removeChild(dropdownMenu.firstChild);
+    dropdownMenu.removeChild(dropdownMenu.firstChild);
   }
   dropdownMenu.appendChild(addedDiv);
+
+  // display the confirmation message for a short period of time
+  Util.delay(1500).then(function() {
+      removeAddShowDropdownMenu();
+      currentDropDownMenuElm = null; // reset so that messages can pop up for future clicks
+  });
 }
 
 function removeAddShowDropdownMenu() {

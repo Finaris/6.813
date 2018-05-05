@@ -231,7 +231,7 @@ function onLeftCarouselClick(evt) {
 
 //--------------------------------------- Helper Functions -----------------------------------------//
 
-// Feign a success when adding a new list
+// Show a success when adding a new list
 function displayConfirmationMessage(evt) {
   evt.stopPropagation();
   // There's only ever one of these at a time.
