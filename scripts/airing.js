@@ -1,5 +1,5 @@
 const MAX_NUM_SHOWS_ROW = 5;
-const AIRING_SHOWS_BY_DAY = getAiringShowsData(100);
+const AIRING_SHOWS_BY_DAY = getAiringShowsData(500);
 var currentAddButtonElm = null;
 var currentDropDownMenuElm = null;
 var canPress = true;
