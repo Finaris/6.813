@@ -62,7 +62,6 @@ function initListeners() {
     }
     Util.one('#'+currListID+'-btn').remove();
     listTitles.splice(index, 1);
-    console.log(listTitles);
   })
 }
 
@@ -133,14 +132,17 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
       for (let show of shows) {
         showSectionElm.appendChild(getShowBarElm(show));
       }
+      headerBarElm.classList.add('active');
     } else if (headerBarElm.nextSibling.classList.contains('header-bar')) {
       for (let show of shows) {
         showSectionElm.insertBefore(getShowBarElm(show), headerBarElm.nextSibling);
       }
+      headerBarElm.classList.add('active');
     } else {
       while ( headerBarElm.nextSibling != null && headerBarElm.nextSibling.classList.contains('show-bar')) {
         showSectionElm.removeChild(headerBarElm.nextSibling);
       }
+      headerBarElm.classList.remove('active');
     }
   });
 
