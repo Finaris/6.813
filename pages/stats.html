@@ -46,33 +46,35 @@
     <div id="filter-title"><h1>Filter</h1></div>
     <button id="filter-button" onclick=applyStatsFilter() class="disabled-filter-button">Apply Filter(s)</button>
     </div>
-    <!-- List Dropdown -->
-    <button class="dropdown-btn"> List <i class="fa fa-caret-down"></i></button>
-    <div id='list-container' class="dropdown-container gone"></div>
-    <!-- Status Dropdown -->
-    <button class="dropdown-btn"> Status <i class="fa fa-caret-down"></i></button>
-    <div id='status-container' class="dropdown-container gone"></div>
-    <!-- Rating Dropdown -->
-    <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
-    <div id='rating-container' class="dropdown-container gone">
-      <div id="min-rating"></div>
-      <div id="max-rating"></div>
-      <div id='slider-container'>
-      <input type="range" multiple value="0,100" id="rating-slider"/>
+    <div id="filter-bot">
+      <!-- List Dropdown -->
+      <button class="dropdown-btn"> List <i class="fa fa-caret-down"></i></button>
+      <div id='list-container' class="dropdown-container gone"></div>
+      <!-- Status Dropdown -->
+      <button class="dropdown-btn"> Status <i class="fa fa-caret-down"></i></button>
+      <div id='status-container' class="dropdown-container gone"></div>
+      <!-- Rating Dropdown -->
+      <button class="dropdown-btn"> Rating <i class="fa fa-caret-down"></i></button>
+      <div id='rating-container' class="dropdown-container gone">
+        <div id="min-rating"></div>
+        <div id="max-rating"></div>
+        <div id='slider-container'>
+        <input type="range" multiple value="0,100" id="rating-slider"/>
+        </div>
       </div>
+      <!-- Genre Dropdown -->
+      <button class="dropdown-btn"> Genre <i class="fa fa-caret-down"></i></button>
+      <div id='genre-container' class="dropdown-container gone"></div>
+      <!-- Unimplemented Filters -->
+      <button class="dropdown-btn"> # Episodes <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-container"></div>
+      <button class="dropdown-btn"> Release Year <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-container"></div>
+      <button class="dropdown-btn"> Actors <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-container"></div>
+      <button class="dropdown-btn"> Service <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-container"></div>
     </div>
-    <!-- Genre Dropdown -->
-    <button class="dropdown-btn"> Genre <i class="fa fa-caret-down"></i></button>
-    <div id='genre-container' class="dropdown-container gone"></div>
-    <!-- Unimplemented Filters -->
-    <button class="dropdown-btn"> # Episodes <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container"></div>
-    <button class="dropdown-btn"> Release Year <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container"></div>
-    <button class="dropdown-btn"> Actors <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container"></div>
-    <button class="dropdown-btn"> Service <i class="fa fa-caret-down"></i></button>
-    <div class="dropdown-container"></div>
   </div>
   <main>
     <div id='stats-info-text'><i>Displaying statistics for <span>ALL</span> shows</i></div>
