@@ -13,6 +13,30 @@ Util.events(document, {
     initListeners();
     onListBtnClick('towatch-btn');
   },
+  
+  // Keyboard events arrive here
+	"keydown": function(evt) {
+    let key = evt.code;
+    if (key == 'Enter') {
+      let addSectionPlusElm = Util.one('#add-section-name-input');
+      if (addSectionPlusElm != null) {
+        let showSectionElm = Util.one('#shows-section');
+        let addSectionElm = showSectionElm.lastChild;
+        let newSectionName = Util.one('#add-section-name-input').value;
+        if (newSectionName.length != 0 && !(newSectionName in currentHeaderDict)) {
+          currentHeaderDict[newSectionName] = [];
+
+          showSectionElm.removeChild(addSectionElm);
+          showSectionElm.appendChild(getHeaderBarElm(newSectionName, 0, true));
+          showSectionElm.appendChild(getAddSectionElm());
+          showSectionElm.scrollTop = showSectionElm.scrollHeight; 
+          
+          let newSectionNameElm = Util.one('#add-section-name-input');
+          newSectionNameElm.focus();
+        }
+      }  
+    } 
+	}
 });
 
 function onListBtnClick(listBtnId) {
@@ -20,6 +44,11 @@ function onListBtnClick(listBtnId) {
 
   clearHeaderShowBars();
   updateBars(listBtnId);
+  
+  let mainBarEditElm = Util.one('#main-bar-edit');
+  mainBarEditElm.classList.add('fa-edit');
+  mainBarEditElm.classList.remove('fa-check');
+  inEditMode = false;
 }
 
 function initListeners() {
@@ -68,25 +97,41 @@ function initListeners() {
   Util.one('#main-bar-edit').addEventListener('click', function(evt) {  
     let showSectionElm = Util.one('#shows-section');
     
-    // update data state
-    inEditMode = !inEditMode;
-    
     // toggle minuses display on existing elements
     for (let barElm of Util.all('.fa.fa-minus-circle')) {
       barElm.classList.toggle('gone');
     }
 
     // add 'Add Section' part
+    if (inEditMode) {
+      showSectionElm.removeChild(showSectionElm.lastChild);
+    } else {
+      showSectionElm.appendChild(getAddSectionElm());
+    }
     
     // toggle edit/check icon on main bar
     toggleMainBarEditElm();
+    
+    // update position of scroll wheel
+    if (!inEditMode) {
+      showSectionElm.scrollTop = showSectionElm.scrollHeight;
+    }
+    
+    // update focus
+    if (!inEditMode) {
+      let newSectionNameElm = Util.one('#add-section-name-input');
+      newSectionNameElm.focus();
+    }
+    
+    // update data state
+    inEditMode = !inEditMode;
   });
+  
+  
 }
 
 function initDOM() {
-  let showSectionElm = Util.one('#shows-section');
-  showSectionElm.removeChild(showSectionElm.childNodes.item(2));
-  showSectionElm.removeChild(showSectionElm.childNodes.item(0));
+  
 }
 
 //------------------------------------------------------- Helper Functions -----------------------------------------------------------//
@@ -121,20 +166,22 @@ function updateBars(listBtnId) {
     if (header == 'All') {
       continue;
     }
-    showSectionElm.appendChild(getHeaderBarElm(header, currentHeaderDict[header].length));
+    showSectionElm.appendChild(getHeaderBarElm(header, currentHeaderDict[header].length, false));
   }
 }
 
 function clearHeaderShowBars() {
   let showSectionElm = Util.one('#shows-section');
-  let mainBarElm = showSectionElm.firstChild;
-  while (mainBarElm.nextSibling != null) {
-    showSectionElm.removeChild(mainBarElm.nextSibling);
+  let currentChild = showSectionElm.firstChild;
+  while (currentChild != null) {
+    let temp = currentChild
+    currentChild = currentChild.nextSibling;
+    showSectionElm.removeChild(temp);
   }
   showSectionElm.scrollTop = 0;
 }
 
-function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
+function getHeaderBarElm(headerDisplayName, numShowsInHeader, inEditing) {
   let showSectionElm = Util.one('#shows-section');
   let headerBarId = getIdNameFromDisplayName(headerDisplayName) + '-header-bar';
   let headerBarElm = Util.create('div', { id: headerBarId, class: 'header-bar' });
@@ -144,15 +191,26 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader) {
   textElm.innerHTML = headerDisplayName + ' (' + numShowsInHeader + ')';
   let dropdownElm = Util.create('i', { class: 'fa fa-caret-down header-bar-dropdown' });
   let minusBtnElm = Util.create('i', { class: 'fa fa-minus-circle header-minus-btn gone'})
+  if (inEditing) {
+    minusBtnElm.classList.toggle('gone');
+  }
 
   dropdownElm.addEventListener('click', function(evt) {
     let shows = currentHeaderDict[headerDisplayName];
+    if (shows.length == 0) {
+      return;
+    }
     if (headerBarElm.nextSibling == null) {
       for (let show of shows) {
         showSectionElm.appendChild(getShowBarElm(show));
       }
       headerBarElm.classList.add('active');
     } else if (headerBarElm.nextSibling.classList.contains('header-bar')) {
+      for (let show of shows) {
+        showSectionElm.insertBefore(getShowBarElm(show), headerBarElm.nextSibling);
+      }
+      headerBarElm.classList.add('active');
+    } else if (headerBarElm.nextSibling.id == 'add-section') {
       for (let show of shows) {
         showSectionElm.insertBefore(getShowBarElm(show), headerBarElm.nextSibling);
       }
@@ -260,4 +318,29 @@ function toggleMainBarEditElm() {
   let mainBarEditElm = Util.one('#main-bar-edit');
   mainBarEditElm.classList.toggle('fa-edit');
   mainBarEditElm.classList.toggle('fa-check');
+}
+
+function getAddSectionElm() {
+  let addSectionElm = Util.create('div', { id: 'add-section' });
+
+  let addBtnElm = Util.create('i', { id: 'add-section-plus-btn', class: 'fa fa-plus-circle' });
+  let nameInputElm = Util.create('input', { id: 'add-section-name-input', type: 'text', placeholder: 'Section Name', class: 'left-align' });
+  
+  addBtnElm.addEventListener('click', function(evt) {
+    let showSectionElm = Util.one('#shows-section');
+    let newSectionName = Util.one('#add-section-name-input').value;
+    
+    if (newSectionName.length != 0 && !(newSectionName in currentHeaderDict)) {
+      currentHeaderDict[newSectionName] = [];
+    
+      showSectionElm.removeChild(addSectionElm);
+      showSectionElm.appendChild(getHeaderBarElm(newSectionName, 0, true));
+      showSectionElm.appendChild(getAddSectionElm());
+      showSectionElm.scrollTop = showSectionElm.scrollHeight;   
+    }
+  });
+  
+  addSectionElm.appendChild(addBtnElm);
+  addSectionElm.appendChild(nameInputElm);
+  return addSectionElm;
 }
