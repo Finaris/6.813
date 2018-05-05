@@ -159,6 +159,7 @@ function onAddButtonClick(evt) {
     //listSelectionElm.innerHTML = "List: ";
     let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';
+    submitButtonElm.addEventListener("click", addedShow);
 
     dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft + 'px');
     dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) + 'px');
@@ -179,6 +180,31 @@ function onAddButtonClick(evt) {
 }
 
 //--------------------------------------- Helper Functions -----------------------------------------//
+
+// Feign a success when adding a new list
+function addedShow(evt) {
+  evt.stopPropagation();  
+  // There's only ever one of these at a time.
+  let dropdownMenu = document.getElementsByClassName('dropdown-menu')[0];
+  
+  // Create a new div to add.
+  let addedDiv = document.createElement('div');
+  addedDiv.style.maxWidth = "75px";
+  addedDiv.innerHTML += "Successfully added show to your list.";
+  
+  // Pop all elements from the list then add the new one.
+  //while (dropdownMenu.firstChild) {
+  //  dropdownMenu.removeChild(dropdownMenu.firstChild);
+  //}
+  for (let i = 0; i < 2; i++) {
+      dropdownMenu.removeChild(dropdownMenu.firstChild);
+  }
+  dropdownMenu.appendChild(addedDiv);
+  
+  // Add to main
+  //let main = document.getElementsByTagName('main')[0];
+  //main.appendChild(addedDiv);
+}
 
 function removeAddShowDropdownMenu() {
   if (currentDropDownMenuElm != null) {
