@@ -177,9 +177,12 @@ body main {
   margin-bottom: 0px;
 }
 
-#shows-section:nth-child(2) {
-  background-color: black;
+#shows-section div:nth-child(2) { 
   border-top: 0px solid var(--color-black);
+}
+
+#shows-section div:last-child { 
+  border-bottom: 1px solid var(--color-black);
 }
 
 .fa.header-bar-dropdown {
