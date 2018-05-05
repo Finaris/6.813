@@ -13,6 +13,14 @@ class Util {
   }
 
   /**
+   * @param delay {number} number of milliseconds
+   * @returns {Promise} gets resolved after the delay
+   */
+  static delay(delay) {
+    return new Promise(resolve => setTimeout(resolve, delay));
+  }
+
+  /**
    * Create an element and set a bunch of attributes on it
    * @param tag {String}
    * @param attributes {Object}

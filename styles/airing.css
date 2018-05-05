@@ -150,9 +150,17 @@ body main {
   display: flex;
   flex-direction: column;
 
-  /*width: 100px;*/
+  /* have a fixed with to prevent distracting changes with list options */
+  width: 150px; 
 
   padding: 0px;
+}
+
+.dropdown-menu.confirmation-message {
+  /* avoid awkward whitespace in the confirmation message */
+  width: auto; 
+  font-size: 25px;
+  background-color: var(--color-super-light-gray);
 }
 
 .show-img {
