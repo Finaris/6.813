@@ -4,6 +4,37 @@ const NUM_SHOWS = 10; // TODO change later as needed
 // display shows in decreasing rating order
 const ALL_SHOWS = getRandomShows(NUM_SHOWS).sort((show1, show2) => Number(show2.rating) - Number(show1.rating));
 
+// create a canned show for the scenario.
+const CANNED_THRILLER = {
+    img: './graphics/shows/18.jpg',
+    title: 'Dancing Knives',
+    description: CANNED_DESCRIPTION_TEXT,
+    rating: 9.3,
+    releaseYear: 2018,
+    numEpisodes: 23,
+    numRated: 978,
+    status: 'Completed',
+    airDays: ['Monday', 'Tuesday'],
+    genres: ['Triller', 'Drama', 'Horror']
+};
+
+// Make sure that we always have a thriller div
+function scenarioThrillerDiv() {
+  let showSectionElm = Util.one('#results-section'); // main section of the page
+  let showDisplayElm = Util.create('div', { class: 'individual-showcard' });
+  showSectionElm.appendChild(showDisplayElm);
+
+  // each show card has three components (imgElm, dataElm, and buttonElm)
+  let imgElm = Util.create('img', { src: '../' + CANNED_THRILLER.img, class: 'show-img' });
+  let dataElm = getInfo(CANNED_THRILLER);
+  let buttonElm = Util.create('i', { class: 'all-show-add-btn fa fa-plus-circle' });
+  buttonElm.addEventListener('click', onAddButtonClick);
+
+  showDisplayElm.appendChild(imgElm);
+  showDisplayElm.appendChild(dataElm);
+  showDisplayElm.appendChild(buttonElm);
+}
+
 // Attach events to the document prior to the DOM being ready.
 Util.events(document, {
   // This runs when the DOM is ready.
@@ -71,6 +102,9 @@ function addShowsToDOM(shows) {
     showDisplayElm.appendChild(dataElm);
     showDisplayElm.appendChild(buttonElm);
   }
+  
+  // Add the thriller div to the bottom
+  scenarioThrillerDiv();
 }
 
 // gets all relevant information regarding the input show and returns a element with all info
@@ -192,18 +226,10 @@ function addedShow(evt) {
   addedDiv.style.maxWidth = "75px";
   addedDiv.innerHTML += "Successfully added show to your list.";
   
-  // Pop all elements from the list then add the new one.
-  //while (dropdownMenu.firstChild) {
-  //  dropdownMenu.removeChild(dropdownMenu.firstChild);
-  //}
   for (let i = 0; i < 2; i++) {
       dropdownMenu.removeChild(dropdownMenu.firstChild);
   }
   dropdownMenu.appendChild(addedDiv);
-  
-  // Add to main
-  //let main = document.getElementsByTagName('main')[0];
-  //main.appendChild(addedDiv);
 }
 
 function removeAddShowDropdownMenu() {
