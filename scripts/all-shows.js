@@ -193,6 +193,7 @@ function onAddButtonClick(evt) {
     //listSelectionElm.innerHTML = "List: ";
     let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';
+    submitButtonElm.style.marginTop = "5px";
     submitButtonElm.addEventListener("click", addedShow);
 
     dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft + 'px');
