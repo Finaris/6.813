@@ -35,7 +35,7 @@ function initStatsPageDOM() {
 
   let currList = Util.getURLParam("list");
   if(currList !== null) {
-    applyStatsFilter(currList);
+    loadStatsFiler(currList);
   }
 }
 
@@ -72,7 +72,7 @@ function getStatsData(shows, genreCounts) {
   return stats;
 }
 
-function applyStatsFilter(listName) {
+function loadStatsFiler(listName) {
   listDropdowns = Util.all('.dropdown-btn');
   for(let dropdown of listDropdowns) {  
     if(dropdown.innerHTML && dropdown.innerHTML.includes("List")) {
