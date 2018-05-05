@@ -1,8 +1,10 @@
 const MAX_NUM_SHOWS_ROW = 5;
 const AIRING_SHOWS_BY_DAY = getAiringShowsData(100);
-let currentAddButtonElm = null;
-let currentDropDownMenuElm = null;
-let canPress = true;
+var currentAddButtonElm = null;
+var currentDropDownMenuElm = null;
+var canPress = true;
+var mostRecentlyAddedShow = null;
+var mostRecentlyAddedList = null;
 
 // options for the user to choose from
 let listNames = ['To Watch', 'Watching', 'Completed'];
@@ -100,11 +102,13 @@ function getShowElmFromShowData(show) {
   let imgElm = Util.create('img', { src: show.img, class: 'show-img' });
   let showTitle = Util.create('div', { class: 'title-div' });
   showTitle.textContent = show.title;
-  let dropdownElm = Util.create('div', { class: 'dropdown' }); // needed to grab the element; weird behavior
+
+  // new div is needed to grab the element; weird behavior
+  let dropdownElm = Util.create('div', { class: 'dropdown' });
 
   // circle plus icon for the user to add show to list
   let dropdownButtonElm = Util.create('i', { class: 'add-btn fa fa-plus-circle' });
-  
+
   showElm.appendChild(showTitle);
   showElm.appendChild(imgElm);
   showElm.appendChild(dropdownElm);
@@ -151,10 +155,9 @@ function onAddButtonClick(evt) {
     listSelectionElm.appendChild(sectionLabelElm);
     listSelectionElm.appendChild(sectionSelect);
 
-    //listSelectionElm.innerHTML = "List: ";
     let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';
-    submitButtonElm.addEventListener("click", addedShow);
+    submitButtonElm.addEventListener("click", displayConfirmationMessage);
 
     dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft + 'px');
     dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) + 'px');
@@ -227,20 +230,34 @@ function onLeftCarouselClick(evt) {
 //--------------------------------------- Helper Functions -----------------------------------------//
 
 // Feign a success when adding a new list
-function addedShow(evt) {
-  evt.stopPropagation();  
+function displayConfirmationMessage(evt) {
+  evt.stopPropagation();
   // There's only ever one of these at a time.
   let dropdownMenu = document.getElementsByClassName('dropdown-menu')[0];
-  
+
+  // display confirmation message in the middle of the screen
+  dropdownMenu.classList.add('confirmation-message')
+  dropdownMenu.style.position = "fixed"; // position the message in the middle of the screen
+  dropdownMenu.style.left = "50%";
+  dropdownMenu.style.top = "50%";
+
   // Create a new div to add.
   let addedDiv = document.createElement('div');
-  addedDiv.style.maxWidth = "75px";
-  addedDiv.innerHTML += "Successfully added show to your list.";
-  
+  addedDiv.innerHTML += "Successfully added!";
+
+  // to limit the width of the confirmation message
+  // addedDiv.style.maxWidth = "75px"; 
+
   for (let i = 0; i < 2; i++) {
-      dropdownMenu.removeChild(dropdownMenu.firstChild);
+    dropdownMenu.removeChild(dropdownMenu.firstChild);
   }
   dropdownMenu.appendChild(addedDiv);
+
+  // display the confirmation message for a short period of time
+  Util.delay(1000).then(function() {
+      removeAddShowDropdownMenu();
+      currentDropDownMenuElm = null; // reset so that messages can pop up for future clicks
+  });
 }
 
 function removeAddShowDropdownMenu() {
