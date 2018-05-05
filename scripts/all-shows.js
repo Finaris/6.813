@@ -1,22 +1,24 @@
 // number of shows on the page
-const NUM_SHOWS = 10; // TODO change later as needed
-
-// display shows in decreasing rating order
-const ALL_SHOWS = getRandomShows(NUM_SHOWS).sort((show1, show2) => Number(show2.rating) - Number(show1.rating));
+const NUM_SHOWS = 25; // TODO change later as needed
 
 // create a canned show for the scenario.
 const CANNED_THRILLER = {
-    img: './graphics/shows/18.jpg',
-    title: 'Dancing Knives',
-    description: CANNED_DESCRIPTION_TEXT,
-    rating: 9.3,
-    releaseYear: 2018,
-    numEpisodes: 23,
+    img: './graphics/shows/5.jpg',
+    title: 'Signal',
+    description: "A mysterious walkie talkie allows a detective in the year 2000 to communicate with a cold case profiler from 2015; with the power of fore and hindsight the two not only solve crimes but prevent them from ever taking place. However, a long-standing murder case is closer to home than either realizes.",
+    rating: 8.9,
+    releaseYear: 2016,
+    numEpisodes: 16,
     numRated: 978,
     status: 'Completed',
     airDays: ['Monday', 'Tuesday'],
-    genres: ['Triller', 'Drama', 'Horror']
+    genres: ['Thriller', 'Drama']
 };
+
+// display shows in decreasing rating order
+var allShows = getRandomShows(NUM_SHOWS);
+allShows.push(CANNED_THRILLER);
+allShows.sort((show1, show2) => Number(show2.rating) - Number(show1.rating));
 
 // Make sure that we always have a thriller div
 function scenarioThrillerDiv() {
@@ -53,19 +55,34 @@ let listsToSections = {
 };
 
 function addListToMenu(menuElm, name) {
-  list = Util.create('button', { class: 'dropdown-btn' });
+  let list = Util.create('button', { class: 'dropdown-btn' });
   list.classList.add('dropdown-list-btn');
   list.innerHTML = " " + name + " <i class=\"fa fa-caret-down\"></i>";
   list.addEventListener("click", function() {
+    let btns = Util.all('.dropdown-list-btn');
+    for(var b of btns) {
+      if(b != this) {
+        b.children[0].classList = 'fa fa-caret-down';
+        b.classList.remove("active");
+      }
+    }
+
     if (this.children[0].classList == 'fa fa-caret-up') {
       this.children[0].classList = 'fa fa-caret-down';
     } else {
       this.children[0].classList = 'fa fa-caret-up';
     }
-    this.classList.toggle("active");
+    let panels = Util.all('.dropdown-list-container');
+    for(var p of panels) {
+      if(p != this.nextElementSibling) {
+        p.classList.add("gone");
+      }
+    }
     this.nextElementSibling.classList.toggle("gone");
+    this.classList.toggle("active");
+
   });
-  panel = Util.create('div', { class: 'dropdown-list-container'});
+  let panel = Util.create('div', { class: 'dropdown-list-container'});
   panel.style.setProperty('--num-sections', listsToSections[name].length);
   listsToSections[name].forEach(function(elt) {
     // Define a label for input box.
@@ -106,7 +123,7 @@ document.addEventListener('click', function(evt) {
 
 // initialize the page
 function initAllShowsPageDOM() {
-  addShowsToDOM(ALL_SHOWS);
+  addShowsToDOM(allShows);
 }
 
 // adding all shows to DOM
@@ -130,9 +147,6 @@ function addShowsToDOM(shows) {
     showDisplayElm.appendChild(dataElm);
     showDisplayElm.appendChild(buttonElm);
   }
-
-  // Add the thriller div to the bottom
-  scenarioThrillerDiv();
 }
 
 // gets all relevant information regarding the input show and returns a element with all info
@@ -176,8 +190,8 @@ function onFilterButtonClick() {
   // gets user input from the filter (filter.js)
   let filter = getFilterDict();
 
-  // gets a subset of the shows from ALL_SHOWS, using the filter
-  let filteredShows = filterShowsGivenFilter(ALL_SHOWS, filter);
+  // gets a subset of the shows from allShows, using the filter
+  let filteredShows = filterShowsGivenFilter(allShows, filter);
 
   // only display filtered shows
   addShowsToDOM(filteredShows);

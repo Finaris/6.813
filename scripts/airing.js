@@ -1,5 +1,5 @@
 const MAX_NUM_SHOWS_ROW = 5;
-const AIRING_SHOWS_BY_DAY = getAiringShowsData(100);
+const AIRING_SHOWS_BY_DAY = getAiringShowsData(500);
 var currentAddButtonElm = null;
 var currentDropDownMenuElm = null;
 var canPress = true;
@@ -120,19 +120,34 @@ function getShowElmFromShowData(show) {
 }
 
 function addListToMenu(menuElm, name) {
-  list = Util.create('button', { class: 'dropdown-btn' });
+  let list = Util.create('button', { class: 'dropdown-btn' });
   list.classList.add('dropdown-list-btn');
   list.innerHTML = " " + name + " <i class=\"fa fa-caret-down\"></i>";
   list.addEventListener("click", function() {
+    let btns = Util.all('.dropdown-list-btn');
+    for(var b of btns) {
+      if(b != this) {
+        b.children[0].classList = 'fa fa-caret-down';
+        b.classList.remove("active");
+      }
+    }
+
     if (this.children[0].classList == 'fa fa-caret-up') {
       this.children[0].classList = 'fa fa-caret-down';
     } else {
       this.children[0].classList = 'fa fa-caret-up';
     }
-    this.classList.toggle("active");
+    let panels = Util.all('.dropdown-list-container');
+    for(var p of panels) {
+      if(p != this.nextElementSibling) {
+        p.classList.add("gone");
+      }
+    }
     this.nextElementSibling.classList.toggle("gone");
+    this.classList.toggle("active");
+
   });
-  panel = Util.create('div', { class: 'dropdown-list-container'});
+  let panel = Util.create('div', { class: 'dropdown-list-container'});
   panel.style.setProperty('--num-sections', listsToSections[name].length);
   listsToSections[name].forEach(function(elt) {
     // Define a label for input box.
