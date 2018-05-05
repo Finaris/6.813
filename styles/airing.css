@@ -6,7 +6,7 @@ body {
   --show-container-hor-margins: 5px;
   --carousel-show-container-width: calc(var(--num-shows-in-slider-window) * (2 * var(--show-container-hor-margins) + var(--show-container-width)));
   --carousel-button-width: 30px;
-  --carousel-height: 300px;
+  --carousel-height: 250px;
   --translation-time: .3s;
   --add-btn-diameter: 50px;
 
@@ -127,19 +127,26 @@ body main {
 
 /* plus button for each show */
 .fa.add-btn {
-  font-size: var(--add-btn-diameter);
-  height: var(--add-btn-diameter);
-  width: var(--add-btn-diameter);
+  /* hackiest fix ever to the thick white bordering around the plus button */
+  font-size: calc(var(--add-btn-diameter)/1.35);
+  height: calc(var(--add-btn-diameter)/1.4); 
+  width: calc(var(--add-btn-diameter)/1.4);
   text-align: center;
+  background-color: var(--color-white); /* white by default */
+  opacity: 0.9;
+  border-radius: 50px; /* another hacky fix...; this gets rid of the square background of the plus button */
 }
 
-/* section that contains the plus icon */
+/* section that contains the plus button */
 .dropdown {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer; 
   color: var(--color-navy-blue);
+  position: relative;
+  top: -218px; /* hacky plus button positioning */
+  left: 54px; /* hacky plus button positioning */
 }
 
 .dropdown:hover {
@@ -159,8 +166,13 @@ body main {
 .dropdown-menu.confirmation-message {
   /* avoid awkward whitespace in the confirmation message */
   width: auto; 
-  font-size: 25px;
+  font-size: 20px;
+  padding: 20px;
+  border: 1px solid var(--color-gray);
+  border-right: 3px solid var(--color-gray);
+  border-bottom: 3px solid var(--color-gray);
   background-color: var(--color-super-light-gray);
+  /*font-family: 'Helvetica', 'Georgia', 'Times New Roman';*/
 }
 
 .show-img {
@@ -173,6 +185,7 @@ body main {
   box-shadow: rgba(0, 0, 0, 0.2) 1px 2px 2px;
 
   cursor: pointer;
+  z-index: -1;
 }
 
 .dropdown-menu {

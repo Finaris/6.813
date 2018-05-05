@@ -98,9 +98,10 @@ function initAiringPageListeners() {
 
 function getShowElmFromShowData(show) {
   let showElm = Util.create('div', { class: 'airing-show-container' });
-
-  let imgElm = Util.create('img', { src: show.img, class: 'show-img' });
   let showTitle = Util.create('div', { class: 'title-div' });
+  let imgContainerElm = Util.create('div', { class: 'img-plus-container' });
+  
+  let imgElm = Util.create('img', { src: show.img, class: 'show-img' });
   showTitle.textContent = show.title;
 
   // new div is needed to grab the element; weird behavior
@@ -110,8 +111,9 @@ function getShowElmFromShowData(show) {
   let dropdownButtonElm = Util.create('i', { class: 'add-btn fa fa-plus-circle' });
 
   showElm.appendChild(showTitle);
-  showElm.appendChild(imgElm);
-  showElm.appendChild(dropdownElm);
+  showElm.appendChild(imgContainerElm);
+  imgContainerElm.appendChild(imgElm);
+  imgContainerElm.appendChild(dropdownElm);
   dropdownElm.appendChild(dropdownButtonElm);
 
   return showElm;
@@ -239,7 +241,7 @@ function displayConfirmationMessage(evt) {
   dropdownMenu.classList.add('confirmation-message')
   dropdownMenu.style.position = "fixed"; // position the message in the middle of the screen
   dropdownMenu.style.left = "50%";
-  dropdownMenu.style.top = "50%";
+  dropdownMenu.style.top = "20%";
 
   // Create a new div to add.
   let addedDiv = document.createElement('div');
@@ -254,7 +256,7 @@ function displayConfirmationMessage(evt) {
   dropdownMenu.appendChild(addedDiv);
 
   // display the confirmation message for a short period of time
-  Util.delay(1000).then(function() {
+  Util.delay(1500).then(function() {
       removeAddShowDropdownMenu();
       currentDropDownMenuElm = null; // reset so that messages can pop up for future clicks
   });
