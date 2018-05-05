@@ -107,6 +107,8 @@ body main {
   grid-template-columns: 1fr;
   align-items: center;
   justify-items: start;
+  font-weight: 200;
+  padding-left: 13px;
 }
 
 .dropdown-list-container.gone {
