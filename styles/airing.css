@@ -129,7 +129,7 @@ body main {
 .fa.add-btn {
   /* hackiest fix ever to the thick white bordering around the plus button */
   font-size: calc(var(--add-btn-diameter)/1.35);
-  height: calc(var(--add-btn-diameter)/1.4); 
+  height: calc(var(--add-btn-diameter)/1.4);
   width: calc(var(--add-btn-diameter)/1.4);
   text-align: center;
   background-color: var(--color-white); /* white by default */
@@ -142,7 +142,7 @@ body main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer; 
+  cursor: pointer;
   color: var(--color-navy-blue);
   position: relative;
   top: -218px; /* hacky plus button positioning */
@@ -158,14 +158,41 @@ body main {
   flex-direction: column;
 
   /* have a fixed with to prevent distracting changes with list options */
-  width: 150px; 
+  width: 150px;
 
   padding: 0px;
 }
 
+.menu-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  /* have a fixed with to prevent distracting changes with list options */
+  width: 150px;
+  overflow-y: auto;
+  max-height: 200px;
+  padding: 0px;
+}
+
+.dropdown-list-btn {
+  min-height: 40px;
+}
+
+.dropdown-list-container {
+  display: grid;
+  grid-template-rows: repeat(var(--num-sections), 1fr);
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: start;
+}
+
+.dropdown-list-container.gone {
+  display: none;
+}
+
 .dropdown-menu.confirmation-message {
   /* avoid awkward whitespace in the confirmation message */
-  width: auto; 
+  width: auto;
   font-size: 20px;
   padding: 20px;
   border: 1px solid var(--color-gray);

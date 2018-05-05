@@ -100,7 +100,7 @@ function getShowElmFromShowData(show) {
   let showElm = Util.create('div', { class: 'airing-show-container' });
   let showTitle = Util.create('div', { class: 'title-div' });
   let imgContainerElm = Util.create('div', { class: 'img-plus-container' });
-  
+
   let imgElm = Util.create('img', { src: show.img, class: 'show-img' });
   showTitle.textContent = show.title;
 
@@ -119,25 +119,56 @@ function getShowElmFromShowData(show) {
   return showElm;
 }
 
-function addOptionToSelect(sel, name) {
-  option = Util.create('option', { value: name });
-  option.innerHTML = name;
-  sel.appendChild(option);
+function addListToMenu(menuElm, name) {
+  list = Util.create('button', { class: 'dropdown-btn' });
+  list.classList.add('dropdown-list-btn');
+  list.innerHTML = name;
+  list.addEventListener("click", function() {
+    /*if (this.children[0].classList == 'fa fa-caret-up') {
+      this.children[0].classList = 'fa fa-caret-down';
+    } else {
+      this.children[0].classList = 'fa fa-caret-up';
+    }*/
+    this.classList.toggle("active");
+    this.nextElementSibling.classList.toggle("gone");
+  });
+  panel = Util.create('div', { class: 'dropdown-list-container'});
+  panel.style.setProperty('--num-sections', listsToSections[name].length);
+  listsToSections[name].forEach(function(elt) {
+    // Define a label for input box.
+    let newLabel = Util.create("label");
+
+    // Define a new input box.
+    let newInput = document.createElement("input");
+    newInput.type = "checkbox";
+    newInput.value = elt;
+    //newInput.classList.add("filter-checkbox");
+    //newInput.classList.add(sectionName + "-filter-checkbox");
+
+    // Append the new elements to the genre div.
+    newLabel.appendChild(newInput);
+    newLabel.innerHTML += elt;
+    panel.appendChild(newLabel);
+  });
+  menuElm.appendChild(list);
+  menuElm.appendChild(panel);
+  panel.classList.toggle("gone");
 }
 
 function onAddButtonClick(evt) {
   evt.stopPropagation();
   if (currentDropDownMenuElm == null) {
     let dropdownMenuElm = Util.create('div', { class: 'dropdown-menu' });
-    let listSelectionElm = Util.create('div', { class: 'list-input-section' });
-    let listLabelElm = Util.create('div');
-    listLabelElm.innerHTML = "List: ";
+    let menuWrapper = Util.create('div', {class: 'menu-wrapper'});
+    //let listSelectionElm = Util.create('div', { class: 'list-input-section' });
+    //let listLabelElm = Util.create('div');
+    //listLabelElm.innerHTML = "List: ";
 
-    let listSelect = Util.create('select', { id: 'list-select' });
+    //let listSelect = Util.create('select', { id: 'list-select' });
 
-    listNames.forEach(function(elt) { addOptionToSelect(listSelect, elt) });
-
-    listSelect.onchange = function(e) {
+    listNames.forEach(function(elt) { addListToMenu(menuWrapper, elt) });
+    dropdownMenuElm.appendChild(menuWrapper);
+    /*listSelect.onchange = function(e) {
       let listSel = Util.one('#list-select');
       let sectionSel = Util.one('#section-select');
       while (sectionSel.firstChild) {
@@ -156,6 +187,7 @@ function onAddButtonClick(evt) {
     listSelectionElm.appendChild(listSelect);
     listSelectionElm.appendChild(sectionLabelElm);
     listSelectionElm.appendChild(sectionSelect);
+    */
 
     let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
     submitButtonElm.innerHTML = 'Add';
@@ -164,7 +196,7 @@ function onAddButtonClick(evt) {
     dropdownMenuElm.style.setProperty('left', evt.target.offsetLeft + 'px');
     dropdownMenuElm.style.setProperty('top', (evt.target.offsetTop + evt.target.offsetHeight + 5) + 'px');
 
-    dropdownMenuElm.appendChild(listSelectionElm);
+    //dropdownMenuElm.appendChild(listSelectionElm);
     dropdownMenuElm.appendChild(submitButtonElm);
 
     Util.one('main').appendChild(dropdownMenuElm);
@@ -248,11 +280,12 @@ function displayConfirmationMessage(evt) {
   addedDiv.innerHTML += "Successfully added!";
 
   // to limit the width of the confirmation message
-  // addedDiv.style.maxWidth = "75px"; 
+  // addedDiv.style.maxWidth = "75px";
 
-  for (let i = 0; i < 2; i++) {
+  while (dropdownMenu.firstChild) {
     dropdownMenu.removeChild(dropdownMenu.firstChild);
   }
+
   dropdownMenu.appendChild(addedDiv);
 
   // display the confirmation message for a short period of time
