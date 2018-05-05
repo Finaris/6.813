@@ -182,6 +182,8 @@ body main {
 
   background-color: var(--color-light-midnight-blue);
   color: white;
+
+  cursor: pointer;
 }
 
 .header-bar.active {

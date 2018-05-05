@@ -195,17 +195,23 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader, inEditing) {
     minusBtnElm.classList.toggle('gone');
   }
 
-  dropdownElm.addEventListener('click', function(evt) {
+  // note to whoever handles the merge conflict...
+  // this chunk should really be saved
+  headerBarElm.addEventListener('click', function(evt) {
     let shows = currentHeaderDict[headerDisplayName];
+    headerBarElm.children[2].classList.toggle('fa-caret-down');
+    headerBarElm.children[2].classList.toggle('fa-caret-up');
     if (shows.length == 0) {
       return;
     }
-    if (headerBarElm.nextSibling == null) {
+    // headerBarElm.nextSibling is the next subsection
+    if (headerBarElm.nextSibling == null) { // last subsection on the page
       for (let show of shows) {
         showSectionElm.appendChild(getShowBarElm(show));
       }
       headerBarElm.classList.add('active');
-    } else if (headerBarElm.nextSibling.classList.contains('header-bar')) {
+    } 
+    else if (headerBarElm.nextSibling.classList.contains('header-bar')) {
       for (let show of shows) {
         showSectionElm.insertBefore(getShowBarElm(show), headerBarElm.nextSibling);
       }
@@ -215,13 +221,14 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader, inEditing) {
         showSectionElm.insertBefore(getShowBarElm(show), headerBarElm.nextSibling);
       }
       headerBarElm.classList.add('active');
-    } else {
+    } else { // collapsing the subsections for the header bar
       while ( headerBarElm.nextSibling != null && headerBarElm.nextSibling.classList.contains('show-bar')) {
         showSectionElm.removeChild(headerBarElm.nextSibling);
       }
       headerBarElm.classList.remove('active');
     }
   });
+  // until here
 
   headerBarElm.appendChild(dragElm);
   headerBarElm.appendChild(textElm);
