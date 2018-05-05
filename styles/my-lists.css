@@ -213,7 +213,7 @@ body main {
   border-color: var(--color-black);
   border-width: 1px 1px 0px 1px;
 
-  background-color: var(--color-light-midnight-blue);
+  background: linear-gradient(var(--color-navy-blue), var(--color-light-midnight-blue));
   color: white;
 }
 
@@ -336,7 +336,7 @@ body main {
   width: 300px;
   height: 150px;
 
-  background-color: var(--color-silver);
+  background-color: var(--color-white);
   border: 1px solid var(--color-black);
 
   display: grid;
@@ -345,6 +345,12 @@ body main {
   align-items: center;
 
   padding: 20px;
+  font-family: "Oswald", sans-serif;
+}
+
+#add-list-modal button {
+  font-family: "Oswald", sans-serif;
+  border-radius: 4px;
 }
 
 #modal-name-section {
@@ -364,11 +370,13 @@ body main {
 #modal-submit-btn {
   grid-row: 2/3;
   grid-column: 1/2;
+  background-color: greenyellow;
 }
 
 #modal-cancel-btn {
   grid-row: 2/3;
   grid-column: 3/4;
+  background-color: lightcoral;
 }
 
 #add-section-plus-btn {
