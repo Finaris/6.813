@@ -53,7 +53,7 @@ function updateFilterState(e) {
   enableFilter(false);
 
   // Then, shuffle the current options into previousFilterOptions.
-  previousFilterOptions = currentFilterOptions;
+  previousFilterOptions = currentOptions();
   currentFilterOptions = Object.assign({}, previousFilterOptions);
   
   // Update name at top of page.
