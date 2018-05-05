@@ -74,13 +74,13 @@ function getStatsData(shows, genreCounts) {
 
 function loadStatsFiler(listName) {
   listDropdowns = Util.all('.dropdown-btn');
-  for(let dropdown of listDropdowns) {  
+  for(let dropdown of listDropdowns) {
     if(dropdown.innerHTML && dropdown.innerHTML.includes("List")) {
       dropdown.classList.toggle("active");
       panel = dropdown.nextElementSibling;
       panel.classList.toggle("gone");
       boxes = document.getElementsByClassName('list-filter-checkbox');
-      
+
       window.addEventListener('load', function() {
         for(let box of boxes) {
         console.log(box);
@@ -88,18 +88,18 @@ function loadStatsFiler(listName) {
         if(value == String(listName) + "") {
           console.log("works");
           box.checked = true;
-          
-          // Apply the filters 
+
+          // Apply the filters
           // TODO: add function which filters content too
           updateFilterState();
           break;
         }
-      }  
+      }
       });
       break;
     }
   }
-  
+
   //TODO Apply filter (also make filter button gray)
 }
 
@@ -117,9 +117,20 @@ function getGenreCountDict(shows) {
 }
 
 function initBarChart(genreCounts) {
+  //adapted from code here: https://stackoverflow.com/questions/25500316/sort-a-dictionary-by-value-in-javascript
+
+  var items = Object.keys(genreCounts).map(function(key) {
+    return [key, genreCounts[key]];
+  });
+
+  // Sort the array based on the second element
+  items.sort(function(first, second) {
+    return second[1] - first[1];
+  });
+
   let data = [{
-    x: Object.keys(genreCounts),
-    y: Object.values(genreCounts),
+    x: items.map(tup => tup[0]),
+    y: items.map(tup => tup[1]),
     type: 'bar',
   }];
   Plotly.newPlot('bar-chart', data);
