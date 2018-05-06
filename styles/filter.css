@@ -244,3 +244,9 @@ label {
 #status-container.gone {
   display: none;
 }
+
+.filter-label {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
