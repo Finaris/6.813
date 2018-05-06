@@ -35,6 +35,10 @@ Util.events(document, {
           newSectionNameElm.focus();
         }
       }  
+      
+      if (currentModal != null) {
+        onAddListSubmitBtn();
+      }
     } 
 	}
 });
@@ -67,6 +71,7 @@ function initListeners() {
       Util.one('body').appendChild(modalElm);
       currentModal = modalElm;
       applyAddListModalListeners();
+      Util.one('#modal-name-input').focus();
     }
   });
 
@@ -95,36 +100,7 @@ function initListeners() {
   });
   
   Util.one('#main-bar-edit').addEventListener('click', function(evt) {  
-    let showSectionElm = Util.one('#shows-section');
-    
-    // toggle minuses display on existing elements
-    for (let barElm of Util.all('.fa.fa-minus-circle')) {
-      barElm.classList.toggle('gone');
-    }
-
-    // add 'Add Section' part
-    if (inEditMode) {
-      showSectionElm.removeChild(showSectionElm.lastChild);
-    } else {
-      showSectionElm.appendChild(getAddSectionElm());
-    }
-    
-    // toggle edit/check icon on main bar
-    toggleMainBarEditElm();
-    
-    // update position of scroll wheel
-    if (!inEditMode) {
-      showSectionElm.scrollTop = showSectionElm.scrollHeight;
-    }
-    
-    // update focus
-    if (!inEditMode) {
-      let newSectionNameElm = Util.one('#add-section-name-input');
-      newSectionNameElm.focus();
-    }
-    
-    // update data state
-    inEditMode = !inEditMode;
+    onMainEditBtn();
   });
 }
 
@@ -192,9 +168,12 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader, inEditing) {
   if (inEditing) {
     minusBtnElm.classList.toggle('gone');
   }
+  
+  minusBtnElm.addEventListener('click', function(evt) {
+    evt.stopPropagation();
+    console.log('HI');
+  });
 
-  // note to whoever handles the merge conflict...
-  // this chunk should really be saved
   headerBarElm.addEventListener('click', function(evt) {
     let shows = currentHeaderDict[headerDisplayName];
     headerBarElm.children[2].classList.toggle('fa-caret-down');
@@ -226,7 +205,6 @@ function getHeaderBarElm(headerDisplayName, numShowsInHeader, inEditing) {
       headerBarElm.classList.remove('active');
     }
   });
-  // until here
 
   headerBarElm.appendChild(dragElm);
   headerBarElm.appendChild(textElm);
@@ -277,42 +255,81 @@ function getAddListModalElm() {
 
 function applyAddListModalListeners() {
   Util.one('#modal-submit-btn').addEventListener('click', function() {
-    currentModal = null;
-    let modalElm = Util.one('#add-list-modal');
-    let newListDisplayName = Util.one('#modal-name-input').value;
-    let newListIdName = getIdNameFromDisplayName(newListDisplayName);
-
-    if (newListIdName != '') {
-      // Make and add tab
-      let tabElm = Util.create('div', {id: newListIdName + '-btn', class: 'list-btn list-btns-btn'});
-      tabElm.innerHTML = newListDisplayName;
-      let blockerElm = Util.create('div', {class: 'tab-blocker not-blocking'});
-      tabElm.appendChild(blockerElm);
-      Util.one('#list-btns-section').insertBefore(tabElm, Util.one('#add-list-btn'));
-
-      // Add listener to tab
-      tabElm.addEventListener('click', function(evt) {
-        if (evt.target.classList.contains('list-btn')) {
-          onListBtnClick(evt.target.id);
-        }
-      });
-
-      // Update data structures
-      idNamesToDisplayNames[newListIdName] = newListDisplayName;
-      userLists[newListDisplayName] = {'All': []};
-      listTitles.push(newListDisplayName);
-
-      // Update make it as if one clicked the new shows tab button
-      onListBtnClick(newListIdName + '-btn')
-
-      Util.one('body').removeChild(modalElm);
-    }
+    onAddListSubmitBtn();
   });
   Util.one('#modal-cancel-btn').addEventListener('click', function() {
     currentModal = null;
     let modalElm = Util.one('#add-list-modal');
     Util.one('body').removeChild(modalElm);
   });
+}
+
+function onAddListSubmitBtn() {
+  currentModal = null;
+  let modalElm = Util.one('#add-list-modal');
+  let newListDisplayName = Util.one('#modal-name-input').value;
+  let newListIdName = getIdNameFromDisplayName(newListDisplayName);
+
+  if (newListIdName != '') {
+    // Make and add tab
+    let tabElm = Util.create('div', {id: newListIdName + '-btn', class: 'list-btn list-btns-btn'});
+    tabElm.innerHTML = newListDisplayName;
+    let blockerElm = Util.create('div', {class: 'tab-blocker not-blocking'});
+    tabElm.appendChild(blockerElm);
+    Util.one('#list-btns-section').insertBefore(tabElm, Util.one('#add-list-btn'));
+
+    // Add listener to tab
+    tabElm.addEventListener('click', function(evt) {
+      if (evt.target.classList.contains('list-btn')) {
+        onListBtnClick(evt.target.id);
+      }
+    });
+
+    // Update data structures
+    idNamesToDisplayNames[newListIdName] = newListDisplayName;
+    userLists[newListDisplayName] = {'All': []};
+    listTitles.push(newListDisplayName);
+
+    // Update make it as if one clicked the new shows tab button
+    onListBtnClick(newListIdName + '-btn')
+
+    Util.one('body').removeChild(modalElm);
+    
+    onMainEditBtn();
+  }
+}
+
+function onMainEditBtn() {
+  let showSectionElm = Util.one('#shows-section');
+    
+  // toggle minuses display on existing elements
+  for (let barElm of Util.all('.fa.fa-minus-circle')) {
+    barElm.classList.toggle('gone');
+  }
+
+  // add 'Add Section' part
+  if (inEditMode) {
+    showSectionElm.removeChild(showSectionElm.lastChild);
+  } else {
+    showSectionElm.appendChild(getAddSectionElm());
+  }
+
+  // toggle edit/check icon on main bar
+  toggleMainBarEditElm();
+
+  // update position of scroll wheel
+  if (!inEditMode) {
+    showSectionElm.scrollTop = showSectionElm.scrollHeight;
+  }
+
+  // update focus
+  if (!inEditMode) {
+    let newSectionNameElm = Util.one('#add-section-name-input');
+    newSectionNameElm.focus();
+  }
+
+  // update data state
+  inEditMode = !inEditMode;
 }
 
 function getIdNameFromDisplayName(displayName) {
