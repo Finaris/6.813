@@ -193,7 +193,7 @@ function onAddButtonClick(evt) {
   } else {
     let temp = currentAddButtonElm;
     removeAddShowDropdownMenu();
-    if (temp != evt.target && evt.target.classList.contains('add-btn')) {
+    if (temp != evt.target && evt.target.classList.contains('dropdown')) {
       onAddButtonClick(evt);
     }
   }

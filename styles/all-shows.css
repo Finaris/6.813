@@ -158,6 +158,8 @@ body main {
 
   font-family: 'Lora', serif;
   /*  font-weight: lighter;*/
+  
+  overflow: hidden;
 }
 
 .show-img {
