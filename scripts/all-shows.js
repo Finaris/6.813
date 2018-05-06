@@ -71,7 +71,7 @@ function addListToMenu(menuElm, name) {
   panel.style.setProperty('--num-sections', listsToSections[name].length);
   listsToSections[name].forEach(function(elt) {
     // Define a label for input box.
-    let newLabel = Util.create("label");
+    let newLabel = Util.create("label", {class: 'dropdown-menu-label'});
 
     // Define a new input box.
     let newInput = document.createElement("input");
@@ -196,7 +196,7 @@ function onAddButtonClick(evt) {
     listNames.forEach(function(elt) { addListToMenu(menuWrapper, elt) });
     dropdownMenuElm.appendChild(menuWrapper);
 
-    let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
+    let submitButtonElm = Util.create('button', { class: 'btn btn-primary dropdown-menu-add-btn' });
     submitButtonElm.innerHTML = 'Add';
     submitButtonElm.addEventListener("click", displayConfirmationMessage);
 
