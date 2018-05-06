@@ -145,8 +145,9 @@ body main {
   cursor: pointer;
   color: var(--color-navy-blue);
   position: relative;
+  width: 50px;
   top: -218px; /* hacky plus button positioning */
-  left: 54px; /* hacky plus button positioning */
+  left: 109px; /* hacky plus button positioning */
 }
 
 .dropdown:hover {
