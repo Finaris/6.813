@@ -193,3 +193,25 @@ body main {
 .fa.all-show-add-btn:hover {
   color: var(--color-steel-blue);
 }
+
+.dropdown-menu-add-btn {
+  border-radius: 4px;
+  background-color: var(--color-super-light-gray);
+}
+
+.dropdown-menu-label{
+  font-size: 15px;
+  padding-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.dropdown-btn.dropdown-list-btn {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+}
+
+.dropdown-btn.dropdown-list-btn:first-child {
+  border-top: none;
+}
