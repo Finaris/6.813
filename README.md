@@ -1,4 +1,4 @@
-# MIT 6.813 User Interface Design & Implementation - Team Project
+# MIT 6.813 User Interface Design & Implementation Project
 
 ## Description
 Designed and implemented a user interface for KDrama (Korean Drama) viewers who have several difficulties finding and managing the shows they have seen, are watching, and plan to watch.
