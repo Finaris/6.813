@@ -358,7 +358,10 @@ function getAddSectionElm() {
       showSectionElm.removeChild(addSectionElm);
       showSectionElm.appendChild(getHeaderBarElm(newSectionName, 0, true));
       showSectionElm.appendChild(getAddSectionElm());
-      showSectionElm.scrollTop = showSectionElm.scrollHeight;   
+      showSectionElm.scrollTop = showSectionElm.scrollHeight; 
+      
+      let newSectionNameElm = Util.one('#add-section-name-input');
+      newSectionNameElm.focus();
     }
   });
   
