@@ -247,8 +247,8 @@ function getAddListModalElm() {
       <div>List Name: </div>\
       <input type='text' id='modal-name-input'></input>\
     </div>\
-    <button id='modal-submit-btn'>Submit</div>\
-    <button id='modal-cancel-btn'>Cancel</div>\
+    <button id='modal-submit-btn'><div class='popup-colorful-button-text'>Submit</div></div>\
+    <button id='modal-cancel-btn'><div class='popup-colorful-button-text'>Cancel</div></div>\
   "
   return addListModalElm;
 }
