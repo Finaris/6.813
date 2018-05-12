@@ -1,14 +1,19 @@
-# User Interface Design & Implementation
+# MIT 6.813 User Interface Design & Implementation - Team Project
 
 ## Description
 Designed and implemented a user interface for KDrama (Korean Drama) viewers who have several difficulties finding and managing the shows they have seen, are watching, and plan to watch.
 
 ## Link
-[web.mit.edu/jisoomin/www/6813](https://web.mit.edu/jisoomin/www/6813)
-*Supports Chrome desktop browser*
+[https://web.mit.edu/jisoomin/www/6813](https://web.mit.edu/jisoomin/www/6813)  
+*Optimized for Chrome desktop browser.*
 
 ## Final Report
 [Link to Google Doc](https://docs.google.com/document/d/12vn-tF6EU1qznetFzvD9nW-E6NElGVAfDQ_KbEt26GY/edit?usp=sharing)
+
+## Collaborators
+Joseph Torres (<jmtorres@mit.edu>)  
+Michael Feffer (<mfeffer@mit.edu>)  
+Elijah Stiles (<edstiles@mit.edu>)
 
 ## Screenshots
 ![airing screenshot](screenshots/airing.png "Airing Page")
