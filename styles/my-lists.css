@@ -1,5 +1,5 @@
 body {
-  --list-btn-height: 40px;
+  --list-btn-height: 60px;
   --main-top-bot-padding: 20px;
   --column-guide-height: 35px;
   --given-list-btn-height: 30px;
@@ -31,12 +31,14 @@ body main {
   margin-top: 20px;
   margin-bottom: 20px;
 
-  font-family: 'Lora', serif;
+  font-family: 'Oswald', serif;
 }
 
 #list-btns-section {
   display: flex;
   flex-direction: row;
+  font-size: 18pt; /* list names (e.g. to watch, watching, etc.) */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 }
 
 .list-btns-btn {
@@ -49,8 +51,7 @@ body main {
 
   background-color: var(--color-white);
 
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 15px;
 
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -58,7 +59,6 @@ body main {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 1px;
   border: 1px solid rgba(0, 0, 0, 0.15);
 
-  margin-bottom: 0px;
 
   cursor: pointer;
 }
@@ -87,8 +87,8 @@ body main {
 }
 
 #list-section {
-  background: linear-gradient(var(--color-white), var(--color-light-midnight-blue));
-  /*background-color: var(--color-white);*/
+  /*background: linear-gradient(var(--color-white), var(--color-light-midnight-blue));*/
+  background-color: var(--color-white);
 
   padding: 20px;
 
@@ -97,15 +97,21 @@ body main {
   border-bottom-right-radius: 4px;
 
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-top: 3px solid rgba(0, 0, 0, 0.15);
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  border-right: 3px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.15);
 
   display: grid;
-  grid-template-rows: 35px 62px 1fr 30px;
+  grid-template-rows: 45px 62px 1fr 50px; /* this is where all the height proportions are decided */
   grid-auto-columns: 100%;
   justify-items: center;
 
   border-top: 0px solid black;
   width: calc(100% - 40px);
+  height: 90%;
+
+  font-size: 18px; /* each sublist (e.g. feels, romance, etc.) */
 }
 
 #column-guide {
@@ -119,8 +125,7 @@ body main {
   align-items: center;
   text-align: center;
 
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px;
 
   border: 1px solid var(--color-black);
   border-right: none;
@@ -138,12 +143,13 @@ body main {
   border-bottom-right-radius: 4px;
 }
 
+/* decided the height of the shows display */
 #shows-section {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  height: var(--shows-section-height);
+  height: calc(var(--shows-section-height)*.8); /* TODO */
   width: 100%;
 
   overflow-y: scroll;
@@ -159,15 +165,18 @@ body main {
   height: 50px;
   min-height: 50px;
   
-  padding-left: 10px;
+  padding: 0 20px;
   
   margin-top: 10px;
 
   border-radius: 4px;
   border: 1px solid var(--color-black);
 
-  background-color: var(--color-light-midnight-blue);
+  background-color: var(--color-navy-blue);
+  /*background-color: var(--color-light-midnight-blue);*/
   color: white;
+
+  font-size: 19pt;
 }
 
 .header-bar {
@@ -183,11 +192,12 @@ body main {
   min-height: 50px;
 
   border-style: solid;
-  border-color: var(--color-black);
+  border-color: var(--color-gray);
   border-width: 1px 1px 0px 1px;
 
-  background: linear-gradient(var(--color-navy-blue), var(--color-light-midnight-blue));
-  color: white;
+  background: var(--color-super-light-gray);
+  /*background: linear-gradient(var(--color-navy-blue), var(--color-light-midnight-blue));*/
+  color: black;
 
   cursor: pointer;
 }
@@ -210,11 +220,11 @@ body main {
   min-height: 50px;
 
   border-style: solid;
-  border-color: var(--color-black);
+  border-color: var(--color-gray);
   border-width: 1px 1px 0px 1px;
+  background: var(--color-super-light-gray);
 
-  background: linear-gradient(var(--color-navy-blue), var(--color-light-midnight-blue));
-  color: white;
+  /*background: linear-gradient(var(--color-navy-blue), var(--color-light-midnight-blue));*/
 }
 
 #shows-section div:first-child {
@@ -268,7 +278,7 @@ body main {
   position: relative;
   
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr 2fr 2fr 75px 1fr;
+  grid-template-columns: 1fr 5fr 1fr 2fr 2fr 90px 1fr;
   align-items: center;
   justify-items: center;
 
@@ -279,7 +289,7 @@ body main {
   border: 1px solid var(--color-black);
   border-bottom: none;
 
-  background: linear-gradient(var(--color-super-light-gray), white);
+  /*background: linear-gradient(var(--color-super-light-gray), white);*/
 }
 
 .show-bar-progress {
@@ -300,6 +310,10 @@ body main {
   cursor: pointer;
 }
 
+i.fa.fa-minus-circle {
+  font-size: 25px;
+}
+
 #main-bar-edit {
   cursor: pointer;
   font-size: 20px;
@@ -311,15 +325,25 @@ body main {
 
 #given-list-btns {
   display: grid;
-  grid-template-columns: 100px 1fr 100px;
+  grid-template-columns: 150px 1fr 150px;
 
   width: 100%
+}
+
+#towatch-btn {
 }
 
 .given-list-btn {
   cursor: pointer;
   font-family: 'Oswald', sans-serif;  
   border-radius: 4px;
+  font-size: 18pt;
+  background-color: var(--color-navy-blue);
+  color: white;
+}
+
+.given-list-btn:hover {
+  background-color: var(--color-sky-blue);
 }
 
 #delete-btn {
@@ -335,16 +359,17 @@ body main {
   left: 50%;
   top: 40%;
   transform: translate(-50%, -50%);
+  font-size: 16pt;
 
   width: 300px;
-  height: 100px;
+  height: 120px;
 
   background-color: var(--color-white);
   border: 1px solid var(--color-black);
 
   display: grid;
-  grid-template-rows: 1fr 30px;
-  grid-template-columns: 75px 1fr 75px;
+  grid-template-rows: 1fr 20px 40px; /* list name input and button; second grid row is for spacing */ 
+  grid-template-columns: 100px 1fr 100px;
   align-items: center;
 
   padding: 20px;
@@ -354,7 +379,6 @@ body main {
 #add-list-modal button {
   font-family: "Oswald", sans-serif;
   border-radius: 4px;
-  font-size: 14px;
 }
 
 #modal-name-section {
@@ -362,27 +386,47 @@ body main {
   grid-column: 1/4;
 
   display: flex;
-  flex-direction: row;
+  flex-flow: row nowrap;
+  justify-content: center;
 
   height: 30px;
 }
 
+input {
+  font-family: "Oswald", sans-serif;
+}
 #modal-name-input {
   margin-left: 10px;
-  width: 70%;
+  /*width: 50%;*/
   font-size: 16px;
 }
 
 #modal-submit-btn {
-  grid-row: 2/3;
+  grid-row: 3/4;
   grid-column: 1/2;
   background-color: greenyellow;
+  height: 100%;
+  cursor: pointer;
 }
 
 #modal-cancel-btn {
-  grid-row: 2/3;
+  grid-row: 3/4;
   grid-column: 3/4;
   background-color: lightcoral;
+  height: 100%;
+  cursor: pointer;
+}
+
+#modal-submit-btn:hover {
+  background-color: lightgreen;
+}
+
+#modal-cancel-btn:hover {
+  background-color: red;
+}
+
+.popup-colorful-button-text {
+  font-size: 15pt;
 }
 
 #add-section-plus-btn {
@@ -393,4 +437,10 @@ body main {
 #add-section-name-input {
   height: 16px;
   font-size: 16px;
+  padding: 8pt 0;
+  margin-left: -2pt;
+}
+
+.fa-plus-circle {
+  color: var(--color-navy-blue);
 }
