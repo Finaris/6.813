@@ -7,11 +7,9 @@ Designed and implemented a user interface for KDrama (Korean Drama) viewers who 
 [https://web.mit.edu/jisoomin/www/6813](https://web.mit.edu/jisoomin/www/6813)  
 *Optimized for Chrome desktop browser.*
 
-## Final Demo
-[Link to Youtube Video](https://youtu.be/uvOnMKvK4X8)
-
 ## Final Report
-[Link to Google Doc](https://docs.google.com/document/d/12vn-tF6EU1qznetFzvD9nW-E6NElGVAfDQ_KbEt26GY/edit?usp=sharing)
+[Google Doc](https://docs.google.com/document/d/12vn-tF6EU1qznetFzvD9nW-E6NElGVAfDQ_KbEt26GY/edit?usp=sharing)
+[Youtube Video](https://youtu.be/uvOnMKvK4X8)
 
 ## Collaborators
 Joseph Torres (<jmtorres@mit.edu>)  
