@@ -1,28 +1,3 @@
-var cannedShows = [{
-    img: './img/shows/somethingInTheRain.png',
-    title: 'Something in the Rain',
-    description: 'DESCRIPTION',
-    rating: 8.9,
-    releaseYear: 2018,
-    numEpisodes: 16,
-    numRated: 278,
-    status: 'Airing',
-    airDays: ['Friday', 'Saturday'],
-    genres: ['Romance', 'Drama', 'Melodrama']
-  },
-  {
-    img: './img/shows/dancingKnives.jpg',
-    title: 'Dancing Knives',
-    description: 'DESCRIPTION',
-    rating: 9.3,
-    releaseYear: 2018,
-    numEpisodes: 23,
-    numRated: 978,
-    status: 'Airing',
-    airDays: ['Monday', 'Tuesday'],
-    genres: ['Triller', 'Drama', 'Horror']
-  },
-];
 
 const CANNED_DESCRIPTION_TEXT = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 
@@ -56,7 +31,8 @@ function generateRandomShowOfType(type) {
     genres: generateElementsFromArray(genres, 1, 3),
     airDays: generateElementsFromArray(daysOfWeek, 1, 2),
     numEpisodes: numEpisodes,
-    userRating: getRandomNumber(1, 10)
+    userRating: getRandomNumber(1, 10),
+    lists: []
   };
   if (type === 'Upcoming') {
     show.releaseYear = getRandomDiscreteNumber(2018, 2020);
@@ -132,7 +108,9 @@ function getMyListsData() {
   // Make All sections
   for (let list in userLists) {
     userLists[list].All = getAllShowsInList(userLists[list]);
+    userLists[list].All.map(setListLocationAndReturnShow(list));
   }
+  
   userLists['All Dramas'] = getAllShowsInAllLists(userLists);
   return userLists;
 }
@@ -201,4 +179,11 @@ function getAllShowsInAllLists(userLists) {
 function setAllShowsToCompletedAndReturnShow(show) {
   show.userCurrentEpisode = show.numEpisodes;
   return show;
+}
+
+function setListLocationAndReturnShow(list) {
+  return function(show) {
+    show.lists.push(list);
+    return show;
+  };
 }

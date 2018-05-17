@@ -23,26 +23,23 @@ function initStatsPageDOM() {
   dom.favoriteActor = Util.one('#favorite-actor');
   dom.metaAvgOverallRating = Util.one('#meta-avg-rating');
   dom.yourAvgOverallRating = Util.one('#your-avg-rating');
-
-  let shows = userLists["All Dramas"];
-  let genreCounts = getGenreCountDict(shows);
-  let stats = getStatsData(shows, genreCounts);
-  initBarChart(genreCounts);
-
-  for (var key in stats) {
-    dom[key].textContent = stats[key];
-  }
-
+  
   let currList = Util.getURLParam("list");
   if(currList !== null) {
     loadStatsFiler(currList);
   }
+    
+  updateStatsPage();
 }
 
-function updateStatsPage(data) {
-  let shows = data["All Dramas"];
-  let genreCounts = getGenreCountDict(shows);
-  let stats = getStatsData(shows, genreCounts);
+function updateStatsPage() {
+  let shows = userLists["All Dramas"];
+  
+  let filter = getFilterDict();
+  let filteredShows = filterShowsGivenFilter(shows, filter);
+  
+  let genreCounts = getGenreCountDict(filteredShows);
+  let stats = getStatsData(filteredShows, genreCounts);
   initBarChart(genreCounts);
 
   for (var key in stats) {
@@ -60,7 +57,7 @@ function getStatsData(shows, genreCounts) {
     completedHours: 0,
     avgEpisodesPerWeek: 0,
     avgHoursPerWeek: 0,
-    favoriteGenre: Object.keys(genreCounts).reduce((a, b) => genreCounts[a] > genreCounts[b] ? a : b),
+    favoriteGenre: Object.keys(genreCounts).length > 0 ? Object.keys(genreCounts).reduce((a, b) => genreCounts[a] > genreCounts[b] ? a : b) : 'N/A',
     favoriteActor: generateElementsFromArray(actors, 1, 1)[0],
     metaAvgOverallRating: (shows.reduce((total, show) => total + Number(show.rating), 0) / shows.length).toFixed(1),
     yourAvgOverallRating: (shows.reduce((total, show) => total + Number(show.userRating), 0) / shows.length).toFixed(1)
@@ -81,26 +78,18 @@ function loadStatsFiler(listName) {
       panel.classList.toggle("gone");
       boxes = document.getElementsByClassName('list-filter-checkbox');
 
-      window.addEventListener('load', function() {
-        for(let box of boxes) {
-        console.log(box);
+      for(let box of boxes) {
         let value = box.value + "";
         if(value == String(listName) + "") {
-          console.log("works");
           box.checked = true;
 
-          // Apply the filters
-          // TODO: add function which filters content too
           updateFilterState();
           break;
         }
       }
-      });
       break;
     }
   }
-
-  //TODO Apply filter (also make filter button gray)
 }
 
 function getGenreCountDict(shows) {

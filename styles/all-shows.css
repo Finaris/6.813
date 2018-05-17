@@ -36,6 +36,8 @@ body main {
 
   padding: 50px;
   padding-top: 20px;
+  
+  position: relative;
 }
 
 
@@ -56,34 +58,21 @@ body main {
 */
 
 .dropdown-menu {
+  position: absolute;
+  
   display: flex;
   flex-direction: column;
 
-  /*width: 100px;*/
-
-  padding: 0px;
-}
-
-.dropdown-menu {
-  position: absolute;
-
   z-index: 3;
+  
+  /* have a fixed with to prevent distracting changes with list options */
+  width: 150px;
 
   background-color: var(--color-white);
   border: 1px solid var(--color-black);
 
   padding: 5px;
   border-radius: 4px;
-}
-
-.dropdown-menu {
-  display: flex;
-  flex-direction: column;
-
-  /* have a fixed with to prevent distracting changes with list options */
-  width: 150px;
-
-  padding: 0px;
 }
 
 .menu-wrapper {
@@ -134,6 +123,7 @@ body main {
   align-items: center;
 
   width: 100%;
+  height: 100%;
 }
 
 .individual-showcard {
@@ -202,4 +192,26 @@ body main {
 
 .fa.all-show-add-btn:hover {
   color: var(--color-steel-blue);
+}
+
+.dropdown-menu-add-btn {
+  border-radius: 4px;
+  background-color: var(--color-super-light-gray);
+}
+
+.dropdown-menu-label{
+  font-size: 15px;
+  padding-bottom: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.dropdown-btn.dropdown-list-btn {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: none;
+}
+
+.dropdown-btn.dropdown-list-btn:first-child {
+  border-top: none;
 }

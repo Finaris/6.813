@@ -116,7 +116,7 @@ function setupFilterSection(sectionName, sourceList) {
   let sortedSourceList = sourceList.sort();
   for (let item of sortedSourceList) {
     // Define a label for input box.
-    let newLabel = Util.create("label");
+    let newLabel = Util.create("label", {class: 'filter-label'});
 
     // Define a new input box.
     let newInput = document.createElement("input");
@@ -154,6 +154,13 @@ function getFilterDict() {
       filter.statuses.add(elm.value);
     }
   }
+  
+  let listCheckboxElms = Util.all('.list-filter-checkbox');
+  for (let elm of listCheckboxElms) {
+    if (elm.checked) {
+      filter.lists.add(elm.value);
+    }
+  }
 
   return filter;
 }
@@ -169,6 +176,19 @@ function filterShowsGivenFilter(shows, filter) {
       let failed = true;
       for (let genre of show.genres) {
         if (filter.genres.has(genre)) {
+          failed = false;
+          break;
+        }
+      }
+      if (failed) {
+        return false;
+      }
+    }
+    
+    if (filter.lists.size > 0) {
+      let failed = true;
+      for (let list of show.lists) {
+        if (filter.lists.has(list)) {
           failed = false;
           break;
         }

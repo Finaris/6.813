@@ -20,32 +20,8 @@ var allShows = getRandomShows(NUM_SHOWS);
 allShows.push(CANNED_THRILLER);
 allShows.sort((show1, show2) => Number(show2.rating) - Number(show1.rating));
 
-// Make sure that we always have a thriller div
-function scenarioThrillerDiv() {
-  let showSectionElm = Util.one('#results-section'); // main section of the page
-  let showDisplayElm = Util.create('div', { class: 'individual-showcard' });
-  showSectionElm.appendChild(showDisplayElm);
-
-  // each show card has three components (imgElm, dataElm, and buttonElm)
-  let imgElm = Util.create('img', { src: '../' + CANNED_THRILLER.img, class: 'show-img' });
-  let dataElm = getInfo(CANNED_THRILLER);
-  let buttonElm = Util.create('i', { class: 'all-show-add-btn fa fa-plus-circle' });
-  buttonElm.addEventListener('click', onAddButtonClick);
-
-  showDisplayElm.appendChild(imgElm);
-  showDisplayElm.appendChild(dataElm);
-  showDisplayElm.appendChild(buttonElm);
-}
-
-// Attach events to the document prior to the DOM being ready.
-Util.events(document, {
-  // This runs when the DOM is ready.
-  "DOMContentLoaded": function() {
-    initAllShowsPageDOM();
-  },
-});
-
-let currentDropDownMenuElm = null;
+var currentAddButtonElm = null;
+var currentDropDownMenuElm = null;
 
 let listNames = ['To Watch', 'Watching', 'Completed'];
 let listsToSections = {
@@ -53,6 +29,15 @@ let listsToSections = {
   'Watching': ['Completed Shows', 'Airing Shows'],
   'Completed': ['Amazing', 'Good', 'Okay', 'Bad']
 };
+
+// Attach events to the document prior to the DOM being ready.
+Util.events(document, {
+  // This runs when the DOM is ready.
+  "DOMContentLoaded": function() {
+    initAllShowsPageDOM();
+    initListeners();
+  },
+});
 
 function addListToMenu(menuElm, name) {
   let list = Util.create('button', { class: 'dropdown-btn' });
@@ -86,7 +71,7 @@ function addListToMenu(menuElm, name) {
   panel.style.setProperty('--num-sections', listsToSections[name].length);
   listsToSections[name].forEach(function(elt) {
     // Define a label for input box.
-    let newLabel = Util.create("label");
+    let newLabel = Util.create("label", {class: 'dropdown-menu-label'});
 
     // Define a new input box.
     let newInput = document.createElement("input");
@@ -103,22 +88,24 @@ function addListToMenu(menuElm, name) {
   panel.classList.toggle("gone");
 }
 
-window.addEventListener('resize', function() {
-  // Moves the dropdown upon resize
-  if (currentDropDownMenuElm != null) {
-    currentDropDownMenuElm.style.setProperty('left', currentAddButtonElm.offsetLeft + 'px');
-    currentDropDownMenuElm.style.setProperty('top', (currentAddButtonElm.offsetTop + currentAddButtonElm.offsetHeight + 5) + 'px');
-  }
-});
-
-document.addEventListener('click', function(evt) {
-  // Makes dropdown disappear if clicked outside
-  if (currentDropDownMenuElm != null) {
-    if (!currentDropDownMenuElm.contains(evt.target)) {
-      removeAddShowDropdownMenu();
+function initListeners() {
+  window.addEventListener('resize', function() {
+    // Moves the dropdown upon resize
+    if (currentDropDownMenuElm != null) {
+      currentDropDownMenuElm.style.setProperty('left', currentAddButtonElm.offsetLeft + 'px');
+      currentDropDownMenuElm.style.setProperty('top', (currentAddButtonElm.offsetTop + currentAddButtonElm.offsetHeight + 5) + 'px');
     }
-  }
-});
+  });
+
+  document.addEventListener('click', function(evt) {
+    // Makes dropdown disappear if clicked outside
+    if (currentDropDownMenuElm != null) {
+      if (!currentDropDownMenuElm.contains(evt.target)) {
+        removeAddShowDropdownMenu();
+      }
+    }
+  });
+}
 
 
 // initialize the page
@@ -209,7 +196,7 @@ function onAddButtonClick(evt) {
     listNames.forEach(function(elt) { addListToMenu(menuWrapper, elt) });
     dropdownMenuElm.appendChild(menuWrapper);
 
-    let submitButtonElm = Util.create('button', { class: 'btn btn-primary' });
+    let submitButtonElm = Util.create('button', { class: 'btn btn-primary dropdown-menu-add-btn' });
     submitButtonElm.innerHTML = 'Add';
     submitButtonElm.addEventListener("click", displayConfirmationMessage);
 
@@ -225,7 +212,7 @@ function onAddButtonClick(evt) {
   } else {
     let temp = currentAddButtonElm;
     removeAddShowDropdownMenu();
-    if (temp != evt.target && evt.target.classList.contains('add-btn')) {
+    if (temp != evt.target && evt.target.classList.contains('all-show-add-btn')) {
       onAddButtonClick(evt);
     }
   }
@@ -270,4 +257,21 @@ function removeAddShowDropdownMenu() {
     currentDropDownMenuElm = null;
     currentAddButtonElm = null;
   }
+}
+
+// Make sure that we always have a thriller div
+function scenarioThrillerDiv() {
+  let showSectionElm = Util.one('#results-section'); // main section of the page
+  let showDisplayElm = Util.create('div', { class: 'individual-showcard' });
+  showSectionElm.appendChild(showDisplayElm);
+
+  // each show card has three components (imgElm, dataElm, and buttonElm)
+  let imgElm = Util.create('img', { src: '../' + CANNED_THRILLER.img, class: 'show-img' });
+  let dataElm = getInfo(CANNED_THRILLER);
+  let buttonElm = Util.create('i', { class: 'all-show-add-btn fa fa-plus-circle' });
+  buttonElm.addEventListener('click', onAddButtonClick);
+
+  showDisplayElm.appendChild(imgElm);
+  showDisplayElm.appendChild(dataElm);
+  showDisplayElm.appendChild(buttonElm);
 }
