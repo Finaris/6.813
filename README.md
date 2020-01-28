@@ -9,7 +9,6 @@ Designed and implemented a user interface for KDrama (Korean Drama) viewers who 
 
 ## Final Report
 [Google Doc](https://docs.google.com/document/d/12vn-tF6EU1qznetFzvD9nW-E6NElGVAfDQ_KbEt26GY/edit?usp=sharing)  
-[Youtube Video](https://youtu.be/uvOnMKvK4X8)
 
 ## Collaborators
 Madelyn Torres (<metorres@mit.edu>)  
