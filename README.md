@@ -12,7 +12,7 @@ Designed and implemented a user interface for KDrama (Korean Drama) viewers who 
 [Youtube Video](https://youtu.be/uvOnMKvK4X8)
 
 ## Collaborators
-Joseph Torres (<jmtorres@mit.edu>)  
+Madelyn Torres (<metorres@mit.edu>)  
 Michael Feffer (<mfeffer@mit.edu>)  
 Elijah Stiles (<edstiles@mit.edu>)
 
